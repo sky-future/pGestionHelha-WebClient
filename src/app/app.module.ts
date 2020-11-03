@@ -9,6 +9,18 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {ReactiveFormsModule} from '@angular/forms';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {RouterModule} from '@angular/router';
+import {MyMaterialModule} from './material.module';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -16,14 +28,24 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegistrationComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatStepperModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    RouterModule,
+    MyMaterialModule
+
+
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

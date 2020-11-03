@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "pGestionHelha-WebClient"
+  "defaultProject": "pGestionHelha-WebClient",
+  "cli": {
+    "analytics": "239d38c1-2cfe-455b-b2de-7751d6cea016"
+  }
 }
