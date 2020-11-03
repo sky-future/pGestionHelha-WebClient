@@ -7,18 +7,20 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { MatStepperModule} from '@angular/material/stepper';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
 import {RouterModule} from '@angular/router';
-import {MyMaterialModule} from './material.module';
-
-
+import {LoginComponent} from './components/login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -29,24 +31,37 @@ import {MyMaterialModule} from './material.module';
     FooterComponent,
     HomeComponent,
     LoginFormComponent,
-    RegistrationComponent
+    RegistrationComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    RouterModule.forRoot([
+      {path: '', redirectTo: '/', pathMatch: 'full'},
+      {path: 'register', component: RegistrationComponent},
+      {path: 'login', component: LoginComponent},
+    ]),
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonModule,
     MatToolbarModule,
     MatStepperModule,
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    RouterModule,
-    MyMaterialModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
 
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[RouterModule],
 })
 export class AppModule { }

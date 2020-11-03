@@ -1,7 +1,9 @@
-.mat-stepper-horizontal {
-  margin-top: 8px;
+.form-registration{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
-.mat-form-field {
-  margin-top: 16px;
+.full-width {
+  width: 100%;
 }
