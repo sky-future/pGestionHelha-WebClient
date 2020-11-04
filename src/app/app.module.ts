@@ -24,6 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import {appRoutingModule} from './app-routing';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {MatDividerModule} from '@angular/material/divider';
     LoginFormComponent,
     RegistrationComponent,
     LoginComponent,
+
 
   ],
   imports: [
@@ -53,7 +55,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatListModule,
     appRoutingModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule //permet de faire des requêtes ajax
 
 
 

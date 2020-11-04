@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuItem} from '../../interfaces/menu-item';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,18 +10,19 @@ import {MenuItem} from '../../interfaces/menu-item';
 })
 export class HeaderComponent implements OnInit {
 
+  //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
     {
-      label: 'register',
+      label: 'Register',
       icon: 'login',
       path: '/register',
-      showOnMobile: false,
-      showOnTablet: true,
-      showOnDesktop: true
+      showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
+      showOnTablet: true, // identique mais pour le mode tablette
+      showOnDesktop: true // identique mais en mode desktop
     },
     {
-      label: 'Pricing',
-      icon: 'attach_money',
+      label: 'Login',
+      icon: 'person_add',
       path: '/login',
       showOnMobile: false,
       showOnTablet: true,

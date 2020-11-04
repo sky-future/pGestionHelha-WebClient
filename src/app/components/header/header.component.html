@@ -1,6 +1,7 @@
-
+<!-- Contient le menu de navigation du site, la menu bar est dans un mat-toolbar (element material
+      design, un boucle crée un nombre de boutons avec ces items en fonction des boutons créer dans header.ts -->
 <mat-toolbar fxLayout="row" color="primary">
-  <span fxFlex>Responsive Toolbar Demo</span>
+  <span fxFlex>Gestion Helha</span>
   <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" fxHide.xs>
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}

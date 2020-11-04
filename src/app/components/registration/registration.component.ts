@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ok} from 'assert';
+import {UserDto} from '../../DTOs/user-dto';
 
 
 @Component({
@@ -10,6 +10,9 @@ import {ok} from 'assert';
 })
 
 export class RegistrationComponent {
+
+  @Output() userCreated: EventEmitter<UserDto> = new EventEmitter<UserDto>();
+
   form: FormGroup;
   constructor(private fb:FormBuilder) {
     this.form = this.fb.group({
@@ -24,6 +27,6 @@ export class RegistrationComponent {
 
 
   submit() {
-    console.log(ok("ok"));
+    this.userCreated.emit(this.form.value);
   }
 }
