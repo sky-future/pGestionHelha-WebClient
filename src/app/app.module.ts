@@ -21,7 +21,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-
+import {appRoutingModule} from './app-routing';
 
 
 @NgModule({
@@ -32,31 +32,25 @@ import {MatListModule} from '@angular/material/list';
     HomeComponent,
     LoginFormComponent,
     RegistrationComponent,
+    LoginComponent,
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {path: '', redirectTo: '/', pathMatch: 'full'},
-      {path: 'register', component: RegistrationComponent},
-      {path: 'login', component: LoginComponent},
-    ]),
     FlexLayoutModule,
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
-    MatToolbarModule,
     MatStepperModule,
     MatIconModule,
-    MatFormFieldModule,
-    MatButtonModule,
     MatInputModule,
-    MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    appRoutingModule,
+
 
 
   ],
