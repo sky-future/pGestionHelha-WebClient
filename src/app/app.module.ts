@@ -22,6 +22,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {appRoutingModule} from './app-routing';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import {appRoutingModule} from './app-routing';
     MatSidenavModule,
     MatListModule,
     appRoutingModule,
+    MatMenuModule,
+    MatDividerModule
 
 
 
