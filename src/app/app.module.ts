@@ -25,6 +25,7 @@ import {appRoutingModule} from './app-routing';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateUserPipe } from './pipes/create-user.pipe';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {HttpClientModule} from '@angular/common/http';
     LoginFormComponent,
     RegistrationComponent,
     LoginComponent,
+    CreateUserPipe,
 
 
   ],

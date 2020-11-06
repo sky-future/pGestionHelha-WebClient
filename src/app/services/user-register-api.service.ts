@@ -17,6 +17,7 @@ export class UserRegisterApiService implements UserRegisterRepository{
 
   create(user: UserDto): Observable<UserDto> {
     return this.http.post<UserDto>(UserRegisterApiService.URL, user);
+    console.warn('tentative ajout:', user);
   }
 
   delete(id: number): Observable<any> {
