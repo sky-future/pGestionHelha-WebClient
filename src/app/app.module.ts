@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './commons/components/header/header.component';
+import { FooterComponent } from './commons/components/footer/footer.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { RegistrationComponent } from './components/registration/registration.component';
+//import { RegistrationComponent } from './components/registration/registration.component';
 import {RouterModule} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,8 +23,13 @@ import {MatListModule} from '@angular/material/list';
 import {appRoutingModule} from './app-routing';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreateUserPipe } from './pipes/create-user.pipe';
+import { AccountModalComponent } from './commons/components/account-modal/account-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatDialogModule} from '@angular/material/dialog';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
+import {ErrorInterceptor} from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -34,10 +38,10 @@ import { CreateUserPipe } from './pipes/create-user.pipe';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginFormComponent,
-    RegistrationComponent,
+    //RegistrationComponent,
     LoginComponent,
     CreateUserPipe,
+    AccountModalComponent,
 
 
   ],
@@ -58,12 +62,17 @@ import { CreateUserPipe } from './pipes/create-user.pipe';
     appRoutingModule,
     MatMenuModule,
     MatDividerModule,
-    HttpClientModule //permet de faire des requêtes ajax
+    MatDialogModule,
+    HttpClientModule,
+    NgbModule //permet de faire des requêtes ajax
 
 
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
   exports:[RouterModule],
 })

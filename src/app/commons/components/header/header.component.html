@@ -11,7 +11,7 @@
   </button>
   <mat-menu #dropMenu="matMenu">
     <ng-container *ngFor="let item of menuItems">
-      <button mat-menu-item [routerLink]="item.path">
+      <button mat-menu-item [routerLink]="item.path" (click)="onLoginClick()">
         <mat-icon class="mr">{{item.icon}}</mat-icon>
         {{item.label}}
       </button>
@@ -19,3 +19,8 @@
     </ng-container>
   </mat-menu>
 </mat-toolbar>
+
+<div *ngIf="diplay">
+  <app-account-modal></app-account-modal>
+</div>
+

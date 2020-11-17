@@ -10,7 +10,7 @@ export class CreateUserPipe implements PipeTransform {
 
   transform(mail: string, password: string): UserDto {
     this._user = {
-      mail: mail,
+      email: mail,
       password: password,
       lastConnexion: "test",
       admin: false

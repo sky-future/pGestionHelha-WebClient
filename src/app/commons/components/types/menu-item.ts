@@ -3,6 +3,7 @@ export interface MenuItem {
   label: string;
   icon: string;
   path: string;
+  click: string;
   showOnMobile: boolean;
   showOnTablet: boolean;
   showOnDesktop: boolean;

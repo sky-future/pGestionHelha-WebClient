@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {MenuItem} from '../../interfaces/menu-item';
+import {MenuItem} from '../types/menu-item';
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {AccountModalComponent} from '../account-modal/account-modal.component';
 
+
+
+declare var $: any;
+declare var jQuery: any;
 
 @Component({
   selector: 'app-header',
@@ -10,12 +16,15 @@ import {MenuItem} from '../../interfaces/menu-item';
 })
 export class HeaderComponent implements OnInit {
 
+  diplay = false;
+
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
     {
       label: 'Register',
       icon: 'login',
-      path: '/register',
+      path: '',
+      click: 'onLoginClick()',
       showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
@@ -23,16 +32,30 @@ export class HeaderComponent implements OnInit {
     {
       label: 'Login',
       icon: 'person_add',
-      path: '/login',
+      path: '',
+      click: 'onLoginClick()',
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true
     }
   ]
 
-  constructor(private router: Router) { }
+  constructor(config: NgbModalConfig, private modalService : NgbModal ) { }
 
   ngOnInit(): void {
+  }
+  //todo ne fonctionne pas correctement !
+  onLoginClick(){
+    //this.modalService.open($('#accountModal').showModal);
+    //$('#accountModal').modal('show');
+    //AccountModalComponent.showModal();
+    //this.accountTest.show();
+
+    console.log("test btn login");
+    this.diplay = true;
+
+
+
   }
 
 }
