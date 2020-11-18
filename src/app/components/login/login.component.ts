@@ -9,8 +9,6 @@ import {CreateUserPipe} from '../../pipes/create-user.pipe';
 import {environment} from '../../../environments/environment';
 import {AccountModalComponent} from '../../commons/components/account-modal/account-modal.component';
 
-class UserService {
-}
 
 @Component({
   selector: 'app-login',
@@ -48,8 +46,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private AccountModal : AccountModalComponent,
-              private http: HttpClient,
-              private userService: UserService) {
+              private http: HttpClient) {
   }
 
   /**
@@ -145,8 +142,8 @@ export class LoginComponent implements OnInit {
 
     // Auto filling if in dev.
     if (!environment.production) {
-      this.fgCtrls.login.setValue("ElsaD");
-      this.fgCtrls.password.setValue("adminElsa");
+      this.fgCtrls.login.setValue("Jordan");
+      this.fgCtrls.password.setValue("adminJordan");
     }
   }
 
@@ -173,13 +170,13 @@ export class LoginComponent implements OnInit {
     if (!environment.production) {
       let rand = Math.floor(Math.random() * 1000000);
       this.fgCtrls.login.setValue("test" + rand);
-      // this.fgCtrls.login.setValue("ElsaD");
+      // this.fgCtrls.login.setValue("Jordan");
       this.fgCtrls.password.setValue("password");
       this.fgCtrls.passwordConfirm.setValue("password");
       this.fgCtrls.firstName.setValue("first");
       this.fgCtrls.lastName.setValue("last");
       this.fgCtrls.email.setValue("test" + rand + "@gmail.com");
-      // this.fgCtrls.email.setValue("elsadraux@gmail.com");
+      // this.fgCtrls.email.setValue("Jordan@gmail.com");
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 
 declare var $: any;
@@ -9,22 +9,16 @@ declare var $: any;
   styleUrls: ['./account-modal.component.css']
 })
 export class AccountModalComponent implements OnInit {
-
-  //showModal: boolean;
+  @ViewChild('openmodal') openmodal: ElementRef;
 
   constructor(public _authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
- // show(){
- //    this.showModal = true;
- // }
- //
- //   hideModal(){
- //    this.showModal = false;
- //  }
-
+  ngAfterViewInit() {
+    this.openmodal.nativeElement.click();
+  }
 
   static showModal(): void{
     $("#accountModal").modal('show');
@@ -37,6 +31,7 @@ export class AccountModalComponent implements OnInit {
   get authService(): AuthenticationService{
     return this._authService;
   }
+
 
 
 }

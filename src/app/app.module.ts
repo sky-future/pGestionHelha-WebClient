@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './commons/components/header/header.component';
 import { FooterComponent } from './commons/components/footer/footer.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import {ReactiveFormsModule} from '@angular/forms';
-//import { RegistrationComponent } from './components/registration/registration.component';
 import {RouterModule} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -38,11 +36,9 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    //RegistrationComponent,
     LoginComponent,
     CreateUserPipe,
-    AccountModalComponent,
-
+    AccountModalComponent
 
   ],
   imports: [
