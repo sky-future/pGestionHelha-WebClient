@@ -2,7 +2,7 @@
       design, un boucle crée un nombre de boutons avec ces items en fonction des boutons créer dans header.ts -->
 <mat-toolbar fxLayout="row" color="primary">
   <span fxFlex>Gestion Helha</span>
-  <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="onLoginClick()" fxHide.xs>
+  <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}
   </button>
