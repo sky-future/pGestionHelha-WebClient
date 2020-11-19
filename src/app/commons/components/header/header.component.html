@@ -2,7 +2,7 @@
       design, un boucle crée un nombre de boutons avec ces items en fonction des boutons créer dans header.ts -->
 <mat-toolbar fxLayout="row" color="primary">
   <span fxFlex>Gestion Helha</span>
-  <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
+  <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" data-toggle="modal"  data-target="#myModal"  fxHide.xs>
     <mat-icon class="mr">{{item.icon}}</mat-icon>
     {{item.label}}
   </button>
@@ -22,9 +22,12 @@
 
 <!--Display pop-up modal-->
 <!-- Essayer en récupérant le click event-->
-<div *ngIf="display">
-  <app-account-modal (focusout)="display=false"></app-account-modal>
+<div>
+  <app-account-modal id="modal"></app-account-modal>
 </div>
+
+
+
 
 
 

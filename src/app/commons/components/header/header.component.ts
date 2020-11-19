@@ -13,6 +13,7 @@ import {WrappedNodeExpr} from '@angular/compiler';
 export class HeaderComponent implements OnInit {
 
   display: boolean = false;
+  showModalBox: boolean = false;
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
 
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
       label: 'Register',
       icon: 'login',
       path: '',
-      click: this.onLoginClick.bind(this),
+      click: this.open.bind(this),
       showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
@@ -53,10 +54,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  public open() {
+    if (true) this.showModalBox = true;
+  }
+
+
+
   onLoginClick(){
-    console.log(this.display.valueOf());
+    /*console.log(this.display.valueOf());
     this.display = true;
-    console.log(this.display.valueOf());
+    console.log(this.display.valueOf());*/
   }
 
 
