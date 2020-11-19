@@ -15,6 +15,17 @@ export class HeaderComponent implements OnInit {
   display: boolean = false;
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
+
+    {
+
+      label: 'Home',
+      icon: 'home',
+      path: '/home',
+      click: this.onEmptyClick,
+      showOnMobile: false,
+      showOnTablet: true,
+      showOnDesktop: true // identique mais en mode desktop
+    },
     {
 
       label: 'Register',
