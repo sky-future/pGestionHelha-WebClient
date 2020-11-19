@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from '../types/menu-item';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {AccountModalComponent} from '../account-modal/account-modal.component';
+import {MatMenuItem} from '@angular/material/menu';
+import {WrappedNodeExpr} from '@angular/compiler';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +15,23 @@ export class HeaderComponent implements OnInit {
   display: boolean = false;
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
+
+    {
+
+      label: 'Home',
+      icon: 'home',
+      path: '/home',
+      click: this.onEmptyClick,
+      showOnMobile: false,
+      showOnTablet: true,
+      showOnDesktop: true // identique mais en mode desktop
+    },
     {
 
       label: 'Register',
       icon: 'login',
       path: '',
-      click: this.onLoginClick,
+      click: this.onLoginClick.bind(this),
       showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
@@ -39,13 +52,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  //todo ne fonctionne pas correctement !
-  onLoginClick(){
 
-    console.log("test btn login");
-    console.log(this);
+  onLoginClick(){
+    console.log(this.display.valueOf());
     this.display = true;
+    console.log(this.display.valueOf());
   }
+
 
   onEmptyClick(){
   }

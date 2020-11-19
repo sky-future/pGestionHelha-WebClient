@@ -19,8 +19,11 @@
     </ng-container>
   </mat-menu>
 </mat-toolbar>
-<div *ngIf="display" >
-  <app-account-modal></app-account-modal>
+
+<!--Display pop-up modal-->
+<!-- Essayer en récupérant le click event-->
+<div *ngIf="display">
+  <app-account-modal (focusout)="display=false"></app-account-modal>
 </div>
 
 
