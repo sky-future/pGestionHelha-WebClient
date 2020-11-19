@@ -28,11 +28,11 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username:string, password:string){
+  login(email:string, password:string){
     password = sha256(password);
 
     let authPath = `${environment.serverAddress}${AuthenticationService.AUTH_API_PATH}`;
-    return this.http.post<any>(authPath, {username, password})
+    return this.http.post<any>(authPath, {email, password})
       .pipe(map(user => {
         localStorage.setItem(AuthenticationService.USER_KEY, JSON.stringify(user));
         this.currentUserSubject.next(user);
