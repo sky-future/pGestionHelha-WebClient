@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MenuItem} from '../../../commons/components/types/menu-item';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  gridColumns = 3;
+  menuItems: MenuItem[] = [
 
+    {
+      label: 'CarpoolingRegister',
+      icon: 'directions_car',
+      path: '/carpooling-register',
+      click: this.onEmptyClick,
+      showOnMobile: true,
+      showOnTablet: true,
+      showOnDesktop: true // identique mais en mode desktop
+    }
+  ]
+
+  gridColumns = 3;
 
   toggleGridColumns(){
     this.gridColumns = this.gridColumns === 3 ? 2 : 3;
@@ -17,6 +30,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onEmptyClick(){
+
   }
 
 }
