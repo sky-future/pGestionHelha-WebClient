@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from '../types/menu-item';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
-import {AccountModalComponent} from '../account-modal/account-modal.component';
-import {MatMenuItem} from '@angular/material/menu';
-import {WrappedNodeExpr} from '@angular/compiler';
+import {MatDialog} from '@angular/material/dialog';
+import {LoginComponent} from '../login/login.component';
+import {HomeComponent} from '../../../components/pages/home/home.component';
+import {RegisterComponent} from '../register/register.component';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,6 @@ import {WrappedNodeExpr} from '@angular/compiler';
 })
 export class HeaderComponent implements OnInit {
 
-  display: boolean = false;
-  showModalBox: boolean = false;
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
 
@@ -31,8 +30,8 @@ export class HeaderComponent implements OnInit {
 
       label: 'Register',
       icon: 'login',
-      path: '',
-      click: this.open.bind(this),
+      path: 'this.router.url',
+      click: this.onRegisterClick.bind(this),
       showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
@@ -41,34 +40,47 @@ export class HeaderComponent implements OnInit {
 
       label: 'Login',
       icon: 'person_add',
-      path: '',
-      click: this.onEmptyClick,
+      path: 'this.router.url',
+      click: this.onLoginClick.bind(this),
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true
     }
   ]
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal) { }
+  constructor(config: NgbModalConfig, private modalService: NgbModal, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
 
-  public open() {
-    if (true) this.showModalBox = true;
-  }
-
-
-
-  onLoginClick(){
-    /*console.log(this.display.valueOf());
-    this.display = true;
-    console.log(this.display.valueOf());*/
-  }
-
-
   onEmptyClick(){
+  }
+
+  private dialogRegisterRef;
+  private dialogLoginRef;
+
+  onRegisterClick() {
+
+    this.dialogRegisterRef = this.matDialog.open(RegisterComponent, {
+      height: '700px',
+      width: '600px',
+    });
+
+    this.dialogRegisterRef.afterClosed().subscribe((result: string) => {
+
+    });
+  }
+
+  onLoginClick() {
+    this.dialogLoginRef = this.matDialog.open(LoginComponent, {
+      height: '400px',
+      width: '600px',
+    });
+
+    this.dialogLoginRef.afterClosed().subscribe((result: string) => {
+
+    });
   }
 
 }
