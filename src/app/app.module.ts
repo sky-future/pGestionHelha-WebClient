@@ -23,12 +23,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreateUserPipe } from './pipes/create-user.pipe';
-import { AccountModalComponent } from './commons/components/account-modal/account-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
-import {InputTextModule} from 'primeng/inputtext';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RegisterComponent } from './commons/components/register/register.component';
@@ -42,7 +40,6 @@ import { RegisterComponent } from './commons/components/register/register.compon
     HomeComponent,
     LoginComponent,
     CreateUserPipe,
-    AccountModalComponent,
     RegisterComponent
 
   ],
@@ -65,7 +62,6 @@ import { RegisterComponent } from './commons/components/register/register.compon
     MatDividerModule,
     MatDialogModule,
     HttpClientModule,
-    InputTextModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     NgbModule //permet de faire des requêtes ajax

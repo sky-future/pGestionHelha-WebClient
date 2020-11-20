@@ -1,14 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../../services/authentication.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {first} from 'rxjs/operators';
-import {UserDto} from '../../../DTOs/user-dto';
-import {CreateUserPipe} from '../../../pipes/create-user.pipe';
-import {environment} from '../../../../environments/environment';
-import {AccountModalComponent} from '../account-modal/account-modal.component';
-import {InputTextModule} from 'primeng/inputtext';
 import {RegisterComponent} from '../register/register.component';
 import {MatDialog} from '@angular/material/dialog';
 import {HeaderComponent} from '../header/header.component';
