@@ -7,7 +7,7 @@ import { FooterComponent } from './commons/components/footer/footer.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './commons/components/login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -28,6 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
+import {InputTextModule} from 'primeng/inputtext';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { RegisterComponent } from './commons/components/register/register.component';
 
 
 @NgModule({
@@ -38,7 +42,8 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     HomeComponent,
     LoginComponent,
     CreateUserPipe,
-    AccountModalComponent
+    AccountModalComponent,
+    RegisterComponent
 
   ],
   imports: [
@@ -60,6 +65,9 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     MatDividerModule,
     MatDialogModule,
     HttpClientModule,
+    InputTextModule,
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
     NgbModule //permet de faire des requêtes ajax
 
 
@@ -69,6 +77,7 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
   exports:[RouterModule],
 })
