@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {first} from 'rxjs/operators';
-import {UserDto} from '../../../DTOs/user-dto';
-import {CreateUserPipe} from '../../../pipes/create-user.pipe';
-import {environment} from '../../../../environments/environment';
-import {AccountModalComponent} from '../account-modal/account-modal.component';
-import {InputTextModule} from 'primeng/inputtext';
+
 import {RegisterComponent} from '../register/register.component';
 import {MatDialog} from '@angular/material/dialog';
-import {HeaderComponent} from '../header/header.component';
+import {first} from 'rxjs/operators';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -23,12 +18,26 @@ import {HeaderComponent} from '../header/header.component';
 //TODO Modifier pour adapter a notre code
 export class LoginComponent implements OnInit {
 
-  private header : HeaderComponent;
+  form: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
 
-  constructor(private matDialog : MatDialog) {
+
+
+  constructor(
+    private matDialog : MatDialog,
+    private accountService: AuthenticationService,
+    private formBuilder: FormBuilder,
+    private router: Router) {
   }
 
   ngOnInit() {
+
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
 
@@ -43,7 +52,33 @@ export class LoginComponent implements OnInit {
 
     });
   }
+
+  get f(){
+    return this.form.controls;
+  }
+
+  onLoginSubmit() {
+      this.submitted = true;
+
+
+      if(this.form.invalid){
+        return;
+      }
+
+      this.loading = true;
+      this.accountService.login(this.f.email.value, this.f.password.value)
+        .pipe(first());
+
+  }
 }
+
+
+
+
+
+
+
+
 
 /*
   validatingForm: FormGroup;
