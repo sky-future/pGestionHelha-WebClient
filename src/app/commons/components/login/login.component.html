@@ -1,13 +1,14 @@
+
 <!-- Default form login -->
 
-<form [formGroup]="form" (ngSubmit)="onLoginSubmit()">
+<mat-form-field>
   <p class="h4 mb-4">Sign in</p>
 
   <!-- Email -->
-  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" formControlName="email">
+  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
 
   <!-- Password -->
-  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" formControlName="password">
+  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
 
   <div class="d-flex justify-content-around">
     <div>
@@ -30,7 +31,7 @@
   <p>Not a member?
     <a (click)="dialog()">Register</a>
   </p>
-</form>
+</mat-form-field>
 
 
 

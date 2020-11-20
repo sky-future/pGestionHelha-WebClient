@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../../services/authentication.service';
-
 import {RegisterComponent} from '../register/register.component';
 import {MatDialog} from '@angular/material/dialog';
-import {first} from 'rxjs/operators';
-import {Router} from '@angular/router';
-
+import {HeaderComponent} from '../header/header.component';
 
 
 @Component({
@@ -18,26 +13,12 @@ import {Router} from '@angular/router';
 //TODO Modifier pour adapter a notre code
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
+  private header : HeaderComponent;
 
-
-
-  constructor(
-    private matDialog : MatDialog,
-    private accountService: AuthenticationService,
-    private formBuilder: FormBuilder,
-    private router: Router) {
+  constructor(private matDialog : MatDialog) {
   }
 
   ngOnInit() {
-
-    this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
   }
 
 
@@ -52,33 +33,7 @@ export class LoginComponent implements OnInit {
 
     });
   }
-
-  get f(){
-    return this.form.controls;
-  }
-
-  onLoginSubmit() {
-      this.submitted = true;
-
-
-      if(this.form.invalid){
-        return;
-      }
-
-      this.loading = true;
-      this.accountService.login(this.f.email.value, this.f.password.value)
-        .pipe(first());
-
-  }
 }
-
-
-
-
-
-
-
-
 
 /*
   validatingForm: FormGroup;

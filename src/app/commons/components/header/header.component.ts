@@ -3,7 +3,6 @@ import {MenuItem} from '../types/menu-item';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginComponent} from '../login/login.component';
-import {HomeComponent} from '../../../components/pages/home/home.component';
 import {RegisterComponent} from '../register/register.component';
 
 @Component({
@@ -30,8 +29,10 @@ export class HeaderComponent implements OnInit {
 
       label: 'Register',
       icon: 'login',
-      path: 'this.router.url',
-      click: this.onRegisterClick.bind(this),
+      //path : '/register',
+     path: 'this.router.url',
+      click : this.onRegisterClick.bind(this),
+      //click: this.onRegisterClick.bind(this),
       showOnMobile: false, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
