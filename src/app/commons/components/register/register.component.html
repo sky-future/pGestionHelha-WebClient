@@ -1,35 +1,59 @@
 <!-- Default form register -->
-<mat-form-field>
 
-  <p class="h4 mb-4">Sign up</p>
+<form [formGroup]="userApiService.formModel" (ngSubmit)="onSubmit()">
+  <p class="h4 mb-4">Registration</p>
 
-  <div class="form-row mb-4">
-    <div class="col">
-      <!-- First name -->
-      <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
-    </div>
-    <div class="col">
-      <!-- Last name -->
-      <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+  <!-- E-mail -->
+  <div class="form-group">
+    <input type="email" id="defaultRegisterFormEmail" placeholder="E-mail"
+           formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
     </div>
   </div>
 
-  <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-
   <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-    At least 8 characters and 1 digit
-  </small>
+  <div class="form-group">
+    <input type="password" id="defaultRegisterFormPassword" placeholder="Password"
+           formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+           aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <!--    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">-->
+    <!--    </small>-->
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.pattern">Password must be at least 8 characters and maximum 15 with one digit, one
+        upper case and one lower case
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Password -->
+  <div class="form-group">
+    <input type="password" id="defaultRegisterFormConfirmPassword" placeholder="Confirm password"
+           formControlName="confirmPassword" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+           aria-describedby="defaultRegisterFormConfirmPasswordHelpBlock">
+    <!--    <small id="defaultRegisterFormConfirmPasswordHelpBlock" class="form-text text-muted mb-4">-->
+    <!--    </small>-->
+
+    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+      <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+      <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+    </div>
+  </div>
+
 
   <!-- Phone number -->
-  <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+  <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
+         aria-describedby="defaultRegisterFormPhoneHelpBlock">
   <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
     Optional - for two step authentication
   </small>
 
   <!-- Sign up button -->
-  <button id="btn1" class="btn btn-info my-4 btn-block"  type="submit">Sign in</button>
+  <div class="form-group">
+    <button id="btn1" class="btn btn-info my-4 btn-block" type="submit">Register</button>
+  </div>
 
-</mat-form-field >
+</form>

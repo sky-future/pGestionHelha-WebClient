@@ -41,13 +41,14 @@ export class AuthenticationService {
   }
 
   signUp(user: UserDto){
-    user.password = sha256(user.password);
 
+    user.password = sha256(user.password);
     let signUpPath = `${environment.serverAddress}${AuthenticationService.SIGNUP_API_PATH}`;
+
     return this.http.post<any>(signUpPath, user)
       .pipe(map(newUser => {
         return newUser;
-      }));
+      })).subscribe();
   }
 
   logout(){

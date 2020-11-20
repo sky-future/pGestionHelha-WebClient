@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs';
 import {UserDto, UserList} from '../../../DTOs/user-dto';
+import {UserPost} from '../../../DTOs/user-post';
 
 
 //interface pour la dto de user
@@ -12,7 +13,7 @@ export interface UserRegisterRepository {
 
   update(id: number, user: UserDto): Observable<any>;
 
-  post(user: UserDto): Observable<UserDto>;
+  post(): Observable<UserDto>;
 
 
 }
