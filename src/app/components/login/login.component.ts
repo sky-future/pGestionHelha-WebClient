@@ -143,7 +143,7 @@ export class LoginComponent implements OnInit {
     // Auto filling if in dev.
     if (!environment.production) {
       this.fgCtrls.login.setValue("Jordan");
-      this.fgCtrls.password.setValue("adminJordan");
+      this.fgCtrls.password.setValue("ingeid");
     }
   }
 
@@ -153,15 +153,15 @@ export class LoginComponent implements OnInit {
    */
   buildSignupFG(): void {
     this._form = this.fb.group({
-        login: this._loginCtrl,
+        // login: this._loginCtrl,
         email: this.fb.control('', [Validators.required, Validators.email]),
         password: this._passwordCtrl,
         passwordConfirm: this.fb.control('', [Validators.required, Validators.minLength(3),
           Validators.maxLength(50), Validators.pattern(this.PASSWORD_PATTERN)]),
-        firstName: this.fb.control('', [Validators.required, Validators.maxLength(50),
-          Validators.pattern(this.NAME_PATTERN)]),
-        lastName: this.fb.control('', [Validators.required, Validators.maxLength(50),
-          Validators.pattern(this.NAME_PATTERN)]),
+        // firstName: this.fb.control('', [Validators.required, Validators.maxLength(50),
+        //   Validators.pattern(this.NAME_PATTERN)]),
+        // lastName: this.fb.control('', [Validators.required, Validators.maxLength(50),
+        //   Validators.pattern(this.NAME_PATTERN)]),
       },
       {validator: this.passwordsMatching}
     );
@@ -169,12 +169,12 @@ export class LoginComponent implements OnInit {
     // Random filling if in dev.
     if (!environment.production) {
       let rand = Math.floor(Math.random() * 1000000);
-      this.fgCtrls.login.setValue("test" + rand);
+      // this.fgCtrls.login.setValue("test" + rand);
       // this.fgCtrls.login.setValue("Jordan");
       this.fgCtrls.password.setValue("password");
       this.fgCtrls.passwordConfirm.setValue("password");
-      this.fgCtrls.firstName.setValue("first");
-      this.fgCtrls.lastName.setValue("last");
+      // this.fgCtrls.firstName.setValue("first");
+      // this.fgCtrls.lastName.setValue("last");
       this.fgCtrls.email.setValue("test" + rand + "@gmail.com");
       // this.fgCtrls.email.setValue("Jordan@gmail.com");
     }
@@ -225,9 +225,9 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  loginValid(): boolean {
-    return this.fgCtrls.login.valid;
-  }
+   loginValid(): boolean {
+     return this.fgCtrls.login.valid;
+   }
 
   passwordValid(): boolean {
     return this.fgCtrls.password.valid;
@@ -237,13 +237,13 @@ export class LoginComponent implements OnInit {
     return this.fgCtrls.passwordConfirm.valid;
   }
 
-  firstNameValid(): boolean {
-    return this.fgCtrls.firstName.valid;
-  }
+  // firstNameValid(): boolean {
+  //   return this.fgCtrls.firstName.valid;
+  // }
 
-  lastNameValid(): boolean {
-    return this.fgCtrls.lastName.valid;
-  }
+  // lastNameValid(): boolean {
+  //   return this.fgCtrls.lastName.valid;
+  // }
 
   emailValid(): boolean {
     return this.fgCtrls.email.valid;

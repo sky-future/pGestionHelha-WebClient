@@ -12,8 +12,8 @@ import {map} from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  public static readonly AUTH_API_PATH: string = "/api/users/authenticate";
-  public static readonly SIGNUP_API_PATH: string = "/api/users";
+  public static readonly AUTH_API_PATH: string = "api/users/authenticate";
+  public static readonly SIGNUP_API_PATH: string = "api/users";
   public static readonly USER_KEY: string = "currentUser";
 
   private currentUserSubject: BehaviorSubject<UserDto>;
