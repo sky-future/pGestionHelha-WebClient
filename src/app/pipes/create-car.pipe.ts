@@ -9,12 +9,11 @@ export class CreateCarPipe implements PipeTransform {
   private _car: CarAddDto;
 
   transform(immat: string, placesnb : number): CarAddDto {
-    let iduser = 21;
-    let place = 5;
+    let iduser = 22;
     this._car = {
       immatriculation : immat,
       idUser : iduser,
-      placeNb : place
+      placeNb : placesnb
     }
     return this._car;
   }
