@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {RegisterComponent} from '../register/register.component';
-import {MatDialog} from '@angular/material/dialog';
 import {HeaderComponent} from '../header/header.component';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   private header : HeaderComponent;
 
-  constructor(private matDialog : MatDialog) {
+  constructor(private authenticationService: AuthenticationService,) {
   }
 
   ngOnInit() {
@@ -24,14 +23,9 @@ export class LoginComponent implements OnInit {
 
   dialog() {
 
-    const dialogRef = this.matDialog.open(RegisterComponent, {
-      height: '700px',
-      width: '600px',
-    });
+    //Opens register and closes login
+    this.authenticationService.openRegisterModal();
 
-    dialogRef.afterClosed().subscribe((result: string) => {
-
-    });
   }
 }
 

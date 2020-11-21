@@ -30,6 +30,19 @@ export class UserApiService implements UserRegisterRepository {
     confirmPassword: ['', Validators.required]
   });
 
+  // formModelTest = this.fb.group({
+  //   formArray: this.fb.array([
+  //     this.fb.group({
+  //       email: ['', [Validators.required, Validators.pattern(this.patternMail)]]
+  //     }),
+  //     this.fb.group({
+  //       password: ['', [Validators.required, Validators.pattern(this.patternPwd)]]
+  //     }),this.fb.group({
+  //       confirmPassword: ['', Validators.required]
+  //     }),
+  //    ])
+  // });
+
 
   private createUser() : UserPost
   {
