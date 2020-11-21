@@ -5,8 +5,8 @@ import {UserDto} from '../../../DTOs/user-dto';
 import {first} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserApiService} from '../repositories/user-api.service';
-import {CreateUserPipe} from '../../../pipes/create-user.pipe';
-import {UserPost} from '../../../DTOs/user-post';
+import {AlertService} from '../../../services/alert.service';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-register',
@@ -15,16 +15,18 @@ import {UserPost} from '../../../DTOs/user-post';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  loading = false;
   submitted = false;
-  private patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
   private patternMail: string = '^\\S+@\\S+$';
+  private patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
   userDto: UserDto;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
               private router: Router,
-              public userApiService : UserApiService) {
+              public userApiService : UserApiService,
+              private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -46,12 +48,26 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    this.alertService.clear();
+
+    this.loading=true;
+
     // stop here if form is invalid
     if (this.userApiService.formModel.invalid) {
+      this.loading=false;
       return;
     }
 
-    this.userApiService.post().pipe(first()).subscribe();
+    this.userApiService.post().pipe(first()).subscribe(data => {
+        this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+
+       // this.router.navigate(['../login'], { relativeTo: this.route });
+
+      },
+      error => {
+        this.alertService.error('Registration unsuccessful, check your connection', { keepAfterRouteChange: true });
+        this.loading = false;
+      });
 
   }
 

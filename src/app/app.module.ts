@@ -33,6 +33,7 @@ import { RegisterComponent } from './commons/components/register/register.compon
 import { CarpoolingRegisterComponent } from './components/pages/carpooling/carpooling-register/carpooling-register.component';
 import { CarpoolingResearchComponent } from './components/pages/carpooling/carpooling-research/carpooling-research.component';
 import { CreateCarPipe } from './pipes/create-car.pipe';
+import { AlertComponent } from './commons/components/alert/alert.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { CreateCarPipe } from './pipes/create-car.pipe';
     RegisterComponent,
     CarpoolingRegisterComponent,
     CarpoolingResearchComponent,
-    CreateCarPipe
+    CreateCarPipe,
+    AlertComponent
 
   ],
   imports: [
