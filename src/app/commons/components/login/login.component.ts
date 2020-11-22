@@ -7,6 +7,7 @@ import {UserService} from '../../../services/user.service';
 import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {AlertService} from '../../../services/alert.service';
 import {first} from 'rxjs/operators';
+import {sha256} from 'js-sha256';
 
 
 @Component({
@@ -24,7 +25,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
-  constructor(private authenticationService: AuthenticationService, public fb : FormBuilder, private router : Router, private userService : UserService, private alertService : AlertService) {
+  constructor(
+    private authenticationService: AuthenticationService,
+    public fb : FormBuilder,
+    private router : Router,
+    private userService : UserService,
+    private alertService : AlertService) {
   }
 
   formModel = this.fb.group({
@@ -46,7 +52,9 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    this.userLogin = this.userService.createUserLogin(this.formModel.value.email, this.formModel.value.password);
+    var password = this.formModel.value.password;
+    password = sha256(password);
+    this.userLogin = this.userService.createUserLogin(this.formModel.value.email, password);
 
     this.userService.login(this.userLogin).pipe(first())
       .subscribe(

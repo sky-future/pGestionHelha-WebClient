@@ -9,6 +9,7 @@ import {AlertService} from '../../../services/alert.service';
 import {UserPost} from '../../../DTOs/user-post';
 import {UserService} from '../../../services/user.service';
 import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
+import {sha256} from 'js-sha256';
 
 @Component({
   selector: 'app-register',
@@ -67,7 +68,9 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.userRegister = this.userService.createUser(this.formModel.value.email, this.formModel.value.password);
+    var password = this.formModel.value.password;
+    password = sha256(password);
+    this.userRegister = this.userService.createUser(this.formModel.value.email, password);
 
     this.userService.register(this.userRegister).pipe(first()).subscribe(data => {
 
