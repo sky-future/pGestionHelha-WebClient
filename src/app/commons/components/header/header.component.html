@@ -1,29 +1,40 @@
 <!-- Contient le menu de navigation du site, la menu bar est dans un mat-toolbar (element material
       design, un boucle crée un nombre de boutons avec ces items en fonction des boutons créer dans header.ts -->
-<mat-toolbar fxLayout="row" color="primary">
-  <span fxFlex>Gestion Helha</span>
-  <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
-    <mat-icon class="mr">{{item.icon}}</mat-icon>
-    {{item.label}}
-  </button>
-  <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #dropMenu="matMenu">
-    <ng-container *ngFor="let item of menuItems">
-      <button mat-menu-item [routerLink]="item.path" (click)="item.click()">
-        <mat-icon class="mr">{{item.icon}}</mat-icon>
-        {{item.label}}
-      </button>
-      <mat-divider></mat-divider>
-    </ng-container>
-  </mat-menu>
+<mat-toolbar fxLayout="row" color="primary" [class.mat-elevation-z3]="true">
+  <span fxFlex>HELHa
+    <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
+      <mat-icon class="mr">{{item.icon}}</mat-icon>
+      {{item.label}}
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+     <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <!--Menu on the left-->
+    <mat-menu #dropMenu="matMenu">
+      <ng-container *ngFor="let item of menuItems">
+       <button mat-menu-item [routerLink]="item.path" (click)="item.click()">
+          <mat-icon class="mr">{{item.icon}}</mat-icon>
+          {{item.label}}
+        </button>
+        <mat-divider></mat-divider>
+      </ng-container>
+   </mat-menu>
+   </span>
+
+  <!--Menu on the right-->
+  <span>
+
+
+<button *ngIf="authService.currentUser" mat-button [matMenuTriggerFor]="testMenu"> <!--[value]="authService.currentUserValue"-->
+Profile
+</button>
+<mat-menu #testMenu="matMenu">
+  <button mat-menu-item>My account</button>
+  <button mat-menu-item>Logout</button>
+</mat-menu>
+
+  </span>
+
 </mat-toolbar>
-
-
-
-
-
-
-
 

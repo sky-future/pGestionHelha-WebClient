@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserDto} from '../../../DTOs/user-dto';
 import {first} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserApiService} from '../repositories/user-api.service';
-import {CreateUserPipe} from '../../../pipes/create-user.pipe';
-import {UserPost} from '../../../DTOs/user-post';
+import {AlertService} from '../../../services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -15,30 +14,39 @@ import {UserPost} from '../../../DTOs/user-post';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  isLinear = false;
+  loading = false;
   submitted = false;
-  private patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
-  private patternMail: string = '^\\S+@\\S+$';
-  userDto: UserDto;
+  formGroupPwd: FormGroup;
+  patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
+  formGroupEmail: FormGroup;
+  patternEmail : string = '^\\S+@\\S+$';
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
               private router: Router,
-              public userApiService : UserApiService) {
+              public userApiService: UserApiService,
+              private alertService: AlertService,
+  ) {
   }
 
   ngOnInit() {
+
     this.userApiService.formModel.reset();
-    // this.registerForm = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.pattern(this.patternMail)]],
-    //   password: ['', [Validators.required, Validators.pattern(this.patternPwd)]],
-    //   confirmPassword: ['', Validators.required]
-    // }, {
-    //   validator: MustMatch('password', 'confirmPassword')
+    //  this.userApiService.formModelTest.reset();
+    //
+    // this.formGroupEmail = this.formBuilder.group({
+    //   email: ['', [Validators.required]]
+    // });
+    //
+    // this.formGroupPwd = this.formBuilder.group({
+    //   password: ['', [Validators.required, Validators.pattern(this.patternPwd)]]
     // });
   }
 
-  // convenience getter for easy access to form fields
+
+  // Convenience getter for easy access to form fields
   get f() {
     return this.userApiService.formModel.controls;
   }
@@ -46,30 +54,48 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
+    this.alertService.clear();
+
+    this.loading = true;
+
+    // Stops here if form is invalid
     if (this.userApiService.formModel.invalid) {
+      this.loading = false;
       return;
     }
 
-    this.userApiService.post().pipe(first()).subscribe();
+    this.userApiService.post().pipe(first()).subscribe(data => {
+
+        //Alert success
+        this.alertService.success('Registration successful', {keepAfterRouteChange: true});
+
+        //Opens login and closes register
+        this.authenticationService.openLoginModal();
+
+      },
+      error => {
+        //Error alert
+        this.alertService.error('Registration unsuccessful, check your connection', {keepAfterRouteChange: true});
+        this.loading = false;
+      });
 
   }
 
 }
 
 
-// custom validator to check that two fields match
+// Custom validator to check that two fields match
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];
     const matchingControl = formGroup.controls[matchingControlName];
 
     if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-      // return if another validator has already found an error on the matchingControl
+      // Return if another validator has already found an error on the matchingControl
       return;
     }
 
-    // set error on matchingControl if validation fails
+    // Set error on matchingControl if validation fails
     if (control.value !== matchingControl.value) {
       matchingControl.setErrors({mustMatch: true});
     } else {

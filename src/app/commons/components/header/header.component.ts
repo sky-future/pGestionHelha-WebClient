@@ -4,6 +4,8 @@ import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginComponent} from '../login/login.component';
 import {RegisterComponent} from '../register/register.component';
+import {AlertService} from '../../../services/alert.service';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -51,39 +53,21 @@ export class HeaderComponent implements OnInit {
     }
   ]
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal, private matDialog: MatDialog) { }
+  //TODO vérify if authService can be in public, needed to be accessed via .html
+  constructor(config: NgbModalConfig, private modalService: NgbModal, public authService: AuthenticationService,) { }
 
   ngOnInit(): void {
   }
 
-
   onEmptyClick(){
   }
 
-  private dialogRegisterRef;
-  private dialogLoginRef;
-
   onRegisterClick() {
-
-    this.dialogRegisterRef = this.matDialog.open(RegisterComponent, {
-      height: '700px',
-      width: '600px',
-    });
-
-    this.dialogRegisterRef.afterClosed().subscribe((result: string) => {
-
-    });
+    this.authService.openRegisterModal();
   }
 
   onLoginClick() {
-    this.dialogLoginRef = this.matDialog.open(LoginComponent, {
-      height: '400px',
-      width: '600px',
-    });
-
-    this.dialogLoginRef.afterClosed().subscribe((result: string) => {
-
-    });
+    this.authService.openLoginModal();
   }
 
 }

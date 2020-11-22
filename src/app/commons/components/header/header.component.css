@@ -5,3 +5,14 @@
 .backdropBackground {
   background-color: white;
 }
+
+.mat-toolbar {
+  background-color: #049493;
+  position: relative;
+
+}
+
+.mat-button{
+ color: white;
+}
+

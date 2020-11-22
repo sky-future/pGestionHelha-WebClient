@@ -1,8 +1,9 @@
+<div class="card">
+  <h2 class="card-header">Sign in</h2>
+  <div class="card-body">
 <!-- Default form login -->
-<form class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
 
-  <p class="h4 mb-4">Sign in</p>
-
+<mat-form-field>
   <!-- Email -->
   <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
 
@@ -12,7 +13,10 @@
   <div class="d-flex justify-content-around">
     <div>
       <!-- Remember me -->
-      <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+      </div>
     </div>
     <div>
       <!-- Forgot password -->
@@ -21,58 +25,15 @@
   </div>
 
   <!-- Sign in button -->
-  <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
   <!-- Register -->
   <p>Not a member?
-    <button (click)="dialog()">Register</button>
+    <a  href="javascript:void(0)" (click)="dialog()">Register</a>
   </p>
-
-</form>
-<!-- Default form login -->
-
-
-
-
-
-
-
-
-
-
-<!--&lt;!&ndash; Default form login &ndash;&gt;-->
-
-<!--<mat-form-field [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">-->
-<!--  <p class="h4 mb-4">Sign in</p>-->
-
-<!--  &lt;!&ndash; Email &ndash;&gt;-->
-<!--  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" formControlName="email">-->
-
-<!--  &lt;!&ndash; Password &ndash;&gt;-->
-<!--  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" formControlName="password">-->
-
-<!--  <div class="d-flex justify-content-around">-->
-<!--    <div>-->
-<!--      &lt;!&ndash; Remember me &ndash;&gt;-->
-<!--      <div class="custom-control custom-checkbox">-->
-<!--        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">-->
-<!--        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      &lt;!&ndash; Forgot password &ndash;&gt;-->
-<!--      <a href="">Forgot password?</a>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Sign in button &ndash;&gt;-->
-<!--  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>-->
-
-<!--  &lt;!&ndash; Register &ndash;&gt;-->
-<!--  <p>Not a member?-->
-<!--    <a (click)="dialog()">Register</a>-->
-<!--  </p>-->
-<!--</mat-form-field>-->
+</mat-form-field>
+  </div>
+</div>
 
 
 

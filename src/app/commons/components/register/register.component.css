@@ -1,3 +1,15 @@
-mat-form-field.mat-form-field {
+.card {
   width: 550px;
+}
+
+.btn{
+  background-color: #049493;
+}
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
 }

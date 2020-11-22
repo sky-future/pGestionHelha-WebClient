@@ -30,6 +30,12 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RegisterComponent } from './commons/components/register/register.component';
+import { CarpoolingRegisterComponent } from './components/pages/carpooling/carpooling-register/carpooling-register.component';
+import { CarpoolingResearchComponent } from './components/pages/carpooling/carpooling-research/carpooling-research.component';
+import { CreateCarPipe } from './pipes/create-car.pipe';
+import { AlertComponent } from './commons/components/alert/alert.component';
+import { RegisterModalComponent } from './commons/components/register/register-modal/register-modal.component';
+import { LoginModalComponent } from './commons/components/login/login-modal/login-modal.component';
 
 
 @NgModule({
@@ -40,7 +46,13 @@ import { RegisterComponent } from './commons/components/register/register.compon
     HomeComponent,
     LoginComponent,
     CreateUserPipe,
-    RegisterComponent
+    RegisterComponent,
+    CarpoolingRegisterComponent,
+    CarpoolingResearchComponent,
+    CreateCarPipe,
+    AlertComponent,
+    RegisterModalComponent,
+    LoginModalComponent
 
   ],
   imports: [
