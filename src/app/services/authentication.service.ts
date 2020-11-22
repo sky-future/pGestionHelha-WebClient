@@ -73,8 +73,6 @@ export class AuthenticationService {
 
   //End modal code
 
-
-
   public get currentUserValue(): UserDto {
     return this.currentUserSubject.value;
   }
@@ -89,17 +87,6 @@ export class AuthenticationService {
         this.currentUserSubject.next(user);
         return user;
       }));
-  }
-
-  signUp(user: UserDto) {
-
-    user.password = sha256(user.password);
-    let signUpPath = `${environment.serverAddress}${AuthenticationService.SIGNUP_API_PATH}`;
-
-    return this.http.post<any>(signUpPath, user)
-      .pipe(map(newUser => {
-        return newUser;
-      })).subscribe();
   }
 
   logout() {

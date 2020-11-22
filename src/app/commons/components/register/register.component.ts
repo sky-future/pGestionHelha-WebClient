@@ -6,6 +6,9 @@ import {first} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserApiService} from '../repositories/user-api.service';
 import {AlertService} from '../../../services/alert.service';
+import {UserPost} from '../../../DTOs/user-post';
+import {UserService} from '../../../services/user.service';
+import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 
 @Component({
   selector: 'app-register',
@@ -20,35 +23,35 @@ export class RegisterComponent implements OnInit {
   formGroupPwd: FormGroup;
   patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
   formGroupEmail: FormGroup;
-  patternEmail : string = '^\\S+@\\S+$';
+  patternMail : string = '^\\S+@\\S+$';
+  private userRegister: UserPost;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
               private router: Router,
-              public userApiService: UserApiService,
+              public userService: UserService,
+              private userApiService: UserApiService,
               private alertService: AlertService,
   ) {
   }
 
+  formModel = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.pattern(this.patternMail)]],
+    password: ['', [Validators.required, Validators.pattern(this.patternPwd)]],
+    confirmPassword: ['', Validators.required]
+  });
+
   ngOnInit() {
 
-    this.userApiService.formModel.reset();
-    //  this.userApiService.formModelTest.reset();
-    //
-    // this.formGroupEmail = this.formBuilder.group({
-    //   email: ['', [Validators.required]]
-    // });
-    //
-    // this.formGroupPwd = this.formBuilder.group({
-    //   password: ['', [Validators.required, Validators.pattern(this.patternPwd)]]
-    // });
+    this.formModel.reset();
+
   }
 
 
   // Convenience getter for easy access to form fields
   get f() {
-    return this.userApiService.formModel.controls;
+    return this.formModel.controls;
   }
 
   onSubmit() {
@@ -59,12 +62,14 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
 
     // Stops here if form is invalid
-    if (this.userApiService.formModel.invalid) {
+    if (this.formModel.invalid) {
       this.loading = false;
       return;
     }
 
-    this.userApiService.post().pipe(first()).subscribe(data => {
+    this.userRegister = this.userService.createUser(this.formModel.value.email, this.formModel.value.password);
+
+    this.userService.register(this.userRegister).pipe(first()).subscribe(data => {
 
         //Alert success
         this.alertService.success('Registration successful', {keepAfterRouteChange: true});

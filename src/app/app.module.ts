@@ -36,6 +36,7 @@ import { CreateCarPipe } from './pipes/create-car.pipe';
 import { AlertComponent } from './commons/components/alert/alert.component';
 import { RegisterModalComponent } from './commons/components/register/register-modal/register-modal.component';
 import { LoginModalComponent } from './commons/components/login/login-modal/login-modal.component';
+import { CreateUserLoginPipe } from './pipes/create-user-login.pipe';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LoginModalComponent } from './commons/components/login/login-modal/logi
     CreateCarPipe,
     AlertComponent,
     RegisterModalComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    CreateUserLoginPipe
 
   ],
   imports: [
@@ -83,7 +85,7 @@ import { LoginModalComponent } from './commons/components/login/login-modal/logi
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
