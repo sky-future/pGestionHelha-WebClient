@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RegisterComponent} from '../register/register.component';
 import {MatDialog} from '@angular/material/dialog';
 import {HeaderComponent} from '../header/header.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -14,11 +15,18 @@ import {HeaderComponent} from '../header/header.component';
 export class LoginComponent implements OnInit {
 
   private header : HeaderComponent;
+  public loginForm: FormGroup;
 
-  constructor(private matDialog : MatDialog) {
+  constructor(
+    private matDialog : MatDialog,
+    private fb: FormBuilder){
   }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
 
@@ -29,9 +37,15 @@ export class LoginComponent implements OnInit {
       width: '600px',
     });
 
-    dialogRef.afterClosed().subscribe((result: string) => {
+    // dialogRef.afterClosed().subscribe((result: string) => {
+    //
+    // });
+  }
 
-    });
+  onLoginSubmit() {
+
+
+
   }
 }
 
