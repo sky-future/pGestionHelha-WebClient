@@ -1,7 +1,5 @@
 export interface UserDto {
- // idUser?:number;
-  //firstName:string;
-  //lastName: string;
+  id: number;
   email: string;
   password: string;
   lastConnexion: string;

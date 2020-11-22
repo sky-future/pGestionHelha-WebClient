@@ -6,6 +6,7 @@ import {LoginComponent} from '../login/login.component';
 import {RegisterComponent} from '../register/register.component';
 import {AlertService} from '../../../services/alert.service';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -54,7 +55,10 @@ export class HeaderComponent implements OnInit {
   ]
 
   //TODO vérify if authService can be in public, needed to be accessed via .html
-  constructor(config: NgbModalConfig, private modalService: NgbModal, public authService: AuthenticationService,) { }
+  constructor(config: NgbModalConfig,
+              private modalService: NgbModal,
+              public authService: AuthenticationService,
+              public userService : UserService) { }
 
   ngOnInit(): void {
   }
@@ -70,4 +74,7 @@ export class HeaderComponent implements OnInit {
     this.authService.openLoginModal();
   }
 
+  onLogoutClick() {
+    this.userService.logout();
+  }
 }
