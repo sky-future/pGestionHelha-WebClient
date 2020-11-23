@@ -6,6 +6,7 @@ import {RegisterComponent} from './commons/components/register/register.componen
 import {CarpoolingRegisterComponent} from './components/pages/carpooling/carpooling-register/carpooling-register.component';
 import {LoginComponent} from './commons/components/login/login.component';
 import {AuthGuard} from './helpers/auth.guard';
+import {CreateProfileComponent} from './commons/components/create-profile/create-profile.component';
 
 
 
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path: 'home', component : HomeComponent, canActivate : [AuthGuard]},
   {path: 'register', component : RegisterComponent},
   {path: 'carpooling-register', component : CarpoolingRegisterComponent},
-  {path: 'login', component : LoginComponent}
+  {path: 'login', component : LoginComponent},
+  {path: 'create-profile', component : CreateProfileComponent}
+
 ];
 
 

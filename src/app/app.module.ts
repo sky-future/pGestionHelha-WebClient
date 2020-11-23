@@ -37,6 +37,9 @@ import { AlertComponent } from './commons/components/alert/alert.component';
 import { RegisterModalComponent } from './commons/components/register/register-modal/register-modal.component';
 import { LoginModalComponent } from './commons/components/login/login-modal/login-modal.component';
 import { CreateUserLoginPipe } from './pipes/create-user-login.pipe';
+import { CreateProfileComponent } from './commons/components/create-profile/create-profile.component';
+import { CreateProfileModalComponent } from './commons/components/create-profile/create-profile-modal/create-profile-modal.component';
+import { CreateProfilePipe } from './pipes/create-profile.pipe';
 
 
 @NgModule({
@@ -54,7 +57,10 @@ import { CreateUserLoginPipe } from './pipes/create-user-login.pipe';
     AlertComponent,
     RegisterModalComponent,
     LoginModalComponent,
-    CreateUserLoginPipe
+    CreateUserLoginPipe,
+    CreateProfileComponent,
+    CreateProfileModalComponent,
+    CreateProfilePipe
 
   ],
   imports: [
