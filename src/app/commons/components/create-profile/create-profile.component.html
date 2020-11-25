@@ -1,0 +1,70 @@
+<!-- Form creat profile -->
+<div class="card">
+  <h2 class="card-header">Create your profile</h2>
+  <div class="card-body">
+    <alert></alert>
+    <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+
+      <!--Name -->
+      <div class="form-group">
+        <input type="text" placeholder="Last name"
+               formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+          <div *ngIf="f.lastname.errors.required">Last name is required</div>
+        </div>
+      </div>
+
+      <!-- First name -->
+      <div class="form-group">
+        <input type="text" placeholder="First name"
+               formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"
+               aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+          <div *ngIf="f.firstname.errors.required">First name is required</div>
+        </div>
+      </div>
+
+      <!-- Registration number/ matricule -->
+      <div class="form-group">
+        <input type="text" placeholder="Registration number"
+               formControlName="matricule" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.matricule.errors }"
+               aria-describedby="defaultRegisterFormConfirmPasswordHelpBlock">
+
+
+        <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
+          <div *ngIf="f.matricule.errors.required">Registration number is required</div>
+          <div *ngIf="f.matricule.errors.pattern">Registration number format is : "LAXXXXXX"</div>
+        </div>
+      </div>
+
+      <!--Mobile phone -->
+      <div class="form-group">
+        <input type="text" placeholder="Mobile phone (ex: 04XXXXXXXX)"
+               formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+        <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+          <div *ngIf="f.telephone.errors.required">Phone number is required</div>
+              <div *ngIf="f.telephone.errors.pattern">Mobile phone number must be a valid</div>
+        </div>
+      </div>
+
+      <!--Description -->
+      <div class="form-group">
+        <input type="text" placeholder="Description"
+               formControlName="descript" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descript.errors }">
+        <div *ngIf="submitted && f.descript.errors" class="invalid-feedback">
+          <div *ngIf="f.descript.errors.pattern">Description must be between 0 and 144 characters</div>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <div class="form-group">
+        <button [disabled]="loading" id="btn1" class="btn btn-info my-4 btn-block" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Create profile
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

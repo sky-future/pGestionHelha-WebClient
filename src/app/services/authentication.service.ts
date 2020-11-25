@@ -8,6 +8,7 @@ import {map} from 'rxjs/operators';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {RegisterModalComponent} from '../commons/components/register/register-modal/register-modal.component';
 import {LoginModalComponent} from '../commons/components/login/login-modal/login-modal.component';
+import {CreateProfileModalComponent} from '../commons/components/create-profile/create-profile-modal/create-profile-modal.component';
 
 
 @Injectable({
@@ -24,6 +25,9 @@ export class AuthenticationService {
 
   //Register modal
   registerModalRef: MatDialogRef<RegisterModalComponent>;
+
+  //Creat profile modal
+  creatProfileModalRef: MatDialogRef<CreateProfileModalComponent>;
 
   private currentUserSubject: BehaviorSubject<UserDto>;
   public currentUser: Observable<UserDto>;
@@ -43,8 +47,8 @@ export class AuthenticationService {
     this.loginModalRef = this.dialog.open(LoginModalComponent, {panelClass: 'login-dialog'});
 
     //Closes if open
-    if (this.registerModalRef) {
-      this.closeRegisterModal();
+    if (this.creatProfileModalRef) {
+      this.closeCreateProfileModal();
     }
 
   }
@@ -61,6 +65,19 @@ export class AuthenticationService {
 
   }
 
+  //Opens the create login modal and closes register if opened
+  openCreateProfileModal(): void {
+
+    this.creatProfileModalRef = this.dialog.open(CreateProfileModalComponent, {panelClass: 'create-profile-dialog'});
+
+    //Closes if open
+    if (this.registerModalRef) {
+      this.closeRegisterModal();
+    }
+
+  }
+
+
   //Closes the login modal
   closeLoginModal(): void {
     this.loginModalRef.close();
@@ -70,6 +87,12 @@ export class AuthenticationService {
   closeRegisterModal(): void {
     this.registerModalRef.close();
   }
+
+  //Closes the create profile modal
+  closeCreateProfileModal(): void {
+    this.creatProfileModalRef.close();
+  }
+
 
   //End modal code
 

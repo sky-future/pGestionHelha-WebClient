@@ -2,20 +2,84 @@
       design, un boucle crée un nombre de boutons avec ces items en fonction des boutons créer dans header.ts -->
 <mat-toolbar fxLayout="row" color="primary" [class.mat-elevation-z3]="true">
   <span fxFlex>HELHa
-    <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
-      <mat-icon class="mr">{{item.icon}}</mat-icon>
-      {{item.label}}
+    <!--    <button mat-button *ngFor="let item of menuItems" [hidden]="item.isVisible" [routerLink]="item.path"-->
+    <!--            (click)="item.click()" fxHide.xs>-->
+    <!--      <mat-icon class="mr">{{item.icon}}</mat-icon>-->
+    <!--      {{item.label}}-->
+    <!--    </button>-->
+    <!--    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>-->
+    <!--     <mat-icon>more_vert</mat-icon>-->
+    <!--    </button>-->
+
+    <!--Menu on the left-->
+    <!--    <mat-menu #dropMenu="matMenu">-->
+    <!--      <ng-container *ngFor="let item of menuItems">-->
+    <!--       <button mat-menu-item [routerLink]="item.path" (click)="item.click()">-->
+    <!--          <mat-icon class="mr">{{item.icon}}</mat-icon>-->
+    <!--         {{item.label}}-->
+    <!--        </button>-->
+    <!--        <mat-divider></mat-divider>-->
+    <!--      </ng-container>-->
+    <!--   </mat-menu>-->
+
+<!--    Home-->
+    <button mat-button *ngIf="userService.userValue"
+            [routerLink]="menuItems[0].path"
+            (click)="menuItems[0].click()" fxHide.xs>
+      <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>
+      {{menuItems[0].label}}
     </button>
     <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
      <mat-icon>more_vert</mat-icon>
     </button>
 
-    <!--Menu on the left-->
-    <mat-menu #dropMenu="matMenu">
-      <ng-container *ngFor="let item of menuItems">
-       <button mat-menu-item [routerLink]="item.path" (click)="item.click()">
-          <mat-icon class="mr">{{item.icon}}</mat-icon>
-          {{item.label}}
+        <mat-menu #dropMenu="matMenu">
+      <ng-container>
+       <button mat-menu-item [routerLink]="menuItems[0].path" (click)="menuItems[0].click()">
+          <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>
+         {{menuItems[0].label}}
+        </button>
+        <mat-divider></mat-divider>
+      </ng-container>
+   </mat-menu>
+
+<!--    Register-->
+    <button mat-button *ngIf="!userService.userValue"
+            [routerLink]="menuItems[1].path"
+            (click)="menuItems[1].click()" fxHide.xs>
+      <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>
+      {{menuItems[1].label}}
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+     <mat-icon>more_vert</mat-icon>
+    </button>
+
+        <mat-menu #dropMenu="matMenu">
+      <ng-container>
+       <button mat-menu-item [routerLink]="menuItems[1].path" (click)="menuItems[1].click()">
+          <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>
+         {{menuItems[1].label}}
+        </button>
+        <mat-divider></mat-divider>
+      </ng-container>
+   </mat-menu>
+
+<!--    Login-->
+    <button mat-button *ngIf="!userService.userValue"
+            [routerLink]="menuItems[2].path"
+            (click)="menuItems[2].click()" fxHide.xs>
+      <mat-icon class="mr">{{menuItems[2].icon}}</mat-icon>
+      {{menuItems[2].label}}
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+     <mat-icon>more_vert</mat-icon>
+    </button>
+
+        <mat-menu #dropMenu="matMenu">
+      <ng-container>
+       <button mat-menu-item [routerLink]="menuItems[2].path" (click)="menuItems[2].click()">
+          <mat-icon class="mr">{{menuItems[2].icon}}</mat-icon>
+         {{menuItems[2].label}}
         </button>
         <mat-divider></mat-divider>
       </ng-container>
@@ -26,11 +90,11 @@
   <span>
 
 
-<button *ngIf="authService.currentUser" mat-button [matMenuTriggerFor]="testMenu"> <!--[value]="authService.currentUserValue"-->
+<button *ngIf="userService.userValue" mat-button [matMenuTriggerFor]="testMenu"> <!--[value]="authService.currentUserValue"-->
 Profile
 </button>
 <mat-menu #testMenu="matMenu">
-  <button mat-menu-item>My account</button>
+  <button [routerLink]="'/my-profile'" mat-menu-item (click)="myProfile()">My account</button>
   <button mat-menu-item (click)="onLogoutClick()">Logout</button>
 </mat-menu>
 

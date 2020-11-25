@@ -1,0 +1,12 @@
+.card{
+  width: 550px;
+  margin : auto;
+}
+
+.btn{
+  background-color: #049493;
+}
+
+.list-group li.list-group-item mat-icon{
+  float: right;
+}

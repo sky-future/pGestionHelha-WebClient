@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
         this.alertService.success('Registration successful', {keepAfterRouteChange: true});
 
         //Opens login and closes register
-        this.authenticationService.openLoginModal();
+        this.authenticationService.openCreateProfileModal();
 
       },
       error => {
