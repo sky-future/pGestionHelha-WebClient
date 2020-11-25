@@ -62,7 +62,7 @@ import { AddressPipe } from './CarPooling/pipes/address.pipe';
     CreateUserLoginPipe,
     RegisterFormAddressComponent,
     RegisterStepperFormComponent,
-    AddressPipe
+    AddressPipe,
     CreateUserLoginPipe,
     CreateProfileComponent,
     CreateProfileModalComponent,
