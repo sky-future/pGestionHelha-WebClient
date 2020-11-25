@@ -40,6 +40,7 @@ import { CreateUserLoginPipe } from './pipes/create-user-login.pipe';
 import { CreateProfileComponent } from './commons/components/create-profile/create-profile.component';
 import { CreateProfileModalComponent } from './commons/components/create-profile/create-profile-modal/create-profile-modal.component';
 import { CreateProfilePipe } from './pipes/create-profile.pipe';
+import { MyProfileComponent } from './commons/components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { CreateProfilePipe } from './pipes/create-profile.pipe';
     CreateUserLoginPipe,
     CreateProfileComponent,
     CreateProfileModalComponent,
-    CreateProfilePipe
+    CreateProfilePipe,
+    MyProfileComponent
 
   ],
   imports: [

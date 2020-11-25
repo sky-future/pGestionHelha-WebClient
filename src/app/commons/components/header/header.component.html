@@ -94,7 +94,7 @@
 Profile
 </button>
 <mat-menu #testMenu="matMenu">
-  <button mat-menu-item>My account</button>
+  <button [routerLink]="'/my-profile'" mat-menu-item (click)="myProfile()">My account</button>
   <button mat-menu-item (click)="onLogoutClick()">Logout</button>
 </mat-menu>
 
