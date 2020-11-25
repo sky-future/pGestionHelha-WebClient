@@ -43,6 +43,7 @@ import { MyProfileComponent } from './commons/components/my-profile/my-profile.c
 import { RegisterFormAddressComponent } from './CarPooling/carpooling-register/Components/Register-Stepper-Form/Register-Form-Address/register-form-address.component';
 import { RegisterStepperFormComponent } from './CarPooling/carpooling-register/Components/Register-Stepper-Form/register-stepper-form.component';
 import { AddressPipe } from './CarPooling/pipes/address.pipe';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { AddressPipe } from './CarPooling/pipes/address.pipe';
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
+    MatTabsModule,
     //permet de faire des requêtes ajax
 
 
