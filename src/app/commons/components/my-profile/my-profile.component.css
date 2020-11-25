@@ -1,6 +1,15 @@
 .card{
-  width: 550px;
+  width: 700px;
   margin : auto;
+}
+
+.card-header{
+  background-color: #049493;
+  color: white;
+}
+
+.text-size{
+  font-size: 20px;
 }
 
 .btn{
@@ -10,3 +19,23 @@
 .list-group li.list-group-item mat-icon{
   float: right;
 }
+
+.mat-icon:hover {
+  transform: scale(1.4);
+  color:#049493;
+}
+
+.close:hover{
+  color:red;
+}
+
+.open:hover{
+  color:green;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: large;
+}
+
+::ng-deep .mat-ink-bar {
+  background-color:#049493 !important;}

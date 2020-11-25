@@ -3,6 +3,11 @@
   margin : auto;
 }
 
+.card-header{
+  background-color: #049493;
+  color: white;
+}
+
 .btn{
   background-color: #049493;
 }
