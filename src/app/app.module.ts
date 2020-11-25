@@ -44,6 +44,7 @@ import { RegisterFormAddressComponent } from './CarPooling/carpooling-register/C
 import { RegisterStepperFormComponent } from './CarPooling/carpooling-register/Components/Register-Stepper-Form/register-stepper-form.component';
 import { AddressPipe } from './CarPooling/pipes/address.pipe';
 import {MatTabsModule} from '@angular/material/tabs';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 
 @NgModule({
@@ -95,6 +96,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     NgbModule,
     FormsModule,
     MatTabsModule,
+    GoogleMapsModule
+
     //permet de faire des requêtes ajax
 
 

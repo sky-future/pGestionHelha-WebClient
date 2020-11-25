@@ -9,6 +9,7 @@ import {RegisterFormAddressComponent} from './CarPooling/carpooling-register/Com
 
 
 
+
 const routes: Routes = [
   //{path: 'register', component : RegistrationComponent },
   //{path: 'login', component : LoginComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'carpooling-register', component : RegisterFormAddressComponent},
   {path: 'login', component : LoginComponent},
   {path: 'create-profile', component : CreateProfileComponent},
-  {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]}
+  {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]},
 
 ];
 

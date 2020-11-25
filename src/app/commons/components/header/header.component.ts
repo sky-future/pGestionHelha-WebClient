@@ -47,7 +47,8 @@ export class HeaderComponent implements OnInit {
       showOnMobile: false,
       showOnTablet: true,
       showOnDesktop: true
-    }
+    },
+
   ]
 
   //TODO vérify if authService can be in public, needed to be accessed via .html
