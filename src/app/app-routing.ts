@@ -15,11 +15,11 @@ const routes: Routes = [
   //{path: 'login', component : LoginComponent},
   {path: 'home', component : HomeComponent, canActivate : [AuthGuard]},
   {path: 'register', component : RegisterComponent},
-  {path: 'carpooling-register', component : RegisterFormAddressComponent},
+  {path: 'carpooling-register', component : RegisterFormAddressComponent, canActivate : [AuthGuard]},
   {path: 'login', component : LoginComponent},
   {path: 'create-profile', component : CreateProfileComponent},
   {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]},
-  {path: 'carpooling-research', component : CarpoolingResearchComponent}
+  {path: 'carpooling-research', component : CarpoolingResearchComponent, canActivate : [AuthGuard]}
 
 
 
