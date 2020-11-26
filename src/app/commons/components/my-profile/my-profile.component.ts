@@ -3,6 +3,7 @@ import {ProfileService} from '../../../services/profile.service';
 import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
 import {UserService} from '../../../services/user.service';
 import {AlertService} from '../../../services/alert.service';
+import {sha256} from 'js-sha256';
 
 @Component({
   selector: 'app-my-profile',
@@ -21,6 +22,7 @@ export class MyProfileComponent implements OnInit {
   changedContent: string[] = ['votre nom.', 'votre prénom.', 'votre numéro de téléphone.', 'votre description.'];
   patterntelephone: string = '^[0-9]{10}$';
   i: number;
+  showForm: boolean = false;
 
   constructor(private profileService: ProfileService,
               private userService: UserService,
