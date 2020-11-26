@@ -1,4 +1,5 @@
-export interface AddressPost {
+export interface Address {
+  id?: number;
   street : string;
   number : number;
   postalCode: number;
@@ -8,4 +9,4 @@ export interface AddressPost {
   latitude: string;
 }
 
-export declare type AddressList = AddressPost[];
+export declare type AddressList = Address[];

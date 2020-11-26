@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AddressPost} from '../../../../types/address-post';
+import {Address} from '../../../../types/address';
 import {CarPoolingService} from '../../../../repositories/car-pooling.service';
 import {AddressPipe} from '../../../../pipes/address.pipe';
-import {CarAddDto} from '../../../../../DTOs/car-add-dto';
+import {CarDto} from '../../../../types/car-dto';
 import {CreateCarPipe} from '../../../../pipes/create-car.pipe';
-import {CarApiService} from '../../../../../commons/components/repositories/car-api.service';
+import {UserService} from '../../../../../services/user.service';
+import {Router} from '@angular/router';
+
+
 
 
 @Component({
@@ -15,17 +18,21 @@ import {CarApiService} from '../../../../../commons/components/repositories/car-
 })
 export class RegisterFormAddressComponent implements OnInit {
 
-  private address: AddressPost;
-  private car: CarAddDto;
+  private address: Address;
+  private car: CarDto;
   addressFormGroup: FormGroup;
   geocoder: any;
   lat : number;
   long: number;
+  confirm : boolean;
+
 
   constructor(
     private _formBuilder: FormBuilder,
-    public addressService: CarPoolingService,
-    public carService: CarApiService
+    private carPoolingService: CarPoolingService,
+    private userService : UserService,
+    private router : Router
+
   ) {
   }
 
@@ -44,12 +51,12 @@ export class RegisterFormAddressComponent implements OnInit {
 
   onRegisterAddressSubmit() {
 
-    var street = this.addressFormGroup.value.street;
-    var number = this.addressFormGroup.value.number;
-    var postalCode = this.addressFormGroup.value.postalCode;
-    var city = this.addressFormGroup.value.city;
+    let street = this.addressFormGroup.value.street;
+    let number = this.addressFormGroup.value.number;
+    let postalCode = this.addressFormGroup.value.postalCode;
+    let city = this.addressFormGroup.value.city;
 
-    var addressGeocode = street + "," + number + "," + postalCode + "," + city;
+    let addressGeocode = street + "," + number + "," + postalCode + "," + city;
 
     //Methode to geocode address
     this.findLocation(addressGeocode);
@@ -69,41 +76,59 @@ export class RegisterFormAddressComponent implements OnInit {
         this.lat = results[0].geometry.location.lat();
         this.long = results[0].geometry.location.lng();
         console.log("Lat" + this.lat + "lng" + this.long);
+        this.confirm = true;
         this.restMethode();
+        this.addressFormGroup.reset();
+        this.router.navigateByUrl('/home')
+
       } else {
-        alert("Sorry, this search produced no results.");
+        alert("Veuillez entrer une adresse correcte.");
+        this.confirm = false;
+        this.addressFormGroup.reset();
       }
     })
   }
 
+  //Créé car la requête vers google prend trop de temps par rapport à l'éxécution en local du code
+  // Ce qui engendre des variables sans aucune valeur.
   restMethode(){
 
-    //Convert my lat and long to string to correspond to backend
-    var lat = this.lat.toString();
-    var long = this.long.toString();
+    do{
+
+      //Convert my lat and long to string to correspond to backend
+      let lat = this.lat.toString();
+      let long = this.long.toString();
 
 
-    this.address = new AddressPipe().transform(
-      this.addressFormGroup.value.street,
-      this.addressFormGroup.value.number,
-      this.addressFormGroup.value.postalCode,
-      this.addressFormGroup.value.city,
-      this.addressFormGroup.value.country,
-      lat,
-      long
-    )
+      this.address = new AddressPipe().transform(
+        this.addressFormGroup.value.street,
+        this.addressFormGroup.value.number,
+        this.addressFormGroup.value.postalCode,
+        this.addressFormGroup.value.city,
+        this.addressFormGroup.value.country,
+        lat,
+        long
+      )
 
-    this.car = new CreateCarPipe().transform(
-      this.addressFormGroup.value.immatriculation,
-      this.addressFormGroup.value.placesDispo)
 
-    console.log(this.address);
+      let connectedUserID = this.userService.userValue.id;
 
-    this.addressService.postAddress(this.address)
-      .subscribe();
-    //
-    // this.carService.post(this.car)
-    //   .subscribe();
+
+      this.car = new CreateCarPipe().transform(
+        this.addressFormGroup.value.immatriculation,
+        connectedUserID,
+        this.addressFormGroup.value.placesDispo)
+
+      console.log(this.car);
+
+      this.carPoolingService.postAddress(this.address)
+        .subscribe();
+
+        this.carPoolingService.postCar(this.car)
+          .subscribe();
+
+    }while (this.confirm = false)
+
   }
 
 }

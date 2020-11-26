@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {HeaderComponent} from '../header/header.component';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -19,11 +18,11 @@ import {sha256} from 'js-sha256';
 //TODO Modifier pour adapter a notre code
 export class LoginComponent implements OnInit {
 
-  private header : HeaderComponent;
+
   private userLogin: UserAuthenticateDto;
   loading = false;
   submitted = false;
-  returnUrl: string;
+
 
   constructor(
     private authenticationService: AuthenticationService,

@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {AddressPost} from '../types/address-post';
-import {count} from 'rxjs/operators';
+import {Address} from '../types/address';
 
 @Pipe({
   name: 'carPoolingPipe'
 })
 export class AddressPipe implements PipeTransform {
 
-  private _address : AddressPost
+  private _address : Address
 
   transform(street: string,
             number : number,
@@ -15,7 +14,7 @@ export class AddressPipe implements PipeTransform {
             city: string,
             country : string,
             longitude : string,
-            latitude : string): AddressPost {
+            latitude : string): Address {
 
     this._address = {
       street : street,

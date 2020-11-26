@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {CarAddDto} from '../../DTOs/car-add-dto';
+import {CarDto} from '../types/car-dto';
 
 @Pipe({
   name: 'CreateCarPipe'
 })
 export class CreateCarPipe implements PipeTransform {
 
-  private _car: CarAddDto;
+  private _car: CarDto;
 
-  transform(immat: string, placesnb : number): CarAddDto {
-    let iduser = 32;
+  transform(immat: string, idUser: number, placesnb : number): CarDto {
+
     this._car = {
       immatriculation : immat,
-      idUser : iduser,
+      idUser : idUser,
       placeNb : placesnb
     }
     return this._car;

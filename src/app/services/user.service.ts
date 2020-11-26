@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Form, FormBuilder, Validators} from '@angular/forms';
 import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
 import {CreateUserPipe} from '../pipes/create-user.pipe';
 import {BehaviorSubject, Observable} from 'rxjs';
@@ -8,7 +7,6 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {UserPost} from '../DTOs/user-post';
 import {environment} from '../../environments/environment';
-import {RegisterComponent} from '../commons/components/register/register.component';
 import {map} from 'rxjs/operators';
 import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';

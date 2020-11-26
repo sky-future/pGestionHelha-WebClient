@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {AddressDtoOutput} from '../types/address-dto-output';
+import { Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {AddressPost} from '../types/address-post';
+import {Address} from '../types/address';
 import {environment} from '../../../environments/environment';
+import {CarDto} from '../types/car-dto';
+import {CarPooling} from './car-pooling';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarPoolingService {
+export class CarPoolingService implements CarPooling{
 
-  private addressSubject : BehaviorSubject<AddressDtoOutput>;
-  public address: Observable<AddressDtoOutput>;
+
+  public address: Observable<Address>;
   private urlAddress: string = 'api/address';
   private urlCars: string = 'api/cars';
 
   constructor(
-    private http: HttpClient,
-    private router: Router) {
+    private http: HttpClient) {
   }
 
-  postAddress(address: AddressPost): Observable<AddressDtoOutput>{
+  postAddress(address: Address): Observable<Address>{
     console.log(address);
     console.log(environment.serverAddress + this.urlAddress, address);
-    return this.http.post<AddressDtoOutput>(environment.serverAddress + this.urlAddress, address );
+    return this.http.post<Address>(environment.serverAddress + this.urlAddress, address );
   }
 
 
+  postCar(car : CarDto) : Observable<CarDto>{
+    return this.http.post<CarDto>(environment.serverAddress + this.urlCars, car);
+  }
 
 }

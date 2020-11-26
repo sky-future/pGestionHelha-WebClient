@@ -2,12 +2,12 @@
   margin-left: 15px;
 }
 
-.mat-card{
-  width: 700px;
+.card{
+  max-width: 550px;
   margin : auto;
 }
 
-.mat-card-header{
+.card-header{
   background-color: #049493;
   color: white;
 }
