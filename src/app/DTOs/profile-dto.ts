@@ -4,6 +4,7 @@ export interface ProfileDto {
   matricule : string;
   telephone : string;
   descript : string;
+  idUser : number;
 }
 
 export declare type profileList = ProfileDto[];

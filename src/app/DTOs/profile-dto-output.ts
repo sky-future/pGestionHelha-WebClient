@@ -5,6 +5,7 @@ export interface ProfileDtoOutput {
   matricule : string;
   telephone : string;
   descript : string;
+  idUser : number;
 
 }
 

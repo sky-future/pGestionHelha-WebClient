@@ -121,9 +121,9 @@
         <ng-template [ngIf]="num==1">
           <div>
             <!--<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>-->
-            <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
-              <mat-icon class="mr">{{item.icon}}</mat-icon>
-              {{item.label}}
+            <button mat-button [routerLink]="menuItems[0].path" (click)="menuItems[0].click()" fxHide.xs>
+              <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>
+              {{menuItems[0].label}}
             </button>
           </div>
         </ng-template>
@@ -131,9 +131,9 @@
         <ng-template [ngIf]="num==2">
           <div>
             <!--<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>-->
-            <button mat-button *ngFor="let item of menuItems" [routerLink]="item.path" (click)="item.click()" fxHide.xs>
-              <mat-icon class="mr">{{item.icon}}</mat-icon>
-              {{item.label}}
+            <button mat-button [routerLink]="menuItems[1].path" (click)="menuItems[1].click" fxHide.xs>
+              <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>
+              {{menuItems[1].label}}
             </button>
           </div>
         </ng-template>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AlertService} from '../../../services/alert.service';
 import {first} from 'rxjs/operators';
 import {ProfileDto} from '../../../DTOs/profile-dto';
 import {ProfileService} from '../../../services/profile.service';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {EmailRegisteredService} from '../../../services/email-registered.service';
 
 @Component({
   selector: 'app-create-profile',
@@ -15,7 +16,7 @@ export class CreateProfileComponent implements OnInit {
   loading = false;
   submitted = false;
   private profileRegister : ProfileDto;
-
+  email : number;
 
   //LAXXXXXX
   patternRegisterNumber : string = "^(LA|)[0-9]{6}$";
@@ -29,15 +30,23 @@ export class CreateProfileComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private alertService: AlertService,
               public profileService : ProfileService,
-              private authenticationService: AuthenticationService
-              ) { }
+              private authenticationService: AuthenticationService,
+              private emailService : EmailRegisteredService
+              ) {
+
+    //Récupère via le service la valeur de l'email d'engistrée via register dans le service
+    this.emailService.email.subscribe(email => {
+      this.email = email;
+    });
+  }
 
   formModel = this.formBuilder.group({
     lastname: ['', [Validators.required]],
     firstname: ['', [Validators.required]],
     matricule: ['', [Validators.required, Validators.pattern(this.patternRegisterNumber)]],
     telephone: ['', [Validators.required, Validators.pattern(this.patternPhoneNumber)]],
-    descript: ['', [Validators.required, Validators.pattern(this.patternDescription)]]
+    descript: ['', [Validators.required, Validators.pattern(this.patternDescription)]],
+    idUser: ['', []]
   });
 
   ngOnInit(): void {
@@ -59,6 +68,8 @@ export class CreateProfileComponent implements OnInit {
 
     this.loading = true;
 
+    this.formModel.value.idUser = this.email;
+
     // Stops here if form is invalid
     if (this.formModel.invalid) {
       this.loading = false;
@@ -70,9 +81,12 @@ export class CreateProfileComponent implements OnInit {
       this.formModel.value.firstname,
       this.formModel.value.matricule,
       this.formModel.value.telephone,
-      this.formModel.value.descript);
+      this.formModel.value.descript,
+      this.formModel.value.idUser
+    );
 
     this.profileService.registerProfile(this.profileRegister).pipe(first()).subscribe(data => {
+
 
         //Alert success
         this.alertService.success('Registration successful', {keepAfterRouteChange: true});

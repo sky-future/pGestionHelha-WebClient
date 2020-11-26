@@ -84,17 +84,27 @@
         <mat-divider></mat-divider>
       </ng-container>
    </mat-menu>
+
+
+    <button *ngIf="userService.userValue" mat-button [matMenuTriggerFor]="carpoolingMenu"><mat-icon>directions_car</mat-icon> <!--[value]="authService.currentUserValue"-->
+Carpool
+</button>
+<mat-menu #carpoolingMenu="matMenu">
+  <button [routerLink]="'/carpooling-register'" mat-menu-item><mat-icon>create</mat-icon>S'inscrire</button>
+  <button [routerLink]="'/carpooling-research'" mat-menu-item><mat-icon>place</mat-icon>Rechercher</button>
+</mat-menu>
    </span>
 
   <!--Menu on the right-->
   <span>
 
 
-<button *ngIf="userService.userValue" mat-button [matMenuTriggerFor]="testMenu"> <!--[value]="authService.currentUserValue"-->
+<button *ngIf="userService.userValue" mat-button [matMenuTriggerFor]="testMenu">
 Profile
 </button>
+
 <mat-menu #testMenu="matMenu">
-  <button [routerLink]="'/my-profile'" mat-menu-item (click)="myProfile()"><mat-icon>people</mat-icon>My account</button>
+  <button [routerLink]="'/my-profile'" mat-menu-item><mat-icon>people</mat-icon>My account</button>
   <button mat-menu-item (click)="onLogoutClick()"><mat-icon>exit_to_app</mat-icon>Logout</button>
 </mat-menu>
 
