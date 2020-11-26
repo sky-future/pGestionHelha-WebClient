@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
     {
       label: 'CarpoolingRegister',
-      icon: 'directions_car',
+      icon: 'create',
       path: '/carpooling-register',
       click: this.onEmptyClick,
       showOnMobile: true,
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
     {
       label: 'CarpoolingResearch',
-      icon: 'directions_car',
+      icon: 'place',
       path: '/carpooling-research',
       click: this.onEmptyClick,
       showOnMobile: true,

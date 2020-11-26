@@ -1,20 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {ProfileDtoOutput} from '../DTOs/profile-dto-output';
-import {UserPost} from '../DTOs/user-post';
-import {CreateUserPipe} from '../pipes/create-user.pipe';
-import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
-import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ProfileDto} from '../DTOs/profile-dto';
 import {CreateProfilePipe} from '../pipes/create-profile.pipe';
-import {UserDto} from '../DTOs/user-dto';
 import {environment} from '../../environments/environment';
 import {UserService} from './user.service';
-import {first, map} from 'rxjs/operators';
-import {JwtInterceptor} from '../helpers/jwt.interceptor';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,23 +20,28 @@ export class ProfileService {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private userService : UserService) {
+              private userService: UserService) {
 
     this.profileSubject = new BehaviorSubject<ProfileDtoOutput>(JSON.parse(localStorage.getItem('profile')));
     this.profile = this.profileSubject.asObservable();
 
   }
 
-  public getProfile() : Observable<ProfileDtoOutput>{
-    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + "/3");
+
+  public getProfile(): Observable<ProfileDtoOutput> {
+    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + this.userService.userValue.id + '/profile');
   }
 
-  public updateProfile(profile : ProfileDto) : Observable<any>{
-    return this.http.put<ProfileDto>(environment.serverAddress + this.URL + "/3", profile);
+  public updateProfile(profile: ProfileDtoOutput): Observable<any> {
+    return this.http.put<ProfileDto>(environment.serverAddress + this.URL + '/' + profile.id, profile);
   }
 
-  public createProfile(lastname: string, firstname: string, matricule: string, telephone: string, descript: string): ProfileDto {
-    return new CreateProfilePipe().transform(lastname, firstname, matricule, telephone, descript);
+  public createProfile(lastname: string, firstname: string, matricule: string, telephone: string, descript: string, idUser: number): ProfileDto {
+    return new CreateProfilePipe().transform(lastname, firstname, matricule, telephone, descript, idUser);
+  }
+
+  public createProfileOutput(id: number, lastname: string, firstname: string, matricule: string, telephone: string, descript: string, idUser: number): ProfileDtoOutput {
+    return new CreateProfilePipe().transformOutput(id, lastname, firstname, matricule, telephone, descript, idUser);
   }
 
   registerProfile(profile: ProfileDto): Observable<ProfileDto> {

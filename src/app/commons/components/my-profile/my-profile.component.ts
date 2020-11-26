@@ -46,13 +46,17 @@ export class MyProfileComponent implements OnInit {
       return;
     }
 
+    this.profile.idUser = this.userService.userValue.id;
+
     let profileMod = this.profileService
-      .createProfile(
+      .createProfileOutput(
+        this.profile.id,
         this.profile.lastname,
         this.profile.firstname,
         this.profile.matricule,
         this.profile.telephone,
-        this.profile.descript
+        this.profile.descript,
+        this.profile.idUser
       );
 
     this.profileService.updateProfile(profileMod)

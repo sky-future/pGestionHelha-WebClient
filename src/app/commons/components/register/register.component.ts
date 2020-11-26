@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserDto} from '../../../DTOs/user-dto';
@@ -10,22 +10,23 @@ import {UserPost} from '../../../DTOs/user-post';
 import {UserService} from '../../../services/user.service';
 import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {sha256} from 'js-sha256';
+import {EmailRegisteredService} from '../../../services/email-registered.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
   isLinear = false;
   loading = false;
   submitted = false;
   formGroupPwd: FormGroup;
   patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
-  formGroupEmail: FormGroup;
   patternMail : string = '^\\S+@\\S+$';
   private userRegister: UserPost;
+  //Pour passer email vers creat-profile pour lier le user et le profile
+
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
               public userService: UserService,
               private userApiService: UserApiService,
               private alertService: AlertService,
+              private emailService : EmailRegisteredService
   ) {
   }
 
@@ -77,8 +79,13 @@ export class RegisterComponent implements OnInit {
         //Alert success
         this.alertService.success('Registration successful', {keepAfterRouteChange: true});
 
+
+        this.emailService.newEmail(data.id);
+
         //Opens login and closes register
         this.authenticationService.openCreateProfileModal();
+
+
 
       },
       error => {

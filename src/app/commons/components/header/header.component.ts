@@ -7,6 +7,9 @@ import {RegisterComponent} from '../register/register.component';
 import {AlertService} from '../../../services/alert.service';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserService} from '../../../services/user.service';
+import {ProfileService} from '../../../services/profile.service';
+import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
+import {ProfileDto} from '../../../DTOs/profile-dto';
 
 @Component({
   selector: 'app-header',
@@ -51,13 +54,17 @@ export class HeaderComponent implements OnInit {
 
   ]
 
+  profile: string;
+
   //TODO vérify if authService can be in public, needed to be accessed via .html
   constructor(config: NgbModalConfig,
               private modalService: NgbModal,
               public authService: AuthenticationService,
-              public userService : UserService) { }
+              public userService : UserService,
+              public profileService : ProfileService) { }
 
   ngOnInit(): void {
+
   }
 
   onEmptyClick(){
@@ -75,9 +82,5 @@ export class HeaderComponent implements OnInit {
     this.userService.logout();
   }
 
-  myProfile() {
 
-
-
-  }
 }
