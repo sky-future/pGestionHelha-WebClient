@@ -1,4 +1,10 @@
-<span>Inscrivez ici votre adresse</span>
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Complétez votre adresse</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
 <form [formGroup]="addressFormGroup" >
   <ng-template matStepLabel>Complétez vos données</ng-template>
   <mat-form-field>
@@ -27,8 +33,10 @@
   </mat-form-field>
 
   <br>
-  <span>Inscrivez ici votre voiture</span>
-  <br>
+  <mat-card-header>
+  <mat-card-title>Inscrivez ici votre voiture</mat-card-title>
+  </mat-card-header>
+    <br>
 
   <mat-form-field>
     <mat-label>Immatriculation</mat-label>
@@ -45,4 +53,6 @@
     <!--<p>Go to a different step to see the error state</p>-->
     <button mat-button type="submit" [disabled]="!addressFormGroup.valid" (click)="onRegisterAddressSubmit()">Submit</button>
   </div>
+  </mat-card-content>
+</mat-card>
 
