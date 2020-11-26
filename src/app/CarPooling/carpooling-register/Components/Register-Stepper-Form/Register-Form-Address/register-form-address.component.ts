@@ -6,7 +6,7 @@ import {AddressPipe} from '../../../../pipes/address.pipe';
 import {CarAddDto} from '../../../../../DTOs/car-add-dto';
 import {CreateCarPipe} from '../../../../pipes/create-car.pipe';
 import {CarApiService} from '../../../../../commons/components/repositories/car-api.service';
-import {GoogleMap} from '@angular/google-maps';
+
 
 @Component({
   selector: 'app-register-form-address',
@@ -42,26 +42,6 @@ export class RegisterFormAddressComponent implements OnInit {
 
   }
 
-  findLocation(address) {
-    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-    this.geocoder.geocode({
-      'address': address
-    }, (results, status) => {
-      console.log(results);
-      if (status == google.maps.GeocoderStatus.OK) {
-        // decompose the result
-
-        console.log("ça marche !");
-        this.lat = results[0].geometry.location.lat();
-        this.long = results[0].geometry.location.lng();
-        console.log("Lat" + this.lat + "lng" + this.long);
-
-      } else {
-        alert("Sorry, this search produced no results.");
-      }
-    })
-  }
-
   onRegisterAddressSubmit() {
 
     var street = this.addressFormGroup.value.street;
@@ -74,15 +54,33 @@ export class RegisterFormAddressComponent implements OnInit {
     //Methode to geocode address
     this.findLocation(addressGeocode);
 
-    console.log("Lat" + this.lat + "lng" + this.long);
+  }
+
+  findLocation(address) {
+     this.geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({
+      'address': address
+    }, (results, status) => {
+      console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+        // decompose the result
+
+        console.log("ça marche !");
+        this.lat = results[0].geometry.location.lat();
+        this.long = results[0].geometry.location.lng();
+        console.log("Lat" + this.lat + "lng" + this.long);
+        this.restMethode();
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })
+  }
+
+  restMethode(){
 
     //Convert my lat and long to string to correspond to backend
     var lat = this.lat.toString();
     var long = this.long.toString();
-
-    console.log("test de lat " + lat + long);
-
-    //console.log(addressGeocode);
 
 
     this.address = new AddressPipe().transform(
@@ -97,21 +95,15 @@ export class RegisterFormAddressComponent implements OnInit {
 
     this.car = new CreateCarPipe().transform(
       this.addressFormGroup.value.immatriculation,
-      this.addressFormGroup.value.placesDispo
-    )
+      this.addressFormGroup.value.placesDispo)
 
-     // this.addressService.postAddress(this.address)
-     //   .subscribe();
+    console.log(this.address);
+
+    this.addressService.postAddress(this.address)
+      .subscribe();
     //
     // this.carService.post(this.car)
     //   .subscribe();
-
   }
 
-
 }
-
-
-
-
-
