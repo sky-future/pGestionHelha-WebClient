@@ -18,6 +18,16 @@ export class HomeComponent implements OnInit {
       showOnMobile: true,
       showOnTablet: true,
       showOnDesktop: true // identique mais en mode desktop
+    },
+
+    {
+      label: 'CarpoolingResearch',
+      icon: 'directions_car',
+      path: '/carpooling-research',
+      click: this.onEmptyClick,
+      showOnMobile: true,
+      showOnTablet: true,
+      showOnDesktop: true // identique mais en mode desktop
     }
   ]
 

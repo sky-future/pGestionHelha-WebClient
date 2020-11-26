@@ -20,6 +20,7 @@ const routes: Routes = [
   {path: 'create-profile', component : CreateProfileComponent},
   {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]},
 
+
 ];
 
 
