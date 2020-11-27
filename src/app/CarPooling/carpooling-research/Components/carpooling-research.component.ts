@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
-import {first} from 'rxjs/operators';
-import {Observable, using} from 'rxjs';
-import {THIS_EXPR} from '@angular/compiler/src/output/output_ast';
-import {FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {AddresseGetDtoOutput} from '../../types/address-get-dto-output';
+import {AddressService} from '../../repositories/address-service.service';
+import {MenuItem} from '../../../commons/components/types/menu-item';
+
+
 
 @Component({
   selector: 'app-carpooling-research',
@@ -22,14 +22,17 @@ export class CarpoolingResearchComponent implements OnInit {
     scrollwheel: false,
     disableDoubleClickZoom: true,
     mapTypeId: 'roadmap',
-    maxZoom: 15,
-    minZoom: 8,
+    maxZoom: 18,
+    minZoom: 5,
   }
   markers = []
   infoContent = ''
-
+  longueur : number
+  i : number = 0
 
   constructor(
+    private addressService : AddressService,
+    @Inject(AddressService) private addressList : AddresseGetDtoOutput
 
   ) {
   }
@@ -42,6 +45,9 @@ export class CarpoolingResearchComponent implements OnInit {
         lng: position.coords.longitude,
       }
     })
+    this.addressService.query().subscribe(address => this.addressList = address)
+    this.longueur = Object.keys(this.addressList).length
+    this.longueur--
   }
 
   zoomIn() {
@@ -61,21 +67,24 @@ export class CarpoolingResearchComponent implements OnInit {
   }
 
   addMarker() {
-    this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-      },
-      label: {
-        color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
-      },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
-      options: {
-        animation: google.maps.Animation.DROP,
-      },
-    })
+    for (this.i ; this.longueur ; this.i++) {
+      this.markers.push({
+        position: {
+          lat: parseFloat(this.addressList[this.i].latitude),
+          lng: parseFloat(this.addressList[this.i].longitude),
+        },
+        label: {
+          color: 'black',
+          text: 'Marker label ' + (this.i + 1),
+        },
+        title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ' ' + this.addressList[this.i].city),
+        info: 'Marker info ',
+        options: {
+          animation: google.maps.Animation.DROP,
+        },
+
+      })
+    }
   }
 
   openInfo(marker: MapMarker, content) {
