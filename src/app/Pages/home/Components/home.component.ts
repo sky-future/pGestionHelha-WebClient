@@ -8,6 +8,9 @@ import {MenuItem} from '../../../commons/components/types/menu-item';
 })
 export class HomeComponent implements OnInit {
 
+  defaultElevation = 2;
+  raisedElevation = 8;
+
   menuItems: MenuItem[] = [
 
     {

@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from '../types/menu-item';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserService} from '../../../services/user.service';
+import {ProfileService} from '../../../services/profile.service';
+import {ProfileDto} from '../../../DTOs/profile-dto';
+import {UserDto} from '../../../DTOs/user-dto';
+import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
     {
 
-      label: 'Home',
+      label: 'Accueil',
       icon: 'home',
       path: '/home',
       click: this.onEmptyClick,
@@ -28,7 +32,7 @@ export class HeaderComponent implements OnInit {
       label: 'Register',
       icon: 'login',
       path: 'this.router.url',
-      click : this.onRegisterClick.bind(this),
+      click: this.onRegisterClick.bind(this),
       showOnMobile: true, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
       showOnDesktop: true // identique mais en mode desktop
@@ -44,20 +48,23 @@ export class HeaderComponent implements OnInit {
       showOnDesktop: true
     },
 
-  ]
+  ];
 
-  profile: string;
+  profile: ProfileDto = null;
+  user: UserAuthenticateDtoOutput;
 
   //TODO vérify if authService can be in public, needed to be accessed via .html
   constructor(public authService: AuthenticationService,
-              public userService : UserService
-              ) { }
-
-  ngOnInit(): void {
-
+              public userService: UserService,
+              public profileService: ProfileService
+  ) {
   }
 
-  onEmptyClick(){
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+  }
+
+  onEmptyClick() {
   }
 
   onRegisterClick() {
@@ -71,6 +78,5 @@ export class HeaderComponent implements OnInit {
   onLogoutClick() {
     this.userService.logout();
   }
-
 
 }
