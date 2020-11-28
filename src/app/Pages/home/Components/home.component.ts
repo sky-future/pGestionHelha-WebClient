@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from '../../../commons/components/types/menu-item';
+import {HomeItem} from '../../../commons/components/types/home-item';
 
 @Component({
   selector: 'app-home',
@@ -8,45 +9,49 @@ import {MenuItem} from '../../../commons/components/types/menu-item';
 })
 export class HomeComponent implements OnInit {
 
-  defaultElevation = 2;
-  raisedElevation = 8;
 
-  menuItems: MenuItem[] = [
+  homeItems: HomeItem[] = [
 
     {
-      label: 'CarpoolingRegister',
-      icon: 'create',
-      path: '/carpooling-register',
-      click: this.onEmptyClick,
-      showOnMobile: true,
-      showOnTablet: true,
-      showOnDesktop: true // identique mais en mode desktop
+      button_path: "/carpooling-register",
+      title: "Inscrire sa voiture au covoiturage",
+      image_path: "./../assets/images/voiture.jpg",
+      content: ""
+
     },
 
     {
-      label: 'CarpoolingResearch',
-      icon: 'place',
-      path: '/carpooling-research',
-      click: this.onEmptyClick,
-      showOnMobile: true,
-      showOnTablet: true,
-      showOnDesktop: true // identique mais en mode desktop
+      button_path: "/carpooling-research",
+      title: "Rechercher covoiturage",
+      image_path: "./../assets/images/voiture.jpg",
+      content: "",
+    },
+    {
+      button_path: "",
+      title: "S'incrire en tant que tuteur",
+      image_path: "./../assets/images/livre.jpg",
+      content: "",
+    },
+    {
+      button_path: "",
+      title: "Rechercher un tuteur",
+      image_path: "./../assets/images/livre.jpg",
+      content: "",
+    },
+    {
+      button_path: "",
+      title: "Commander à la cafétaria",
+      image_path: "./../assets/images/restauration.jpg",
+      content: "",
     }
+
   ]
 
-  gridColumns = 3;
-
-  toggleGridColumns(){
-    this.gridColumns = this.gridColumns === 3 ? 2 : 3;
-  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onEmptyClick(){
-
-  }
 
 }
