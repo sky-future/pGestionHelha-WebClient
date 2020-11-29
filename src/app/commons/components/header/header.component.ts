@@ -80,8 +80,9 @@ export class HeaderComponent implements OnInit {
   }
 
   checkUserHasProfile() : boolean{
-
-    return !!this.profile;
+    if(this.userService.userValue==null) return false;
+    if(this.userService.userValue.profile ==0) return false;
+   return true;
 
   }
 

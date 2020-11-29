@@ -1,3 +1,5 @@
+import {ProfileDtoOutput} from './profile-dto-output';
+
 export interface UserAuthenticateDtoOutput {
   id : number;
   mail : string;
@@ -5,6 +7,8 @@ export interface UserAuthenticateDtoOutput {
   lastConnexion : string;
   admin : boolean;
   token : string;
+  profile : number;
+
 }
 
 export declare type UsersList = UserAuthenticateDtoOutput[];
