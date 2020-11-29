@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
       label: 'Register',
       icon: 'login',
-      path: 'this.router.url',
+      path: '',
       click: this.onRegisterClick.bind(this),
       showOnMobile: true, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
 
       label: 'Login',
       icon: 'person_add',
-      path: 'this.router.url',
+      path: '',
       click: this.onLoginClick.bind(this),
       showOnMobile: true,
       showOnTablet: true,

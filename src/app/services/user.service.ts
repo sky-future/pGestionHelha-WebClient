@@ -3,7 +3,7 @@ import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
 import {CreateUserPipe} from '../pipes/create-user.pipe';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserDto} from '../DTOs/user-dto';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {UserPost} from '../DTOs/user-post';
 import {environment} from '../../environments/environment';
@@ -39,6 +39,16 @@ export class UserService {
   public createUserLogin(email:string, password:string) : UserAuthenticateDto
   {
     return new CreateUserLoginPipe().transform(email,password,0);
+  }
+
+  updatePassword(data){
+    var headers = new HttpHeaders()
+      .set('Authorization', 'Token' + localStorage.getItem('user'));
+
+    var options =  {
+      headers: headers
+    };
+    //return this.http.patch(this.URL + "/" + this.userValue.id, data, options);
   }
 
   register(user:UserPost): Observable<UserDto> {
