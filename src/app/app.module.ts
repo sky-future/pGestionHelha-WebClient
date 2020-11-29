@@ -47,7 +47,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MaterialElevationDirective } from './directives/material-elevation.directive';
 import { SplashscreenComponent } from './commons/components/splashscreen/splashscreen.component'
-import { MaterialElevationDirective } from './directives/material-elevation.directive';
 import { SidenavListComponent } from './commons/components/sidenav-list/sidenav-list.component'
 
 
@@ -75,7 +74,7 @@ import { SidenavListComponent } from './commons/components/sidenav-list/sidenav-
     CreateProfilePipe,
     MyProfileComponent,
     MaterialElevationDirective,
-    SidenavListComponent
+    SidenavListComponent,
     MaterialElevationDirective,
     SplashscreenComponent
 
