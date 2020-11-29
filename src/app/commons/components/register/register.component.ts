@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   formGroupPwd: FormGroup;
   patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
-  patternMail : string = '^\\S+@\\S+$';
+  patternMail : string = '^[^@]+@[^@]+\\.[^@]+$';
   private userRegister: UserPost;
   //Pour passer email vers creat-profile pour lier le user et le profile
 

@@ -7,6 +7,8 @@ import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {AlertService} from '../../../services/alert.service';
 import {first} from 'rxjs/operators';
 import {sha256} from 'js-sha256';
+import {ProfileService} from '../../../services/profile.service';
+import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
 
 
 @Component({
@@ -20,8 +22,9 @@ export class LoginComponent implements OnInit {
 
 
   private userLogin: UserAuthenticateDto;
-  loading = false;
-  submitted = false;
+  private loading = false;
+  private submitted = false;
+  private profile: ProfileDtoOutput;
 
 
   constructor(
@@ -29,7 +32,10 @@ export class LoginComponent implements OnInit {
     public fb : FormBuilder,
     private router : Router,
     private userService : UserService,
-    private alertService : AlertService) {
+    private alertService : AlertService,
+    private profileService : ProfileService) {
+
+
   }
 
   formModel = this.fb.group({
@@ -38,8 +44,10 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
-    if (localStorage.getItem('user') != null)
-      this.router.navigateByUrl('/home');
+    // if (localStorage.getItem('user') != null)
+    //   this.router.navigateByUrl('/home');
+
+
   }
 
   dialog() {
@@ -55,16 +63,17 @@ export class LoginComponent implements OnInit {
     password = sha256(password);
     this.userLogin = this.userService.createUserLogin(this.formModel.value.email, password);
 
-    this.userService.login(this.userLogin).pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['/home']);
-          this.authenticationService.closeLoginModal();
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
+
+      this.userService.login(this.userLogin).pipe(first())
+        .subscribe(
+          data => {
+            this.authenticationService.closeLoginModal();
+            this.router.navigate(['/home']);
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          });
   }
 
 }
