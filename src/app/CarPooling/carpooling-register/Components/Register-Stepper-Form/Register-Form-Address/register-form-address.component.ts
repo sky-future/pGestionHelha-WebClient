@@ -96,8 +96,8 @@ export class RegisterFormAddressComponent implements OnInit {
     do{
 
       //Convert my lat and long to string to correspond to backend
-      let lat = this.lat.toString();
-      let long = this.long.toString();
+      let long =  this.lat.toString();
+      let lat = this.long.toString();
 
 
       this.address = new AddressPipe().transform(

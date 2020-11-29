@@ -2,9 +2,6 @@ import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from 
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import {AddresseGetDtoOutput} from '../../types/address-get-dto-output';
 import {AddressService} from '../../repositories/address-service.service';
-import {MenuItem} from '../../../commons/components/types/menu-item';
-
-
 
 @Component({
   selector: 'app-carpooling-research',
@@ -25,8 +22,9 @@ export class CarpoolingResearchComponent implements OnInit {
     maxZoom: 18,
     minZoom: 5,
   }
+  maps:any
   markers = []
-  infoContent = ''
+  infoWindows: any = []
   longueur : number
   i : number = 0
 
@@ -48,6 +46,8 @@ export class CarpoolingResearchComponent implements OnInit {
     this.addressService.query().subscribe(address => this.addressList = address)
     this.longueur = Object.keys(this.addressList).length
     this.longueur--
+
+    this.maps = new google.maps.Map(document.getElementById("map"), this.options);
   }
 
   zoomIn() {
@@ -87,10 +87,35 @@ export class CarpoolingResearchComponent implements OnInit {
     }
   }
 
-  openInfo(marker: MapMarker, content) {
-    this.infoContent = content
-    this.info.open(marker)
+  /*openInfo(map, marker) {
+    //this.infoContent = content;
+    this.info.open(map, this.marker);
+  }*/
+
+  // addInfoWindowToMarker(marker){
+  //   let infoWindowContent = "test";
+  //   let infoWindow = new google.maps.InfoWindow({
+  //     content: infoWindowContent
+  //   });
+  //   marker.addListener('click', () => {
+  //     console.log(infoWindow);
+  //     this.closeAllInfoWindows();
+  //     infoWindow.open(this.maps, marker);
+  //   });
+  //   this.infoWindows.push(infoWindow);
+  // }
+
+  addInFoWindowsToMarker(marker: HTMLElement, content){
+    this.infoWindows = content
+    this.info.open(this.map, marker)
   }
+
+  closeAllInfoWindows() {
+    for(let window of this.infoWindows) {
+      window.close();
+    }
+  }
+
 }
 
 

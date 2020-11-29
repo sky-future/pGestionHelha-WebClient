@@ -13,11 +13,9 @@
     [label]="marker.label"
     [title]="marker.title"
     [options]="marker.options"
-    (mapClick)="openInfo(markerElem, marker.info)"
+    (mapClick)="addInFoWindowsToMarker(markerElem, marker.info)"
   >
   </map-marker>
-
-  <map-info-window>{{ infoContent }}</map-info-window>
 </google-map>
 
 <button (click)="zoomIn()">Zoom in</button>
