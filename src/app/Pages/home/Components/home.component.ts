@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from '../../../commons/components/types/menu-item';
 import {HomeItem} from '../../../commons/components/types/home-item';
 
 @Component({
@@ -7,8 +6,8 @@ import {HomeItem} from '../../../commons/components/types/home-item';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
 
+export class HomeComponent implements OnInit {
 
   homeItems: HomeItem[] = [
 
@@ -19,7 +18,6 @@ export class HomeComponent implements OnInit {
       content: ""
 
     },
-
     {
       button_path: "/carpooling-research",
       title: "Rechercher covoiturage",
@@ -47,11 +45,9 @@ export class HomeComponent implements OnInit {
 
   ]
 
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }
