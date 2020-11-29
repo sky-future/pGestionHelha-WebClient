@@ -1,7 +1,7 @@
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="32px grid">
     <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of homeItems">
-      <mat-buttton [routerLink]="item.button_path">
+      <mat-button [routerLink]="item.button_path">
       <mat-card appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="24" back>
         <mat-card-header>
           <mat-card-title>{{item.title}}</mat-card-title>
@@ -16,7 +16,7 @@
 <!--          <button mat-button>bouton ?</button>-->
 <!--        </mat-card-actions>-->
       </mat-card>
-      </mat-buttton>
+      </mat-button>
     </div>
   </div>
 </div>

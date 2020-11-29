@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
-
   }
 
   dialog() {
@@ -59,17 +58,18 @@ export class LoginComponent implements OnInit {
 
     this.userLogin = this.userService.createUserLogin(this.formModel.value.email, password);
 
+    this.authenticationService.closeLoginModal();
 
     this.userService.login(this.userLogin).pipe(first())
       .subscribe(
-        data => {
+        async data => {
           //Todo fermer le modal quand un utilisateur se connect avec un user et profil
           if (this.userService.userValue.profile != 0) {
-            this.authenticationService.closeLoginModal();
-            this.router.navigate(['/home']);
+            //T'as déchiré
+            location.reload();
+            await this.router.navigate(['/home']);
           } else {
-            this.authenticationService.closeLoginModal();
-            this.authenticationService.openCreateProfileModal();
+            await this.authenticationService.openCreateProfileModal();
           }
         },
         error => {

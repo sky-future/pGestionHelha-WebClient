@@ -4,6 +4,8 @@ import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
 import {UserService} from '../../../services/user.service';
 import {AlertService} from '../../../services/alert.service';
 import {sha256} from 'js-sha256';
+import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-my-profile',
@@ -15,7 +17,9 @@ export class MyProfileComponent implements OnInit {
   @ViewChild('firstname') firstname: ElementRef;
   @ViewChild('telephone') telephone: ElementRef;
   @ViewChild('descript') descript: ElementRef;
+  @ViewChild('currentPassword') currentPassword: ElementRef;
 
+  private userLogin: UserAuthenticateDto;
   profile: ProfileDtoOutput;
   user = this.userService;
   isHidden: boolean[];
@@ -23,10 +27,13 @@ export class MyProfileComponent implements OnInit {
   patterntelephone: string = '^[0-9]{10}$';
   i: number;
   showForm: boolean = false;
+  patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
+  submitted = false;
 
   constructor(private profileService: ProfileService,
               private userService: UserService,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -35,15 +42,44 @@ export class MyProfileComponent implements OnInit {
     this.hideElements();
   }
 
+  formModel = this.formBuilder.group({
+    currentPassword: ['', [Validators.required]],
+    newPassword: ['', [Validators.required]],
+    confirmPassword: ['', [Validators.required],Validators.pattern(this.patternPwd)]
+  });
+
   hideElements() {
     this.isHidden = [false, false, false, false];
+  }
+
+
+  // Convenience getter for easy access to form fields
+  get f() {
+    return this.formModel.controls;
+  }
+
+
+  //Méthode pour changer le mot de passe
+  confirmPasswordChange(){
+
+    this.submitted = true;
+
+    const {currentPassword, newPassword} = this.formModel.value;
+
+
+    this.userService
+      .updatePassword({currentPassword, newPassword})
+      // .subscribe(() => console.log('Success!'),
+      //   () => console.log('A problem occurred..'));
+
+
   }
 
   confirmChange(nb: number) {
     //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
 
+    //Vérifie si modif
     this.findDifference(nb);
-
     if (this.i == 0) {
       this.alertService.warn('Aucune modification introduite.');
       return;
@@ -125,3 +161,24 @@ export class MyProfileComponent implements OnInit {
 
 
 }
+
+
+// Custom validator to check that two fields match
+  export function MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+        // Return if another validator has already found an error on the matchingControl
+        return;
+      }
+
+      // Set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({mustMatch: true});
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
+  }
