@@ -7,13 +7,12 @@
   (mapClick)="click($event)"
 >
   <map-marker
-    #markerElem
+    #somemarker="mapMarker"
     *ngFor="let marker of markers"
     [position]="marker.position"
-    [label]="marker.label"
     [title]="marker.title"
     [options]="marker.options"
-    (mapClick)="openInfo(markerElem, marker.info)"
+    (mapClick)="openInfo(somemarker, marker.info)"
   >
   </map-marker>
 

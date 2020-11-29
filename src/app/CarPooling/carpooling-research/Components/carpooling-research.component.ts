@@ -2,7 +2,7 @@ import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from 
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import {AddresseGetDtoOutput} from '../../types/address-get-dto-output';
 import {AddressService} from '../../repositories/address-service.service';
-import {MenuItem} from '../../../commons/components/types/menu-item';
+
 
 
 
@@ -15,7 +15,8 @@ export class CarpoolingResearchComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
-  zoom = 14
+
+  zoom = 14;
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
     zoomControl: false,
@@ -25,10 +26,10 @@ export class CarpoolingResearchComponent implements OnInit {
     maxZoom: 18,
     minZoom: 5,
   }
-  markers = []
-  infoContent = ''
-  longueur : number
-  i : number = 0
+  markers = [];
+  infoContent : any = '';
+  longueur : number;
+  i : number = 0;
 
   constructor(
     private addressService : AddressService,
@@ -44,26 +45,26 @@ export class CarpoolingResearchComponent implements OnInit {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       }
-    })
-    this.addressService.query().subscribe(address => this.addressList = address)
-    this.longueur = Object.keys(this.addressList).length
-    this.longueur--
+    });
+    this.addressService.query().subscribe(address => this.addressList = address);
+    this.longueur = Object.keys(this.addressList).length;
+    this.longueur--;
   }
 
   zoomIn() {
-    if (this.zoom < this.options.maxZoom) this.zoom++
+    if (this.zoom < this.options.maxZoom) this.zoom++;
   }
 
   zoomOut() {
-    if (this.zoom > this.options.minZoom) this.zoom--
+    if (this.zoom > this.options.minZoom) this.zoom--;
   }
 
   click(event: google.maps.MouseEvent) {
-    console.log(event)
+    console.log(event);
   }
 
   logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()))
+    console.log(JSON.stringify(this.map.getCenter()));
   }
 
   addMarker() {
@@ -73,24 +74,24 @@ export class CarpoolingResearchComponent implements OnInit {
           lat: parseFloat(this.addressList[this.i].latitude),
           lng: parseFloat(this.addressList[this.i].longitude),
         },
-        label: {
-          color: 'black',
-          text: 'Marker label ' + (this.i + 1),
-        },
-        title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ' ' + this.addressList[this.i].city),
-        info: 'Marker info ',
+        title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        info: '<b>Adresse :</b>' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
         options: {
           animation: google.maps.Animation.DROP,
         },
-
-      })
+      });
     }
   }
 
+
   openInfo(marker: MapMarker, content) {
-    this.infoContent = content
-    this.info.open(marker)
+    var html = '<div id="content">' + '<h2 id="firstHeading" class="firstHeading">'
+      + '</h2>' + '<p> Test ' + '</p>' + '</div>';
+    var html = '[<input id="button" value="button"/>]' + 'salut';
+    this.infoContent = content;
+    this.info.open(marker);
   }
+
 }
 
 
