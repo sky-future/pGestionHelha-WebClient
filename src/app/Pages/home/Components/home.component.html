@@ -1,199 +1,24 @@
-<!-- Button de changement de disposition des modules -->
-  <button mat-button (click)="toggleGridColumns()" fxHide.lt-md>
-  <span *ngIf="gridColumns === 3">Afficher 2 par lignes</span>
-  <span *ngIf="gridColumns === 2">Afficher 3 par lignes</span>
-    <mat-icon>touch_app</mat-icon>
-</button>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="32px grid">
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of homeItems">
+      <mat-buttton [routerLink]="item.button_path">
+      <mat-card class="mat-elevation-z4" >
+        <mat-card-header>
+          <mat-card-title>{{item.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{item.image_path}}">
+<!--        <mat-card-content>-->
+<!--          <p>-->
+<!--            Contenu qui va aparaitre sous les images.-->
+<!--          </p>-->
+<!--        </mat-card-content>-->
+<!--        <mat-card-actions>-->
+<!--          <button mat-button>bouton ?</button>-->
 
-
-
-<!--fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%"-->
-
-<!-- Boucle des différents modules -->
-<div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5]">
-    <mat-card appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="24" back>
-
-      <!-- titres des images -->
-      <mat-card-header>
-
-        <ng-template  [ngIf]="num==1">
-          <div>
-            <mat-card-title>Inscrire sa voiture au covoiturage</mat-card-title>
-          </div>
-        </ng-template>
-
-        <ng-template [ngIf]="num==2">
-          <div>
-            <mat-card-title>Recherche covoiturage</mat-card-title>
-          </div>
-        </ng-template>
-
-        <ng-template [ngIf]="num==3">
-          <div>
-            <mat-card-title>S'incrire en tant que tuteur</mat-card-title>
-          </div>
-        </ng-template>
-
-        <ng-template [ngIf]="num==4">
-          <div>
-            <mat-card-title>Rechercher un tuteur</mat-card-title>
-          </div>
-        </ng-template>
-
-        <ng-template [ngIf]="num==5">
-          <div>
-            <mat-card-title>Commander à la cafétaria</mat-card-title>
-          </div>
-        </ng-template>
-
-      </mat-card-header>
-
-      <!-- lien des images -->
-
-      <ng-template [ngIf]="num==1">
-<!--        <img mat-card-image src="./../assets/images/voiture.jpg" >-->
-        <div>
-          <!--<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>-->
-          <button mat-button [routerLink]="menuItems[0].path" (click)="menuItems[0].click()" fxHide.xs>
-<!--            <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>-->
-<!--            {{menuItems[0].label}}-->
-            <img mat-card-image src="./../assets/images/voiture.jpg" >
-          </button>
-        </div>
-      </ng-template>
-
-
-      <ng-template [ngIf]="num==2">
-        <div>
-          <!--<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>-->
-          <button mat-button [routerLink]="menuItems[1].path" (click)="menuItems[1].click" fxHide.xs>
-<!--            <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>-->
-<!--            {{menuItems[1].label}}-->
-            <img mat-card-image src="./../assets/images/voiture.jpg" >
-          </button>
-        </div>
-<!--        <img mat-card-image src="./../assets/images/voiture.jpg" >-->
-      </ng-template>
-
-
-      <ng-template [ngIf]="num==3">
-        <button mat-button (click)="menuItems[2].click">
-        <img mat-card-image src="./../assets/images/livre.jpg" height="230">
-      </button>
-      </ng-template>
-
-
-
-      <ng-template [ngIf]="num==4">
-        <button mat-button (click)="menuItems[3].click">
-        <img mat-card-image src="./../assets/images/livre.jpg" height="230">
-        </button>
-      </ng-template>
-
-
-      <ng-template [ngIf]="num==5">
-        <button mat-button (click)="menuItems[4].click">
-
-        <img mat-card-image src="./../assets/images/restauration.jpg" height="230">
-        </button>
-
-      </ng-template>
-
-
-<!--      &lt;!&ndash; Phrase du module &ndash;&gt;-->
-<!--      <mat-card-content>-->
-
-
-<!--        <ng-template [ngIf]="num==1">-->
-<!--          <div>-->
-<!--            <p>-->
-<!--              Lien d'inscription de sa voiture au covoiturage-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==2">-->
-<!--          <div>-->
-<!--            <p>-->
-<!--              Lien de recherche d'une voiture-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==3">-->
-<!--          <div>-->
-<!--            <p>-->
-<!--              Lien du d'inscription du tuteur-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==4">-->
-<!--          <div>-->
-<!--            <p>-->
-<!--              Lien de recherche d'un tuteur-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==5">-->
-<!--          <div>-->
-<!--            <p>-->
-<!--              Lien de commande de la cafétaria-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-
-<!--      </mat-card-content>-->
-
-      <!-- Lien du module -->
-<!--      <mat-card-actions>-->
-
-
-<!--        <ng-template [ngIf]="num==1">-->
-<!--          <div>-->
-<!--            &lt;!&ndash;<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>&ndash;&gt;-->
-<!--            <button mat-button [routerLink]="menuItems[0].path" (click)="menuItems[0].click()" fxHide.xs>-->
-<!--              <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>-->
-<!--              {{menuItems[0].label}}-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==2">-->
-<!--          <div>-->
-<!--            &lt;!&ndash;<button mat-button [routerLink]="'register-auto'" (click)="[routerLink]">LINK</button>&ndash;&gt;-->
-<!--            <button mat-button [routerLink]="menuItems[1].path" (click)="menuItems[1].click" fxHide.xs>-->
-<!--              <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>-->
-<!--              {{menuItems[1].label}}-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==3">-->
-<!--          <div>-->
-<!--            <button mat-button>LINK</button>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==4">-->
-<!--          <div>-->
-<!--            <button mat-button>LINK</button>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-<!--        <ng-template [ngIf]="num==5">-->
-<!--          <div>-->
-<!--            <button mat-button>LINK</button>-->
-<!--          </div>-->
-<!--        </ng-template>-->
-
-
-<!--      </mat-card-actions>-->
-
-
-    </mat-card>
+<!--        </mat-card-actions>-->
+      </mat-card>
+      </mat-buttton>
+    </div>
   </div>
 </div>
+

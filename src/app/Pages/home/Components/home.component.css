@@ -13,8 +13,8 @@
 }
 
 .mat-card-image{
-  width: 500px;
-  height: 270px;
+  max-width: 500px;
+  max-height: 270px;
   border-radius: 10px;
 }
 
