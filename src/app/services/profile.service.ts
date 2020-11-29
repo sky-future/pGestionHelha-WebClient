@@ -7,6 +7,7 @@ import {ProfileDto} from '../DTOs/profile-dto';
 import {CreateProfilePipe} from '../pipes/create-profile.pipe';
 import {environment} from '../../environments/environment';
 import {UserService} from './user.service';
+import {UserDto} from '../DTOs/user-dto';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class ProfileService {
 
   private profileSubject: BehaviorSubject<ProfileDtoOutput>;
   public profile: Observable<ProfileDtoOutput>;
+  private user : UserDto;
   private URL: string = 'api/profile';
 
   constructor(private http: HttpClient,

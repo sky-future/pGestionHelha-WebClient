@@ -10,6 +10,7 @@ import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';
+import {ProfileDtoOutput} from '../DTOs/profile-dto-output';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UserService {
   }
 
   public get userValue(): UserAuthenticateDtoOutput {
-    return this.userSubject.value;
+      return this.userSubject.value;
   }
 
   public createUser(email:string, password:string) : UserPost
@@ -37,7 +38,7 @@ export class UserService {
 
   public createUserLogin(email:string, password:string) : UserAuthenticateDto
   {
-    return new CreateUserLoginPipe().transform(email,password);
+    return new CreateUserLoginPipe().transform(email,password,0);
   }
 
   register(user:UserPost): Observable<UserDto> {
@@ -49,7 +50,6 @@ export class UserService {
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
-        console.log(user);
         this.userSubject.next(<UserAuthenticateDtoOutput> user);
         return user;
       }));
@@ -59,6 +59,7 @@ export class UserService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
+    //Todo créer une route pour ne pas finir sur une page blanche
     this.router.navigate(['']);
   }
 }

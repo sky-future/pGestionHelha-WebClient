@@ -79,4 +79,11 @@ export class HeaderComponent implements OnInit {
     this.userService.logout();
   }
 
+  checkUserHasProfile() : boolean{
+    if(this.userService.userValue==null) return false;
+    if(this.userService.userValue.profile ==0) return false;
+   return true;
+
+  }
+
 }

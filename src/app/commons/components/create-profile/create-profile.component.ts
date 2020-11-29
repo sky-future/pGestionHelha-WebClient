@@ -6,6 +6,7 @@ import {ProfileDto} from '../../../DTOs/profile-dto';
 import {ProfileService} from '../../../services/profile.service';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {EmailRegisteredService} from '../../../services/email-registered.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-create-profile',
@@ -19,25 +20,31 @@ export class CreateProfileComponent implements OnInit {
   email : number;
 
   //LAXXXXXX
+  //Todo check if exist in database
   patternRegisterNumber : string = "^(LA|)[0-9]{6}$";
 
   //04XXXXXXXX
+  //todo check if in database
   patternPhoneNumber : string = "^[0-9]{10}$";
 
   //0 to 144 characters
-  patternDescription : string = "^[a-zA-Z0-9._]{0,144}$";
+  patternDescription : string = "^.{0,144}$";
 
   constructor(private formBuilder: FormBuilder,
               private alertService: AlertService,
               public profileService : ProfileService,
               private authenticationService: AuthenticationService,
-              private emailService : EmailRegisteredService
+              private emailService : EmailRegisteredService,
+              private userService : UserService
               ) {
 
-    //Récupère via le service la valeur de l'email d'engistrée via register dans le service
-    this.emailService.email.subscribe(email => {
-      this.email = email;
-    });
+    if(!this.userService.userValue) {
+      //Récupère via le service la valeur de l'email d'engistrée via register dans le service
+      this.emailService.email.subscribe(email => {
+        this.email = email;
+      });
+      //Sinon récupère l'id de l'utilisteur qui est connecté mais qui n'a pas encore créé de profile
+    } else this.email = this.userService.userValue.id;
   }
 
   formModel = this.formBuilder.group({
