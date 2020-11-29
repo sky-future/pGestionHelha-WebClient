@@ -9,6 +9,8 @@ import {HomeItem} from '../../../commons/components/types/home-item';
 
 export class HomeComponent implements OnInit {
 
+  defaultElevation =2;
+
   homeItems: HomeItem[] = [
 
     {

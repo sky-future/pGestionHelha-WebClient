@@ -45,7 +45,8 @@ import { RegisterStepperFormComponent } from './CarPooling/carpooling-register/C
 import { AddressPipe } from './CarPooling/pipes/address.pipe';
 import {MatTabsModule} from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { MaterialElevationDirective } from './directives/material-elevation.directive'
+import { MaterialElevationDirective } from './directives/material-elevation.directive';
+import { SidenavListComponent } from './commons/components/sidenav-list/sidenav-list.component'
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { MaterialElevationDirective } from './directives/material-elevation.dire
     CreateProfileModalComponent,
     CreateProfilePipe,
     MyProfileComponent,
-    MaterialElevationDirective
+    MaterialElevationDirective,
+    SidenavListComponent
 
   ],
   imports: [

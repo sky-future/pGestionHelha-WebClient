@@ -88,6 +88,9 @@ export class RegisterFormAddressComponent implements OnInit {
       }
     })
   }
+//TODO : Gérer le fait qu'un utilisateur puisse entrer qu'une fois une addresse. Donc lier user a address
+
+
 
   //Créé car la requête vers google prend trop de temps par rapport à l'éxécution en local du code
   // Ce qui engendre des variables sans aucune valeur.
@@ -96,8 +99,8 @@ export class RegisterFormAddressComponent implements OnInit {
     do{
 
       //Convert my lat and long to string to correspond to backend
-      let lat = this.lat.toString();
-      let long = this.long.toString();
+      let long = this.lat.toString();
+      let lat = this.long.toString();
 
 
       this.address = new AddressPipe().transform(

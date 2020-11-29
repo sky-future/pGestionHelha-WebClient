@@ -1,0 +1,44 @@
+
+<mat-nav-list>
+  <!-- Home -->
+  <button mat-button *ngIf="checkUserHasProfile()"
+          [routerLink]="menuItems[0].path"
+          (click)="menuItems[0].click()" >
+    <mat-icon class="mr">{{menuItems[0].icon}}</mat-icon>
+    {{menuItems[0].label}}
+  </button>
+
+  <!--    Register-->
+  <button mat-button *ngIf="!checkUserHasProfile()"
+          [routerLink]="menuItems[1].path"
+          (click)="menuItems[1].click()" >
+    <mat-icon class="mr">{{menuItems[1].icon}}</mat-icon>
+    {{menuItems[1].label}}
+  </button>
+
+  <!--    Login-->
+  <button mat-button *ngIf="!checkUserHasProfile()"
+          [routerLink]="menuItems[2].path"
+          (click)="menuItems[2].click()" >
+    <mat-icon class="mr">{{menuItems[2].icon}}</mat-icon>
+    {{menuItems[2].label}}
+  </button>
+
+  <!--    Covoiturage-->
+  <button *ngIf="checkUserHasProfile()" mat-button [matMenuTriggerFor]="carpoolingMenu" ><mat-icon>directions_car</mat-icon>
+    Covoiturage
+  </button>
+
+  <mat-menu #carpoolingMenu="matMenu">
+    <button [routerLink]="'/carpooling-register'" mat-menu-item ><mat-icon>create</mat-icon >S'inscrire</button>
+    <button [routerLink]="'/carpooling-research'" mat-menu-item ><mat-icon>place</mat-icon>Rechercher</button>
+  </mat-menu>
+
+  <button *ngIf="checkUserHasProfile()" mat-button [matMenuTriggerFor]="tutoratMenu" ><mat-icon>school</mat-icon>
+    Tutorat
+  </button>
+  <mat-menu #tutoratMenu="matMenu">
+    <button [routerLink]="" mat-menu-item ><mat-icon>create</mat-icon>Proposer</button>
+    <button [routerLink]="" mat-menu-item ><mat-icon>place</mat-icon>Rechercher</button>
+  </mat-menu>
+</mat-nav-list>
