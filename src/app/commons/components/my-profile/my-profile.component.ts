@@ -108,6 +108,10 @@ export class MyProfileComponent implements OnInit {
 
     //resets every icons and labels/input
     this.hideElements();
+
+    //petit reload bitch
+    location.reload();
+
   }
 
   findDifference(nb: number) {

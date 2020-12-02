@@ -1,20 +1,19 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MenuItem} from '../types/menu-item';
+import {ProfileDto} from '../../../DTOs/profile-dto';
+import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UserService} from '../../../services/user.service';
 import {ProfileService} from '../../../services/profile.service';
-import {ProfileDto} from '../../../DTOs/profile-dto';
-import {UserDto} from '../../../DTOs/user-dto';
-import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-sidenav-list',
+  templateUrl: './sidenav-list.component.html',
+  styleUrls: ['./sidenav-list.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class SidenavListComponent implements OnInit {
 
-  @Output() public sidenavToggle = new EventEmitter();
+  @Output() sidenavClose = new EventEmitter();
 
   //Contient la configuration des boutons du menu
   menuItems: MenuItem[] = [
@@ -33,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
       label: 'Register',
       icon: 'login',
-      path: '',
+      path: 'this.router.url',
       click: this.onRegisterClick.bind(this),
       showOnMobile: true, //visible quand on passe la taille de l'écran en mobile
       showOnTablet: true, // identique mais pour le mode tablette
@@ -43,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
       label: 'Login',
       icon: 'person_add',
-      path: '',
+      path: 'this.router.url',
       click: this.onLoginClick.bind(this),
       showOnMobile: true,
       showOnTablet: true,
@@ -67,14 +66,17 @@ export class HeaderComponent implements OnInit {
   }
 
   onEmptyClick() {
+    this.sidenavClose.emit();
   }
 
   onRegisterClick() {
     this.authService.openRegisterModal();
+    this.sidenavClose.emit();
   }
 
   onLoginClick() {
     this.authService.openLoginModal();
+    this.sidenavClose.emit();
   }
 
   onLogoutClick() {
@@ -84,11 +86,11 @@ export class HeaderComponent implements OnInit {
   checkUserHasProfile() : boolean{
     if(this.userService.userValue==null) return false;
     if(this.userService.userValue.profile ==0) return false;
-   return true;
+    return true;
 
   }
 
-  onToggleSidenav() {
-    this.sidenavToggle.emit();
-  }
+
+
+
 }

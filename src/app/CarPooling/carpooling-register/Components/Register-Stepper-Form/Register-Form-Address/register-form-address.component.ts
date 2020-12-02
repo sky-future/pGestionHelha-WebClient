@@ -88,6 +88,9 @@ export class RegisterFormAddressComponent implements OnInit {
       }
     })
   }
+//TODO : Gérer le fait qu'un utilisateur puisse entrer qu'une fois une addresse. Donc lier user a address
+
+
 
   //Créé car la requête vers google prend trop de temps par rapport à l'éxécution en local du code
   // Ce qui engendre des variables sans aucune valeur.
