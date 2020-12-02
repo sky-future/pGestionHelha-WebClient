@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit {
           //Todo fermer le modal quand un utilisateur se connect avec un user et profil
           if (this.userService.userValue.profile != 0) {
             //T'as déchiré
-            location.reload();
             await this.router.navigate(['/home']);
+            location.reload();
           } else {
             await this.authenticationService.openCreateProfileModal();
           }

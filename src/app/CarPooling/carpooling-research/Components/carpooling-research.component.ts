@@ -75,7 +75,7 @@ export class CarpoolingResearchComponent implements OnInit {
           lng: parseFloat(this.addressList[this.i].longitude),
         },
         title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
-        info: '<b>Adresse :</b>' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        info: '&lt;b&gt; Adresse : &lt;/b&gt;' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
         options: {
           animation: google.maps.Animation.DROP,
         },
