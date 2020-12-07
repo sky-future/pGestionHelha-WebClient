@@ -69,7 +69,6 @@ export class UserService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    //Todo créer une route pour ne pas finir sur une page blanche
     this.router.navigate(['']);
   }
 }
