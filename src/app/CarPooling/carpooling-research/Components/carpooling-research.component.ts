@@ -13,21 +13,22 @@ import {AddressService} from '../../repositories/address-service.service';
 })
 export class CarpoolingResearchComponent implements OnInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
-  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
-
+ // @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
+  @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow
+  infoContent = "test";
 
   zoom = 14;
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
     zoomControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
     disableDoubleClickZoom: true,
     mapTypeId: 'roadmap',
     maxZoom: 18,
     minZoom: 5,
   }
   markers = [];
-  infoContent : any = '';
+  //infoContent : any = '';
   longueur : number;
   i : number = 0;
 
@@ -75,7 +76,7 @@ export class CarpoolingResearchComponent implements OnInit {
           lng: parseFloat(this.addressList[this.i].longitude),
         },
         title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
-        info: '&lt;b&gt; Adresse : &lt;/b&gt;' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+       // info: '<a href="#"'+ '</a>' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
         options: {
           animation: google.maps.Animation.DROP,
         },
@@ -84,12 +85,13 @@ export class CarpoolingResearchComponent implements OnInit {
   }
 
 
-  openInfo(marker: MapMarker, content) {
-    var html = '<div id="content">' + '<h2 id="firstHeading" class="firstHeading">'
-      + '</h2>' + '<p> Test ' + '</p>' + '</div>';
-    var html = '[<input id="button" value="button"/>]' + 'salut';
-    this.infoContent = content;
-    this.info.open(marker);
+  openInfo(marker: MapMarker) {
+    // var html = '<div id="content">' + '<h2 id="firstHeading" class="firstHeading">'
+    //   + '</h2>' + '<p> Test ' + '</p>' + '</div>';
+    // var html = '[<input id="button" value="button"/>]' + 'salut';
+    //this.infoContent = content;
+    //this.info.open(marker);
+    this.infoWindow.open(marker);
   }
 
 }
