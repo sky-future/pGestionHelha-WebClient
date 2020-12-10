@@ -25,7 +25,7 @@ export class CarpoolingResearchComponent implements OnInit {
     mapTypeId: 'roadmap',
     maxZoom: 18,
     minZoom: 5,
-  }
+  };
   markers = [];
   infoContent : any = '';
   longueur : number;
@@ -44,11 +44,12 @@ export class CarpoolingResearchComponent implements OnInit {
       this.center = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-      }
+      };
     });
     this.addressService.query().subscribe(address => this.addressList = address);
     this.longueur = Object.keys(this.addressList).length;
     this.longueur--;
+    this.addMarker();
   }
 
   zoomIn() {
@@ -75,7 +76,7 @@ export class CarpoolingResearchComponent implements OnInit {
           lng: parseFloat(this.addressList[this.i].longitude),
         },
         title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
-        info: '&lt;b&gt; Adresse : &lt;/b&gt;' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        info:'' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
         options: {
           animation: google.maps.Animation.DROP,
         },
@@ -83,15 +84,11 @@ export class CarpoolingResearchComponent implements OnInit {
     }
   }
 
-
-  openInfo(marker: MapMarker, content) {
-    var html = '<div id="content">' + '<h2 id="firstHeading" class="firstHeading">'
-      + '</h2>' + '<p> Test ' + '</p>' + '</div>';
-    var html = '[<input id="button" value="button"/>]' + 'salut';
+  OpenModal(marker: MapMarker, content){
     this.infoContent = content;
-    this.info.open(marker);
+    this.addressService.newInfo(this.infoContent);
+    this.addressService.openResearchModal();
   }
-
 }
 
 

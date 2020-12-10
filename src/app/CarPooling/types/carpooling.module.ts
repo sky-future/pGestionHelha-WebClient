@@ -6,6 +6,8 @@ import {AddressPipe} from '../pipes/address.pipe';
 import {SharedModule} from '../../shared/shared.module';
 import {GoogleMapsModule} from '@angular/google-maps';
 import {RegisterFormAddressComponent} from '../carpooling-register/Components/Register-Stepper-Form/Register-Form-Address/register-form-address.component';
+import {CarpoolingInfoComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info.component';
+import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info-modal/carpooling-info-modal.component';
 
 
 
@@ -14,7 +16,9 @@ import {RegisterFormAddressComponent} from '../carpooling-register/Components/Re
     CarpoolingResearchComponent,
     CreateCarPipe,
     AddressPipe,
-    RegisterFormAddressComponent
+    RegisterFormAddressComponent,
+    CarpoolingInfoComponent,
+    CarpoolingInfoModalComponent
 
 
 

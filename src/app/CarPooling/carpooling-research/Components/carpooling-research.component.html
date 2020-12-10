@@ -12,7 +12,7 @@
     [position]="marker.position"
     [title]="marker.title"
     [options]="marker.options"
-    (mapClick)="openInfo(somemarker, marker.info)"
+    (mapClick)="OpenModal(somemarker, marker.info)"
   >
   </map-marker>
 
@@ -23,3 +23,5 @@
 <button (click)="zoomOut()">Zoom out</button>
 <button (click)="logCenter()">Log center</button>
 <button (click)="addMarker()">Add marker</button>
+
+<!--(mapClick)="openInfo(somemarker, marker.info)"-->
