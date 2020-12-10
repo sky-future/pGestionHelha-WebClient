@@ -6,23 +6,22 @@
   [options]="options"
   (mapClick)="click($event)"
 >
-
-    <!--#somemarker="mapMarker"-->
   <map-marker
     #somemarker="mapMarker"
     *ngFor="let marker of markers"
     [position]="marker.position"
     [title]="marker.title"
     [options]="marker.options"
-    (mapClick)="openInfo(somemarker)" >
-    <!-- (mapClick)="openInfo(somemarker, marker.info)" -->
-
+    (mapClick)="OpenModal(somemarker, marker.info)"
+  >
   </map-marker>
 
-  <map-info-window><button >{{infoContent}}</button></map-info-window>
+  <map-info-window>{{ infoContent }}</map-info-window>
 </google-map>
 
 <button (click)="zoomIn()">Zoom in</button>
 <button (click)="zoomOut()">Zoom out</button>
 <button (click)="logCenter()">Log center</button>
 <button (click)="addMarker()">Add marker</button>
+
+<!--(mapClick)="openInfo(somemarker, marker.info)"-->
