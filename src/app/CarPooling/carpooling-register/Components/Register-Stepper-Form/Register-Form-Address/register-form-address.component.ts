@@ -102,7 +102,7 @@ export class RegisterFormAddressComponent implements OnInit {
       let long = this.lat.toString();
       let lat = this.long.toString();
 
-
+   //TODO faire un post unique !
       this.address = new AddressPipe().transform(
         this.addressFormGroup.value.street,
         this.addressFormGroup.value.number,

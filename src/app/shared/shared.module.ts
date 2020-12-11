@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -10,6 +10,11 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {appRoutingModule} from '../app-routing';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ErrorInterceptor} from '../helpers/error.interceptor';
+import {JwtInterceptor} from '../helpers/jwt.interceptor';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -28,7 +33,9 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    appRoutingModule,
+    HttpClientModule
 
 
   ],
@@ -45,7 +52,15 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatInputModule
-  ]
+    MatInputModule,
+    HttpClientModule,
+    RouterModule
+
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class SharedModule { }
