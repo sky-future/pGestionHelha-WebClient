@@ -17,7 +17,7 @@ export class ProfileService {
 
   private profileSubject: BehaviorSubject<ProfileDtoOutput>;
   public profile: Observable<ProfileDtoOutput>;
-  private user : UserDto;
+  private user: UserDto;
   private URL: string = 'api/profile';
 
   constructor(private http: HttpClient,
@@ -48,6 +48,10 @@ export class ProfileService {
 
   registerProfile(profile: ProfileDto): Observable<ProfileDto> {
     return this.http.post<ProfileDto>(environment.serverAddress + this.URL, profile);
+  }
+
+  public getProfilByIdUser(idUser: number): Observable<ProfileDtoOutput>{
+    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + idUser + '/profile');
   }
 
 }

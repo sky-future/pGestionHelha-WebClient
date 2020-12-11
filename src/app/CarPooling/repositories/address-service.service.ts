@@ -23,19 +23,25 @@ export class AddressService {
 
   infos:string;
   info: BehaviorSubject<string>;
+  profils:string;
+  profil: BehaviorSubject<string>;
 
   public URL: string = environment.serverAddress + 'api/address';
 
   constructor(public http: HttpClient,private dialog: MatDialog) {
     this.AdresseSubject = new BehaviorSubject<AddresseGetDtoOutput>(JSON.parse(localStorage.getItem('address')));
     this.addresseVoit = this.AdresseSubject.asObservable();
-    this.info = new BehaviorSubject(this.infos)
+    this.info = new BehaviorSubject(this.infos);
+    this.profil = new BehaviorSubject(this.profils);
   }
 
   newInfo(infos : string) {
     this.info.next(infos);
   }
 
+  newProfil(profils : string){
+    this.profil.next((profils));
+  }
 
   public query(): Observable<AddresseGetDtoOutput> {
     return this.http.get<AddresseGetDtoOutput>(this.URL);
@@ -50,7 +56,6 @@ export class AddressService {
     this.ResearchModalRef = this.dialog.open(CarpoolingInfoModalComponent, {panelClass: 'research-dialog'});
 
   }
-
 
 
 }

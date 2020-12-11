@@ -2,6 +2,8 @@ import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from 
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import {AddresseGetDtoOutput} from '../../types/address-get-dto-output';
 import {AddressService} from '../../repositories/address-service.service';
+import {ProfileService} from "../../../services/profile.service";
+import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
 
 
 
@@ -28,12 +30,15 @@ export class CarpoolingResearchComponent implements OnInit {
   };
   markers = [];
   infoContent : any = '';
+  infoProfile : any = '';
   longueur : number;
   i : number = 0;
+  profile: ProfileDtoOutput;
 
   constructor(
     private addressService : AddressService,
-    @Inject(AddressService) private addressList : AddresseGetDtoOutput
+    @Inject(AddressService) private addressList : AddresseGetDtoOutput,
+    private profileService: ProfileService
 
   ) {
   }
@@ -84,9 +89,14 @@ export class CarpoolingResearchComponent implements OnInit {
     }
   }
 
+  idUser : number = 14;
+
   OpenModal(marker: MapMarker, content){
     this.infoContent = content;
     this.addressService.newInfo(this.infoContent);
+    this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => this.profile = profile);
+    this.infoProfile = ''+ (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+    this.addressService.newProfil(this.infoProfile);
     this.addressService.openResearchModal();
   }
 }
