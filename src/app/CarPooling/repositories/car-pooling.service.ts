@@ -32,4 +32,9 @@ export class CarPoolingService implements CarPooling{
     return this.http.post<CarDto>(environment.serverAddress + this.urlCars, car);
   }
 
+  //NEED UPTADE AFTER CHANGING IN API
+  getCarByIdUser(idUser : number) : Observable<CarDto>{
+    return this.http.post<CarDto>(environment.serverAddress + this.urlCars, idUser);
+  }
+
 }

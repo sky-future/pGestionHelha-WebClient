@@ -4,6 +4,8 @@ import {AddresseGetDtoOutput} from '../../types/address-get-dto-output';
 import {AddressService} from '../../repositories/address-service.service';
 import {ProfileService} from "../../../services/profile.service";
 import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
+import {CarPoolingService} from "../../repositories/car-pooling.service";
+import {CarDto} from "../../types/car-dto";
 
 
 
@@ -34,11 +36,13 @@ export class CarpoolingResearchComponent implements OnInit {
   longueur : number;
   i : number = 0;
   profile: ProfileDtoOutput;
+  carPooling : CarDto;
 
   constructor(
     private addressService : AddressService,
     @Inject(AddressService) private addressList : AddresseGetDtoOutput,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private carPoolingService: CarPoolingService
 
   ) {
   }
