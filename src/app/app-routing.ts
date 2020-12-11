@@ -9,8 +9,6 @@ import {RegisterFormAddressComponent} from './CarPooling/carpooling-register/Com
 import {CarpoolingResearchComponent} from './CarPooling/carpooling-research/Components/carpooling-research.component';
 import {SplashscreenComponent} from './Pages/splashscreen/splashscreen.component';
 
-
-
 const routes: Routes = [
   //{path: 'register', component : RegistrationComponent },
   //{path: 'login', component : LoginComponent},
@@ -24,9 +22,6 @@ const routes: Routes = [
   {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]},
   {path: 'carpooling-research', component : CarpoolingResearchComponent, canActivate : [AuthGuard]}
 
-
-
 ];
-
 
 export  const appRoutingModule = RouterModule.forRoot(routes);

@@ -4,7 +4,6 @@ import {AuthenticationService} from '../../../services/authentication.service';
 import {UserService} from '../../../services/user.service';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDto} from '../../../DTOs/profile-dto';
-import {UserDto} from '../../../DTOs/user-dto';
 import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
 
 @Component({

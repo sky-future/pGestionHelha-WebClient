@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Address} from '../../../../types/address';
 import {CarPoolingService} from '../../../../repositories/car-pooling.service';
-import {AddressPipe} from '../../../../pipes/address.pipe';
-import {CarDto} from '../../../../types/car-dto';
-import {CreateCarPipe} from '../../../../pipes/create-car.pipe';
+import {AddresscarPipe} from '../../../../pipes/addresscar.pipe';
+import {AddressCarDto} from '../../../../types/address-car-dto';
 import {UserService} from '../../../../../services/user.service';
 import {Router} from '@angular/router';
-
-
 
 
 @Component({
@@ -18,8 +14,8 @@ import {Router} from '@angular/router';
 })
 export class RegisterFormAddressComponent implements OnInit {
 
-  private address: Address;
-  private car: CarDto;
+  private addressCarDTO : AddressCarDto;
+  private car: AddressCarDto;
   addressFormGroup: FormGroup;
   geocoder: any;
   lat : number;
@@ -102,33 +98,26 @@ export class RegisterFormAddressComponent implements OnInit {
       let long = this.lat.toString();
       let lat = this.long.toString();
 
-   //TODO faire un post unique !
-      this.address = new AddressPipe().transform(
+      let connectedUserID = this.userService.userValue.id;
+
+
+      this.addressCarDTO = new AddresscarPipe().transform(
         this.addressFormGroup.value.street,
         this.addressFormGroup.value.number,
         this.addressFormGroup.value.postalCode,
         this.addressFormGroup.value.city,
         this.addressFormGroup.value.country,
         lat,
-        long
-      )
-
-
-      let connectedUserID = this.userService.userValue.id;
-
-
-      this.car = new CreateCarPipe().transform(
+        long,
         this.addressFormGroup.value.immatriculation,
         connectedUserID,
-        this.addressFormGroup.value.placesDispo)
+        this.addressFormGroup.value.placesDispo
+      )
 
       console.log(this.car);
 
-      this.carPoolingService.postAddress(this.address)
+      this.carPoolingService.postAddressAndCar(this.addressCarDTO)
         .subscribe();
-
-        this.carPoolingService.postCar(this.car)
-          .subscribe();
 
     }while (this.confirm = false)
 

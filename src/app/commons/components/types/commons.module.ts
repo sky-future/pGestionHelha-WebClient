@@ -20,6 +20,7 @@ import {appRoutingModule} from '../../../app-routing';
 import {AlertComponent} from '../alert/alert.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {MatListModule} from '@angular/material/list';
+import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
 
 
 
@@ -37,7 +38,8 @@ import {MatListModule} from '@angular/material/list';
     CreateProfileModalComponent,
     CreateProfilePipe,
     MyProfileComponent,
-    AlertComponent
+    AlertComponent,
+    PasswordTransformPipe
 
   ],
   imports: [
@@ -49,6 +51,7 @@ import {MatListModule} from '@angular/material/list';
     appRoutingModule,
     SharedModule,
     MatListModule
+
   ],
   exports: [
     AlertComponent,

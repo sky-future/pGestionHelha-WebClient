@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Address} from '../types/address';
 import {environment} from '../../../environments/environment';
-import {CarDto} from '../types/car-dto';
+import {AddressCarDto} from '../types/address-car-dto';
 import {CarPooling} from './car-pooling';
+import {UserService} from '../../services/user.service';
 
 
 @Injectable({
@@ -13,23 +13,20 @@ import {CarPooling} from './car-pooling';
 export class CarPoolingService implements CarPooling{
 
 
-  public address: Observable<Address>;
+  public address: Observable<AddressCarDto>;
   private urlAddress: string = 'api/address';
-  private urlCars: string = 'api/cars';
+
 
   constructor(
-    private http: HttpClient) {
-  }
-
-  postAddress(address: Address): Observable<Address>{
-    console.log(address);
-    console.log(environment.serverAddress + this.urlAddress, address);
-    return this.http.post<Address>(environment.serverAddress + this.urlAddress, address );
+    private http: HttpClient,
+    private userService : UserService) {
   }
 
 
-  postCar(car : CarDto) : Observable<CarDto>{
-    return this.http.post<CarDto>(environment.serverAddress + this.urlCars, car);
+  postAddressAndCar(addresscarDTO: AddressCarDto): Observable<AddressCarDto>{
+    let connectedUserID = this.userService.userValue.id;
+    return this.http.post<AddressCarDto>(environment.serverAddress + this.urlAddress + "/"+ connectedUserID, addresscarDTO );
   }
+
 
 }

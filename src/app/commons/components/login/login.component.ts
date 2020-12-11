@@ -7,8 +7,6 @@ import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {AlertService} from '../../../services/alert.service';
 import {first} from 'rxjs/operators';
 import {sha256} from 'js-sha256';
-import {ProfileService} from '../../../services/profile.service';
-import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
 
 
 @Component({
