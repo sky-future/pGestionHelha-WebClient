@@ -20,7 +20,7 @@ export class CarpoolingResearchComponent implements OnInit {
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
     zoomControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
     disableDoubleClickZoom: true,
     mapTypeId: 'roadmap',
     maxZoom: 18,
