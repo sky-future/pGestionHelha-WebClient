@@ -12,6 +12,8 @@ export class CarpoolingInfoComponent implements OnInit {
 
   profile: any='';
 
+  car: any='';
+
   constructor(private addressService : AddressService) {
     this.addressService.info.subscribe(infos => {
       this.infocontent = infos;
@@ -19,8 +21,9 @@ export class CarpoolingInfoComponent implements OnInit {
     this.addressService.profil.subscribe(profil => {
       this.profile = profil;
     })
+    this.addressService.voiture.subscribe(voit =>
+      this.car = voit);
   }
-
 
 
   ngOnInit(): void {

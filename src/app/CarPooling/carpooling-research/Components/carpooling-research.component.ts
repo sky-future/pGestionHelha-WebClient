@@ -5,6 +5,8 @@ import {AddressService} from '../../repositories/address-service.service';
 import {ProfileService} from "../../../services/profile.service";
 import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
 import {CarPoolingService} from "../../repositories/car-pooling.service";
+import {IdUserByIdAddress} from "../../types/id-user-by-id-address";
+import {CarDto} from "../../types/car-dto";
 //import {CarDto} from "../../types/car-dto";
 
 
@@ -33,10 +35,11 @@ export class CarpoolingResearchComponent implements OnInit {
   markers = [];
   infoContent : any = '';
   infoProfile : any = '';
+  infoCar: any = '';
   longueur : number;
   i : number = 0;
   profile: ProfileDtoOutput;
-  //carPooling : CarDto;
+  car : CarDto;
 
   constructor(
     private addressService : AddressService,
@@ -86,6 +89,7 @@ export class CarpoolingResearchComponent implements OnInit {
         },
         title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
         info:'' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        id : this.addressList[this.i].id,
         options: {
           animation: google.maps.Animation.DROP,
         },
@@ -93,14 +97,33 @@ export class CarpoolingResearchComponent implements OnInit {
     }
   }
 
-  idUser : number = 14;
+  idUser : number;
+  idAdress : number;
+  idUserss : IdUserByIdAddress;
 
-  OpenModal(marker: MapMarker, content){
+
+  OpenModal(marker: MapMarker, content, id){
     this.infoContent = content;
+    this.idAdress = id;
+
+    this.addressService.getUserByIdAddress(this.idAdress).subscribe(iduse => {
+      this.idUserss = iduse;
+      this.idUser = this.idUserss.idUser;
+    });
+
+    this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => {
+      this.profile = profile;
+      this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+    });
+
+    this.carPoolingService.getCarByIdUser(this.idUser).subscribe(car => {
+      this.car = car;
+      this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
+    });
+
     this.addressService.newInfo(this.infoContent);
-    this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => this.profile = profile);
-    this.infoProfile = ''+ (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
     this.addressService.newProfil(this.infoProfile);
+    this.addressService.newVoiture(this.infoCar);
     this.addressService.openResearchModal();
   }
 }

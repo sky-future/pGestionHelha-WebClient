@@ -5,6 +5,8 @@ import {environment} from '../../../environments/environment';
 import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info-modal/carpooling-info-modal.component';
+import {IdUserByIdAddress} from "../types/id-user-by-id-address";
+
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +48,19 @@ export class AddressService {
   public query(): Observable<AddresseGetDtoOutput> {
     return this.http.get<AddresseGetDtoOutput>(this.URL);
   }
+
+  public getUserByIdAddress(idAddress) : Observable<IdUserByIdAddress>{
+    return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users');
+  }
+
+  public getPromiseUserByIdAddress(idAddress){
+    const promise = new Promise((resolve , reject ) => {
+      this.getUserByIdAddress(idAddress).toPromise()
+    })
+  }
+
+  // async appelBack() { this.asyncResult = await this.httpclient.get(this.URL).toPromise();
+
 
   //Research modal
   ResearchModalRef: MatDialogRef<CarpoolingInfoModalComponent>;

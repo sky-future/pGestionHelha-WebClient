@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {AddressCarDto} from '../types/address-car-dto';
 import {CarPooling} from './car-pooling';
 import {UserService} from '../../services/user.service';
+import {CarDto} from "../types/car-dto";
 
 
 @Injectable({
@@ -15,6 +16,7 @@ export class CarPoolingService implements CarPooling{
 
   public address: Observable<AddressCarDto>;
   private urlAddress: string = 'api/address';
+  private urlCar: string = 'api/cars';
 
 
   constructor(
@@ -29,9 +31,8 @@ export class CarPoolingService implements CarPooling{
   }
 
 
-  // //NEED UPTADE AFTER CHANGING IN API
-  // getCarByIdUser(idUser : number) : Observable<CarDto>{
-  //   return this.http.post<CarDto>(environment.serverAddress + this.urlCars, idUser);
-  // }
+  getCarByIdUser(idUser : number) : Observable<CarDto>{
+     return this.http.get<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser + '/user');
+   }
 
 }

@@ -12,7 +12,8 @@
     [position]="marker.position"
     [title]="marker.title"
     [options]="marker.options"
-    (mapClick)="OpenModal(somemarker, marker.info)"
+    [id]="marker.id"
+    (mapClick)="OpenModal(somemarker, marker.info, marker.id)"
   >
   </map-marker>
 
