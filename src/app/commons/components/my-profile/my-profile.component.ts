@@ -7,6 +7,8 @@ import {sha256} from 'js-sha256';
 import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+//TODO quand on clique pour changer mdp on ne sait pas retourner sur profile via le mattab
+
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
