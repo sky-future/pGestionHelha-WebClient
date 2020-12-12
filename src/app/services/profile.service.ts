@@ -50,8 +50,8 @@ export class ProfileService {
     return this.http.post<ProfileDto>(environment.serverAddress + this.URL, profile);
   }
 
-  public getProfilByIdUser(idUser: number): Observable<ProfileDtoOutput>{
-    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + idUser + '/profile');
+  public getProfilByIdUser(idUser: number): Promise<ProfileDtoOutput>{
+    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + idUser + '/profile').toPromise();
   }
 
 }
