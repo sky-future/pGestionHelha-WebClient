@@ -5,10 +5,7 @@ import {AddressService} from '../../repositories/address-service.service';
 import {ProfileService} from "../../../services/profile.service";
 import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
 import {CarPoolingService} from "../../repositories/car-pooling.service";
-//import {CarDto} from "../../types/car-dto";
-
-
-
+import {OfferCarpoolingDto} from '../../types/offer-carpooling-dto';
 
 @Component({
   selector: 'app-carpooling-research',
@@ -40,10 +37,10 @@ export class CarpoolingResearchComponent implements OnInit {
 
   constructor(
     private addressService : AddressService,
+    private carpoolingService : CarPoolingService,
     @Inject(AddressService) private addressList : AddresseGetDtoOutput,
+    @Inject(CarPoolingService) private offerCarpoolingList : OfferCarpoolingDto,
     private profileService: ProfileService,
-    private carPoolingService: CarPoolingService
-
   ) {
   }
 
@@ -55,7 +52,9 @@ export class CarpoolingResearchComponent implements OnInit {
         lng: position.coords.longitude,
       };
     });
+
     this.addressService.query().subscribe(address => this.addressList = address);
+    this.carpoolingService.queryOfferCarpooling().subscribe(offerCarpoolings => this.offerCarpoolingList = offerCarpoolings);
     this.longueur = Object.keys(this.addressList).length;
     this.longueur--;
     this.addMarker();

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UserService} from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,13 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 
 export class AppComponent {
+
+  constructor(private userService: UserService) {
+  }
+  @HostListener('window:unload', [ '$event' ])
+  unloadHandler(event) {
+
+  }
+
   title = 'pGestionHelha-WebClient';
 }
