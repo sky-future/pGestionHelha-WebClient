@@ -1,4 +1,3 @@
-import {ProfileDtoOutput} from './profile-dto-output';
 
 export interface UserAuthenticateDto {
   mail : string;

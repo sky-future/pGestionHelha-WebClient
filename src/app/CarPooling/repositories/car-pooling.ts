@@ -1,10 +1,9 @@
-import {Address} from '../types/address';
 import {Observable} from 'rxjs';
-import {CarDto} from '../types/car-dto';
+import {AddressCarDto} from '../types/address-car-dto';
 
 export interface CarPooling {
 
-  postAddress(address: Address) : Observable<Address>;
+  postAddressAndCar(address: AddressCarDto) : Observable<AddressCarDto>;
 
-  postCar(car: CarDto) : Observable<CarDto>;
+
 }

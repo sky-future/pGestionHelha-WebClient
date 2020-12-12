@@ -1,14 +1,12 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
-import {Validators, FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {UserDto} from '../../../DTOs/user-dto';
 import {first} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserApiService} from '../repositories/user-api.service';
 import {AlertService} from '../../../services/alert.service';
 import {UserPost} from '../../../DTOs/user-post';
 import {UserService} from '../../../services/user.service';
-import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {sha256} from 'js-sha256';
 import {EmailRegisteredService} from '../../../services/email-registered.service';
 

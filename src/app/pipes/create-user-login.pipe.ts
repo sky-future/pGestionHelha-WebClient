@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {UserPost} from '../DTOs/user-post';
 import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
-import {ProfileDtoOutput} from '../DTOs/profile-dto-output';
 
 @Pipe({
   name: 'createUserLogin'

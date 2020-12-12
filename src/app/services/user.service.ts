@@ -3,14 +3,14 @@ import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
 import {CreateUserPipe} from '../pipes/create-user.pipe';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserDto} from '../DTOs/user-dto';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {UserPost} from '../DTOs/user-post';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';
-import {ProfileDtoOutput} from '../DTOs/profile-dto-output';
+import {PasswordDto} from '../commons/components/types/password-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ export class UserService {
   public user: Observable<UserAuthenticateDtoOutput>;
   private URL: string = 'api/users';
   private URLLogin: string = 'api/users/authenticate';
+  private URLPASSWORDCHANGE = 'api/users/pwd';
 
   constructor(private http: HttpClient, private router: Router) {
     this.userSubject = new BehaviorSubject<UserAuthenticateDtoOutput>(JSON.parse(localStorage.getItem('user')));
@@ -41,14 +42,8 @@ export class UserService {
     return new CreateUserLoginPipe().transform(email,password,0);
   }
 
-  updatePassword(data){
-    var headers = new HttpHeaders()
-      .set('Authorization', 'Token' + localStorage.getItem('user'));
-
-    var options =  {
-      headers: headers
-    };
-    //return this.http.patch(this.URL + "/" + this.userValue.id, data, options);
+  updatePassword(data): Observable<PasswordDto>{
+    return this.http.patch<PasswordDto>(environment.serverAddress + this.URLPASSWORDCHANGE, data);
   }
 
   register(user:UserPost): Observable<UserDto> {

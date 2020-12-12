@@ -1,8 +1,8 @@
-import { AddressPipe } from './address.pipe';
+import { AddresscarPipe } from './addresscar.pipe';
 
 describe('CarPoolingPipePipe', () => {
   it('create an instance', () => {
-    const pipe = new AddressPipe();
+    const pipe = new AddresscarPipe();
     expect(pipe).toBeTruthy();
   });
 });

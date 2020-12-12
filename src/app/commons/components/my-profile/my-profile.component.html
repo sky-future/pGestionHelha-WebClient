@@ -58,6 +58,7 @@
     <div class="card">
       <h1 class="card-header">Mes identifiants</h1>
       <div class="card-body">
+        <alert></alert>
         <ul class="list-group">
 
           <li class="list-group-item"><strong class="text-size">E-mail : </strong>
@@ -95,7 +96,7 @@
 
 <!--              Confirm password-->
               <div class="form-group">
-              <input type="password" [ngClass]="{ 'is-invalid':f.password.errors }"
+              <input type="password" [ngClass]="{ 'is-invalid':submitted && f.confirmPassword.errors }"
                      id="defaultRegisterFormConfirmNewPassword" placeholder="Confirmer mot de passe"
                      formControlName="newPassword" class="form-control">
 
@@ -107,7 +108,7 @@
               </div>
 
               <div class="form-group text-center">
-                <button type="submit" class="btn btn-default">Confirmer</button>
+                <button type="submit" (submit)="showForm=!showForm" class="btn btn-default">Confirmer</button>
               </div>
 
 

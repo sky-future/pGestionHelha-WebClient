@@ -2,11 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserDto, UserList} from '../../../DTOs/user-dto';
-import {environment} from '../../../../environments/environment';
-import {sha256} from 'js-sha256';
-import {FormBuilder, Validators} from '@angular/forms';
-import {UserPost} from '../../../DTOs/user-post';
-import {CreateUserPipe} from '../../../pipes/create-user.pipe';
+
 
 @Injectable({
   providedIn: 'root'

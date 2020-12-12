@@ -8,6 +8,7 @@
     {{menuItems[0].label}}
   </button>
 
+  <br>
   <!--    Register-->
   <button mat-button *ngIf="!checkUserHasProfile()"
           [routerLink]="menuItems[1].path"
@@ -33,7 +34,7 @@
     <button [routerLink]="'/carpooling-register'" mat-menu-item ><mat-icon>create</mat-icon >S'inscrire</button>
     <button [routerLink]="'/carpooling-research'" mat-menu-item ><mat-icon>place</mat-icon>Rechercher</button>
   </mat-menu>
-
+  <br>
   <button *ngIf="checkUserHasProfile()" mat-button [matMenuTriggerFor]="tutoratMenu" ><mat-icon>school</mat-icon>
     Tutorat
   </button>

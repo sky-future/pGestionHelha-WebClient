@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {UserDto} from '../DTOs/user-dto';
 import {UserPost} from '../DTOs/user-post';
 
 @Pipe({

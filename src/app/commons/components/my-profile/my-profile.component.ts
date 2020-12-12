@@ -6,6 +6,8 @@ import {AlertService} from '../../../services/alert.service';
 import {sha256} from 'js-sha256';
 import {UserAuthenticateDto} from '../../../DTOs/user-authenticate-dto';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PasswordDto} from '../types/password-dto';
+import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
 
 //TODO quand on clique pour changer mdp on ne sait pas retourner sur profile via le mattab
 
@@ -31,6 +33,7 @@ export class MyProfileComponent implements OnInit {
   showForm: boolean = false;
   patternPwd: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,15}$';
   submitted = false;
+  private passwordDTO : PasswordDto;
 
   constructor(private profileService: ProfileService,
               private userService: UserService,
@@ -46,34 +49,41 @@ export class MyProfileComponent implements OnInit {
 
   formModel = this.formBuilder.group({
     currentPassword: ['', [Validators.required]],
-    newPassword: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required],Validators.pattern(this.patternPwd)]
+    newPassword: ['', [Validators.required, Validators.pattern(this.patternPwd)]],
+    confirmPassword: ['', [Validators.required]]
   });
 
   hideElements() {
     this.isHidden = [false, false, false, false];
   }
 
-
   // Convenience getter for easy access to form fields
   get f() {
     return this.formModel.controls;
   }
-
 
   //Méthode pour changer le mot de passe
   confirmPasswordChange(){
 
     this.submitted = true;
 
-    const {currentPassword, newPassword} = this.formModel.value;
+    var connectedUser = this.userService.userValue.id;
+    var passwordNew = this.formModel.value.newPassword;
+    passwordNew = sha256(passwordNew);
+    var passwordOld = this.formModel.value.currentPassword;
+    passwordOld = sha256(passwordOld);
 
+    this.passwordDTO = new PasswordTransformPipe().transform(
+      connectedUser,
+      passwordNew,
+      passwordOld
+    )
 
     this.userService
-      .updatePassword({currentPassword, newPassword})
-      // .subscribe(() => console.log('Success!'),
-      //   () => console.log('A problem occurred..'));
+      .updatePassword(this.passwordDTO).subscribe(data=>this.alertService.success("Le mot de passe a bien été changé"),
 
+            error => this.alertService.error("Le mot de passe actuel n'a pas été changé !")
+    );
 
   }
 
