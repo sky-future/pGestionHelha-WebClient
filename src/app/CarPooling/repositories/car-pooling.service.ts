@@ -7,6 +7,7 @@ import {CarPooling} from './car-pooling';
 import {UserService} from '../../services/user.service';
 import {OfferCarpoolingDto} from '../types/offer-carpooling-dto';
 import {CarDto} from "../types/car-dto";
+import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 
 
 @Injectable({
@@ -43,5 +44,9 @@ export class CarPoolingService implements CarPooling{
   getCarByIdUser(idUser : number) : Observable<CarDto>{
      return this.http.get<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser + '/user');
    }
+
+  getListForCarpooling() : Observable<AddresseGetDtoOutput>{
+    return this.http.get<AddresseGetDtoOutput>(environment.serverAddress + this.urlOfferCarpooling + '/list');
+  }
 
 }

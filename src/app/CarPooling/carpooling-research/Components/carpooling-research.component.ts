@@ -51,7 +51,7 @@ export class CarpoolingResearchComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit(){
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
         lat: position.coords.latitude,
@@ -59,8 +59,7 @@ export class CarpoolingResearchComponent implements OnInit {
       };
     });
 
-    this.addressService.query().subscribe(address => this.addressList = address);
-    this.carpoolingService.queryOfferCarpooling().subscribe(offerCarpoolings => this.offerCarpoolingList = offerCarpoolings);
+    this.carpoolingService.getListForCarpooling().subscribe(addressList => this.addressList = addressList);
     this.longueur = Object.keys(this.addressList).length;
     this.longueur--;
     this.addMarker();
