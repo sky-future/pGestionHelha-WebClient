@@ -102,7 +102,6 @@ export class CarpoolingResearchComponent implements OnInit {
   idAdress : number;
   idUserss : IdUserByIdAddress;
 
-
   async OpenModal(marker: MapMarker, content, id) {
     this.infoContent = content;
     this.idAdress = id;
@@ -112,11 +111,11 @@ export class CarpoolingResearchComponent implements OnInit {
 
 
     this.profile = await this.profileService.getProfilByIdUser(this.idUser);
-      this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+    this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
 
 
-    this.car = await this.carPoolingService.getCarByIdUser(this.idUser);
-      this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
+    this.car = await this.carpoolingService.getCarByIdUser(this.idUser);
+    this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
 
 
     this.addressService.newInfo(this.infoContent);

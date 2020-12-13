@@ -6,7 +6,6 @@ import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info-modal/carpooling-info-modal.component';
 import {IdUserByIdAddress} from "../types/id-user-by-id-address";
-import {IdAddressByIdUserDto} from '../types/id-address-by-id-user-dto';
 
 
 @Injectable({
@@ -54,15 +53,6 @@ export class AddressService {
     return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users').toPromise();
   }
 
-  public getAddressByIdUser(idUser) : Observable<AddresseGetDtoOutput>{
-    return this.http.get<AddresseGetDtoOutput>(this.URL + '/' + idUser + '/address');
-  }
-
-  public getPromiseUserByIdAddress(idAddress){
-    const promise = new Promise((resolve , reject ) => {
-      this.getUserByIdAddress(idAddress).toPromise()
-    })
-  }
   // public getPromiseUserByIdAddress(idAddress){
   //   const promise = new Promise((resolve , reject ) => {
   //     this.getUserByIdAddress(idAddress).toPromise()
