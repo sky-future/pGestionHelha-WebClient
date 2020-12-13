@@ -5,9 +5,9 @@ import {AddressService} from '../../repositories/address-service.service';
 import {ProfileService} from "../../../services/profile.service";
 import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
 import {CarPoolingService} from "../../repositories/car-pooling.service";
+import {OfferCarpoolingDto} from '../../types/offer-carpooling-dto';
 import {IdUserByIdAddress} from "../../types/id-user-by-id-address";
 import {CarDto} from "../../types/car-dto";
-//import {CarDto} from "../../types/car-dto";
 
 
 
@@ -43,22 +43,23 @@ export class CarpoolingResearchComponent implements OnInit {
 
   constructor(
     private addressService : AddressService,
+    private carpoolingService : CarPoolingService,
     @Inject(AddressService) private addressList : AddresseGetDtoOutput,
+    @Inject(CarPoolingService) private offerCarpoolingList : OfferCarpoolingDto,
     private profileService: ProfileService,
-    private carPoolingService: CarPoolingService
-
   ) {
   }
 
 
-  ngOnInit() {
+  ngOnInit(){
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
     });
-    this.addressService.query().subscribe(address => this.addressList = address);
+
+    this.carpoolingService.getListForCarpooling().subscribe(addressList => this.addressList = addressList);
     this.longueur = Object.keys(this.addressList).length;
     this.longueur--;
     this.addMarker();
@@ -101,7 +102,6 @@ export class CarpoolingResearchComponent implements OnInit {
   idAdress : number;
   idUserss : IdUserByIdAddress;
 
-
   async OpenModal(marker: MapMarker, content, id) {
     this.infoContent = content;
     this.idAdress = id;
@@ -111,11 +111,11 @@ export class CarpoolingResearchComponent implements OnInit {
 
 
     this.profile = await this.profileService.getProfilByIdUser(this.idUser);
-      this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+    this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
 
 
-    this.car = await this.carPoolingService.getCarByIdUser(this.idUser);
-      this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
+    this.car = await this.carpoolingService.getCarByIdUser(this.idUser);
+    this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
 
 
     this.addressService.newInfo(this.infoContent);

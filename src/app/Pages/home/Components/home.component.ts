@@ -50,6 +50,10 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    var html = {
+      content : '<div id="content"><h2 id="firstHeading" class="firstHeading"></h2><p></p></div>'
+    }
   }
 
 }
