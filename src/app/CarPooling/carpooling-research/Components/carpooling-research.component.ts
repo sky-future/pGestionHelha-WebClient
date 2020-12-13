@@ -101,30 +101,61 @@ export class CarpoolingResearchComponent implements OnInit {
   idAdress : number;
   idUserss : IdUserByIdAddress;
 
+  getAdress = async () => {
+
+    await this.addressService.getUserByIdAddress(this.idAdress).subscribe(iduse => {
+      this.idUserss = iduse;
+      this.idUser = this.idUserss.idUser;
+      alert(this.idUser);
+    });
+
+  }
+
 
   OpenModal(marker: MapMarker, content, id){
     this.infoContent = content;
     this.idAdress = id;
 
-    this.addressService.getUserByIdAddress(this.idAdress).subscribe(iduse => {
-      this.idUserss = iduse;
-      this.idUser = this.idUserss.idUser;
-    });
+    // this.addressService.getUserByIdAddress(this.idAdress).subscribe(iduse => {
+    //   this.idUserss = iduse;
+    //   this.idUser = this.idUserss.idUser;
+    // });
 
-    this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => {
-      this.profile = profile;
-      this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
-    });
+    this.getAdress().then( async() =>{
 
-    this.carPoolingService.getCarByIdUser(this.idUser).subscribe(car => {
-      this.car = car;
-      this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
-    });
+      await this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => {
+        this.profile = profile;
+        this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+      });
 
-    this.addressService.newInfo(this.infoContent);
-    this.addressService.newProfil(this.infoProfile);
-    this.addressService.newVoiture(this.infoCar);
-    this.addressService.openResearchModal();
+      await this.carPoolingService.getCarByIdUser(this.idUser).subscribe(car => {
+        this.car = car;
+        this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
+      });
+
+
+
+    }).then(async() =>{
+      this.addressService.newInfo(this.infoContent);
+      this.addressService.newProfil(this.infoProfile);
+      this.addressService.newVoiture(this.infoCar);
+      this.addressService.openResearchModal();
+    } )
+
+    // this.profileService.getProfilByIdUser(this.idUser).subscribe(profile => {
+    //   this.profile = profile;
+    //   this.infoProfile = '' + (this.profile.firstname + ' ' + this.profile.lastname + ', Téléphone : ' + this.profile.telephone);
+    // });
+    //
+    // this.carPoolingService.getCarByIdUser(this.idUser).subscribe(car => {
+    //   this.car = car;
+    //   this.infoCar = 'Nombre de places : ' + (this.car.placeNb);
+    // });
+    //
+    // this.addressService.newInfo(this.infoContent);
+    // this.addressService.newProfil(this.infoProfile);
+    // this.addressService.newVoiture(this.infoCar);
+    // this.addressService.openResearchModal();
   }
 }
 
