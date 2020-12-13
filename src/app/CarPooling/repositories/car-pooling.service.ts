@@ -41,8 +41,8 @@ export class CarPoolingService implements CarPooling{
   //   return this.http.post<CarDto>(environment.serverAddress + this.urlCars, idUser);
   // }
 
-  getCarByIdUser(idUser : number) : Observable<CarDto>{
-     return this.http.get<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser + '/user');
+  getCarByIdUser(idUser : number) : Promise<CarDto>{
+     return this.http.get<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser + '/user').toPromise();
    }
 
   getListForCarpooling() : Observable<AddresseGetDtoOutput>{

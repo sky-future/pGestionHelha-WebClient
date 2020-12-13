@@ -50,8 +50,8 @@ export class AddressService {
     return this.http.get<AddresseGetDtoOutput>(this.URL);
   }
 
-  public getUserByIdAddress(idAddress) : Observable<IdUserByIdAddress>{
-    return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users');
+  public getUserByIdAddress(idAddress) : Promise<IdUserByIdAddress>{
+    return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users').toPromise();
   }
 
   public getAddressByIdUser(idUser) : Observable<AddresseGetDtoOutput>{
@@ -63,6 +63,11 @@ export class AddressService {
       this.getUserByIdAddress(idAddress).toPromise()
     })
   }
+  // public getPromiseUserByIdAddress(idAddress){
+  //   const promise = new Promise((resolve , reject ) => {
+  //     this.getUserByIdAddress(idAddress).toPromise()
+  //   })
+  // }
 
   // async appelBack() { this.asyncResult = await this.httpclient.get(this.URL).toPromise();
 
