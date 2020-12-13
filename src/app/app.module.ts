@@ -12,12 +12,13 @@ import {CommonsModule} from './commons/components/types/commons.module';
 import {CarpoolingModule} from './CarPooling/types/carpooling.module';
 import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './Pages/types/pages.module';
+import { CarpoolingRequestComponent } from './CarPooling/carpooling-request/carpooling-request.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavListComponent
+    SidenavListComponent,
 
   ],
   imports: [
@@ -37,6 +38,8 @@ import {PagesModule} from './Pages/types/pages.module';
   ],
 
   schemas: [NO_ERRORS_SCHEMA],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 
 })

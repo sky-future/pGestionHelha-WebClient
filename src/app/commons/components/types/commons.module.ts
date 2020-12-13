@@ -21,6 +21,9 @@ import {AlertComponent} from '../alert/alert.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {MatListModule} from '@angular/material/list';
 import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
+import {CarpoolingRequestComponent} from '../../../CarPooling/carpooling-request/carpooling-request.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
 
 
 
@@ -39,7 +42,8 @@ import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
     CreateProfilePipe,
     MyProfileComponent,
     AlertComponent,
-    PasswordTransformPipe
+    PasswordTransformPipe,
+
 
   ],
   imports: [
@@ -50,7 +54,9 @@ import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
     MatButtonModule,
     appRoutingModule,
     SharedModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule,
+    CarpoolingModule
 
   ],
   exports: [

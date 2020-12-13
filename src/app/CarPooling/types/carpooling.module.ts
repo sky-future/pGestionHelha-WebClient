@@ -7,6 +7,9 @@ import {GoogleMapsModule} from '@angular/google-maps';
 import {RegisterFormAddressComponent} from '../carpooling-register/Components/Register-Stepper-Form/Register-Form-Address/register-form-address.component';
 import {CarpoolingInfoComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info.component';
 import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info-modal/carpooling-info-modal.component';
+import {CarpoolingRequestComponent} from '../carpooling-request/carpooling-request.component';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -15,15 +18,19 @@ import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/ca
     AddresscarPipe,
     RegisterFormAddressComponent,
     CarpoolingInfoComponent,
-    CarpoolingInfoModalComponent
+    CarpoolingInfoModalComponent,
+    CarpoolingRequestComponent
 
   ],
   imports: [
     CommonModule,
     SharedModule,
     GoogleMapsModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   exports: [
+    CarpoolingRequestComponent
   ]
 })
 export class CarpoolingModule { }

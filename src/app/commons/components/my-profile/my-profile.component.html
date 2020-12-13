@@ -98,7 +98,7 @@
               <div class="form-group">
               <input type="password" [ngClass]="{ 'is-invalid':submitted && f.confirmPassword.errors }"
                      id="defaultRegisterFormConfirmNewPassword" placeholder="Confirmer mot de passe"
-                     formControlName="newPassword" class="form-control">
+                     formControlName="confirmPassword" class="form-control">
 
 
               <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
@@ -117,6 +117,12 @@
         </ul>
       </div>
     </div>
+  </mat-tab>
+
+  <mat-tab label="Demandes">
+
+    <app-carpooling-request></app-carpooling-request>
+
   </mat-tab>
 
 </mat-tab-group>
