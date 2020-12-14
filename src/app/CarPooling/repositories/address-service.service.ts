@@ -22,6 +22,8 @@ export class AddressService {
   profil: BehaviorSubject<string>;
   voitures:string;
   voiture: BehaviorSubject<string>;
+  idRequestReceivers: number;
+  idRequestReceiver: BehaviorSubject<number>;
 
   public URL: string = environment.serverAddress + 'api/address';
 
@@ -31,6 +33,7 @@ export class AddressService {
     this.info = new BehaviorSubject(this.infos);
     this.profil = new BehaviorSubject(this.profils);
     this.voiture = new BehaviorSubject(this.voitures);
+    this.idRequestReceiver = new BehaviorSubject(this.idRequestReceivers)
   }
 
   newInfo(infos : string) {
@@ -43,6 +46,10 @@ export class AddressService {
 
   newVoiture(voit : string){
     this.voiture.next(voit);
+  }
+
+  newIdRequestReceiver(idRequest : number){
+    this.idRequestReceiver.next(idRequest);
   }
 
   public query(): Observable<AddresseGetDtoOutput> {

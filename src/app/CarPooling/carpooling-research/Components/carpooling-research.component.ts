@@ -108,6 +108,7 @@ export class CarpoolingResearchComponent implements OnInit {
     this.addressService.newInfo(this.infoContent);
     this.addressService.newProfil(this.infoProfile);
     this.addressService.newVoiture(this.infoCar);
+    this.addressService.newIdRequestReceiver(this.idUser);
     this.addressService.openResearchModal();
   }
 }

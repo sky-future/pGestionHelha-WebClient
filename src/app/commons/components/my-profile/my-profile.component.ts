@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDtoOutput} from '../../../DTOs/profile-dto-output';
 import {UserService} from '../../../services/user.service';

@@ -12,13 +12,12 @@ import {CommonsModule} from './commons/components/types/commons.module';
 import {CarpoolingModule} from './CarPooling/types/carpooling.module';
 import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './Pages/types/pages.module';
-import { CarpoolingRequestComponent } from './CarPooling/carpooling-request/carpooling-request.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavListComponent,
+    SidenavListComponent
 
   ],
   imports: [
@@ -32,8 +31,6 @@ import { CarpoolingRequestComponent } from './CarPooling/carpooling-request/carp
     CommonsModule,
     CarpoolingModule,
     PagesModule
-
-    //permet de faire des requêtes ajax
 
   ],
 

@@ -10,6 +10,7 @@ import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/ca
 import {CarpoolingRequestComponent} from '../carpooling-request/carpooling-request.component';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {RequestcarpoolingPipe} from '../pipes/requestcarpooling.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RegisterFormAddressComponent,
     CarpoolingInfoComponent,
     CarpoolingInfoModalComponent,
-    CarpoolingRequestComponent
+    CarpoolingRequestComponent,
+    RequestcarpoolingPipe
 
   ],
   imports: [
