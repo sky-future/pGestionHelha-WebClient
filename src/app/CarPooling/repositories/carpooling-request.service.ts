@@ -31,9 +31,6 @@ export class CarpoolingRequestService {
   }
 
   public delete(idSender : number, idReceiver : number){
-    console.log(idSender,idReceiver);
-    alert(idSender);
-    alert(idReceiver);
     return this.http.delete(this.URl+ '/' +idSender + '/' + idReceiver).subscribe((ok) => {console.log(ok)});
   }
 
