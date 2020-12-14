@@ -5,12 +5,8 @@ import {AddressService} from '../../repositories/address-service.service';
 import {ProfileService} from "../../../services/profile.service";
 import {ProfileDtoOutput} from "../../../DTOs/profile-dto-output";
 import {CarPoolingService} from "../../repositories/car-pooling.service";
-import {OfferCarpoolingDto} from '../../types/offer-carpooling-dto';
 import {IdUserByIdAddress} from "../../types/id-user-by-id-address";
 import {CarDto} from "../../types/car-dto";
-
-
-
 
 @Component({
   selector: 'app-carpooling-research',
@@ -22,16 +18,22 @@ export class CarpoolingResearchComponent implements OnInit {
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow
 
 
-  zoom = 14;
-  center: google.maps.LatLngLiteral
+  zoom = 13;
+  center = {
+    lat: 50.452001,
+    lng: 3.986647,
+  }
+
   options: google.maps.MapOptions = {
-    zoomControl: false,
+    zoomControl: true,
     scrollwheel: true,
     disableDoubleClickZoom: true,
     mapTypeId: 'roadmap',
     maxZoom: 18,
     minZoom: 5,
   };
+
+
   markers = [];
   infoContent : any = '';
   infoProfile : any = '';
@@ -40,45 +42,34 @@ export class CarpoolingResearchComponent implements OnInit {
   i : number = 0;
   profile: ProfileDtoOutput;
   car : CarDto;
+  idUser : number;
+  idAdress : number;
+  idUserss : IdUserByIdAddress;
+
 
   constructor(
     private addressService : AddressService,
     private carpoolingService : CarPoolingService,
     @Inject(AddressService) private addressList : AddresseGetDtoOutput,
-    @Inject(CarPoolingService) private offerCarpoolingList : OfferCarpoolingDto,
     private profileService: ProfileService,
-  ) {
+  ){
   }
 
-
-  ngOnInit(){
+  async ngOnInit(){
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
     });
-
-    this.carpoolingService.getListForCarpooling().subscribe(addressList => this.addressList = addressList);
+    this.addressList = await this.carpoolingService.getListForCarpooling();
     this.longueur = Object.keys(this.addressList).length;
     this.longueur--;
     this.addMarker();
   }
 
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom) this.zoom++;
-  }
-
-  zoomOut() {
-    if (this.zoom > this.options.minZoom) this.zoom--;
-  }
-
   click(event: google.maps.MouseEvent) {
     console.log(event);
-  }
-
-  logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()));
   }
 
   addMarker() {
@@ -97,10 +88,6 @@ export class CarpoolingResearchComponent implements OnInit {
       });
     }
   }
-
-  idUser : number;
-  idAdress : number;
-  idUserss : IdUserByIdAddress;
 
   async OpenModal(marker: MapMarker, content, id) {
     this.infoContent = content;

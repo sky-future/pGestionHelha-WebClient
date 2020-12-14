@@ -53,15 +53,6 @@ export class AddressService {
     return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users').toPromise();
   }
 
-  // public getPromiseUserByIdAddress(idAddress){
-  //   const promise = new Promise((resolve , reject ) => {
-  //     this.getUserByIdAddress(idAddress).toPromise()
-  //   })
-  // }
-
-  // async appelBack() { this.asyncResult = await this.httpclient.get(this.URL).toPromise();
-
-
   //Research modal
   ResearchModalRef: MatDialogRef<CarpoolingInfoModalComponent>;
 

@@ -1,18 +1,22 @@
 
 
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let item of menuItems">
+  <mat-expansion-panel *ngFor="let item of requestItems">
     <mat-expansion-panel-header>
       <mat-panel-title>
-
+        {{item.title}}
       </mat-panel-title>
       <mat-panel-description>
-
+        {{item.content}}
       </mat-panel-description>
+
     </mat-expansion-panel-header>
 
-    <div>details or form here</div>
+    <div>
+      <b>Il est conseillé de prendre contact avec la personne avant d'accepter une demande de covoiturage</b>
+    </div>
 
   </mat-expansion-panel>
 
 </mat-accordion>
+
