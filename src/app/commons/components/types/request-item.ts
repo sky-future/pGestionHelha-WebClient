@@ -1,5 +1,10 @@
 export interface RequestItem {
-  title : string
-  content : string
+  id : number
+  firstname: string
+  lastname : string
+  telephone : number
   idRequest : number
+  confirmation : number
 }
+
+export declare type requestItem = RequestItem[];

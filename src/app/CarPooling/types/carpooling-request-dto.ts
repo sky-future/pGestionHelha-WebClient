@@ -1,5 +1,7 @@
 export interface CarpoolingRequestDto {
-  id : number
-  idRequestSender : number
-  idRequestReceiver : number
+  idUser : number
+  lastname : string
+  firstname : string
+  telephone : number
+  confirmation : number
 }
