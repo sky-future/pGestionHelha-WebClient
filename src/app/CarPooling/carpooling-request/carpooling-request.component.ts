@@ -4,6 +4,7 @@ import {CarpoolingRequestService} from '../repositories/carpooling-request.servi
 import {ProfileService} from '../../services/profile.service';
 import {UserService} from '../../services/user.service';
 import {RequestItem} from '../../commons/components/types/request-item';
+import {Confirmation} from '../types/confirmation';
 
 @Component({
   selector: 'app-carpooling-request',
@@ -14,6 +15,7 @@ export class CarpoolingRequestComponent implements OnInit {
 
   requestItems: RequestItem[] = [];
   requestItem : RequestItem;
+  confirmation : Confirmation;
 
   i : number;
   longeur :number;
@@ -49,8 +51,11 @@ export class CarpoolingRequestComponent implements OnInit {
     }
   }
 
-  Accepter(Id){
-    alert("Vous avez accepté sa demande")
+  Accepter(id){
+    this.confirmation = this.carpoolingRequestService.createConfirmation(id, this.userService.userValue.id , 1)
+    this.carpoolingRequestService.uptadeRequest(this.confirmation);
+    alert("Vous avez accepté sa demande");
+    //window.location.reload();
   }
 
   Refuser(id : number){

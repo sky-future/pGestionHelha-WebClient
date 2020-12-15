@@ -5,6 +5,11 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {RequestItem} from '../../commons/components/types/request-item';
 import {RequestPipe} from '../pipes/request.pipe';
+import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
+import {Confirmation} from '../types/confirmation';
+import {ConfirmationPipe} from '../pipes/confirmation.pipe';
+
+
 
 
 @Injectable({
@@ -32,6 +37,16 @@ export class CarpoolingRequestService {
 
   public delete(idSender : number, idReceiver : number){
     return this.http.delete(this.URl+ '/' +idSender + '/' + idReceiver).subscribe((ok) => {console.log(ok)});
+  }
+
+  public createConfirmation(idRequestSender : number, idRequestReceiver : number, confirmation : number) : Confirmation {
+    return  new ConfirmationPipe().transform(idRequestSender,idRequestReceiver,confirmation);
+  }
+
+
+  public uptadeRequest(confirmation){
+    console.log(confirmation);
+    return this.http.patch(this.URl + '/confirmation', confirmation).subscribe((ok)=>{console.log(ok)});
   }
 
 }
