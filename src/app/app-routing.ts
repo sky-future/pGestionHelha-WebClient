@@ -8,8 +8,7 @@ import {MyProfileComponent} from './commons/components/my-profile/my-profile.com
 import {RegisterFormAddressComponent} from './CarPooling/carpooling-register/Components/Register-Stepper-Form/Register-Form-Address/register-form-address.component';
 import {CarpoolingResearchComponent} from './CarPooling/carpooling-research/Components/carpooling-research.component';
 import {SplashscreenComponent} from './Pages/splashscreen/splashscreen.component';
-import {ProfileComponent} from './commons/components/my-profile/profile/profile.component';
-import {IdentifiantsComponent} from './commons/components/my-profile/identifiants/identifiants.component';
+
 
 const routes: Routes = [
   //{path: 'register', component : RegistrationComponent },
