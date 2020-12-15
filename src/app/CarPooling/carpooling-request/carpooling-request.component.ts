@@ -55,16 +55,18 @@ export class CarpoolingRequestComponent implements OnInit {
     this.confirmation = this.carpoolingRequestService.createConfirmation(id, this.userService.userValue.id , 1)
     this.carpoolingRequestService.uptadeRequest(this.confirmation);
     alert("Vous avez accepté sa demande");
-    //window.location.reload();
+    window.location.reload();
   }
 
   Refuser(id : number){
     this.carpoolingRequestService.delete(id, this.userService.userValue.id);
     alert("Vous avez refusé sa demande");
+    window.location.reload();
   }
 
   Retirer(id : number){
     this.carpoolingRequestService.delete(id , this.userService.userValue.id);
     alert("vous avez retiré un menbre de la liste");
+    window.location.reload();
   }
 }
