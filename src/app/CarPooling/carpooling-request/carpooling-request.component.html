@@ -1,7 +1,6 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let item of requestItems">
     <mat-expansion-panel-header>
-
       <mat-panel-title>
         <div class="text-size">
           <div style="width:20px;height:20px;background-color:orange;"
@@ -31,7 +30,7 @@
         <div><button class="btn btn-info my-4 btn-block"(click)="Refuser(item.idRequest)" >Refuser</button></div>
       </div>
       <div *ngIf ="item.confirmation === 1">
-        <div><button  class="btn btn-info my-4 btn-block" (click)="Retirer(item.idRequest)" >Retirer de la liste</button></div>
+        <div><button  class="btn btn-info my-4 btn-block" (click)="Retirer(item.idRequest)" >Arreter le covoiturage avec {{item.firstname}}</button></div>
       </div>
     </div>
   </mat-expansion-panel>

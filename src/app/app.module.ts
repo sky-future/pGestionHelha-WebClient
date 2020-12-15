@@ -13,6 +13,8 @@ import {CarpoolingModule} from './CarPooling/types/carpooling.module';
 import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './Pages/types/pages.module';
 import { RequestPipe } from './CarPooling/pipes/request.pipe';
+import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
+
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { RequestPipe } from './CarPooling/pipes/request.pipe';
     AppComponent,
     SidenavListComponent,
     RequestPipe,
+    ConfirmationPipe,
+
 
   ],
   imports: [
