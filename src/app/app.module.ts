@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {MatStepperModule} from '@angular/material/stepper'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,19 +15,17 @@ import { RequestPipe } from './CarPooling/pipes/request.pipe';
 import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     SidenavListComponent,
     RequestPipe,
-    ConfirmationPipe,
+    ConfirmationPipe
 
 
   ],
   imports: [
-    MatStepperModule,
+
     MatSidenavModule,
     MatDividerModule,
     MatDialogModule,

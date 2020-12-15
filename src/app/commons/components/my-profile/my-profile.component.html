@@ -1,128 +1,12 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
   <mat-tab label="Profile">
-    <div class="card">
-      <h1 class="card-header">Mon profile</h1>
-      <div class="card-body">
-        <alert></alert>
-        <ul class="list-group">
-
-          <li class="list-group-item"><strong class="text-size">Nom : </strong>
-            <label class="text-size" [hidden]="isHidden[0]">{{this.profile.lastname}}</label>
-            <input class="text-size" [hidden]="!isHidden[0]" type="text" id="lastname" #lastname
-                   [value]="this.profile.lastname">
-            <mat-icon [hidden]="isHidden[0]" (click)="changeHidden(0)">create</mat-icon>
-            <mat-icon class="close" [hidden]="!isHidden[0]" (click)="changeHidden(0)">close</mat-icon>
-            <mat-icon class="open" [hidden]="!isHidden[0]" (click)="confirmChange(0)">check</mat-icon>
-          </li>
-
-          <li class="list-group-item"><strong class="text-size">Prénom : </strong>
-            <label class="text-size" [hidden]="isHidden[1]">{{this.profile.firstname}}</label>
-            <input class="text-size" [hidden]="!isHidden[1]" type="text" id="firstname" #firstname
-                   [value]="this.profile.firstname">
-            <mat-icon [hidden]="isHidden[1]" (click)="changeHidden(1)">create</mat-icon>
-            <mat-icon class="close" [hidden]="!isHidden[1]" (click)="changeHidden(1)">close</mat-icon>
-            <mat-icon class="open" [hidden]="!isHidden[1]" (click)="confirmChange(1)">check</mat-icon>
-          </li>
-
-
-          <li class="list-group-item"><strong class="text-size">Matricule : </strong>
-            <label class="text-size">{{this.profile.matricule}}</label>
-          </li>
-
-
-          <li class="list-group-item"><strong class="text-size">Téléphone : </strong>
-            <label class="text-size" [hidden]="isHidden[2]">{{this.profile.telephone}}</label>
-            <input class="text-size" [hidden]="!isHidden[2]" name="telephone" type="text" id="telephone"
-                   [value]="this.profile.telephone" #telephone>
-            <mat-icon [hidden]="isHidden[2]" (click)="changeHidden(2)">create</mat-icon>
-            <mat-icon class="close" [hidden]="!isHidden[2]" (click)="changeHidden(2)">close</mat-icon>
-            <mat-icon class="open" [hidden]="!isHidden[2]" (click)="confirmChange(2)">check</mat-icon>
-          </li>
-
-
-          <li class="list-group-item"><strong class="text-size">Description : </strong>
-            <label class="text-size" [hidden]="isHidden[3]">{{this.profile.descript}}</label>
-            <input class="text-size" [hidden]="!isHidden[3]" type="text" id="descript" #descript
-                   [value]="this.profile.descript">
-            <mat-icon [hidden]="isHidden[3]" (click)="changeHidden(3)">create</mat-icon>
-            <mat-icon class="close" [hidden]="!isHidden[3]" (click)="changeHidden(3)">close</mat-icon>
-            <mat-icon class="open" [hidden]="!isHidden[3]" (click)="confirmChange(3)">check</mat-icon>
-          </li>
-
-
-        </ul>
-      </div>
-    </div>
+    <app-profile></app-profile>
   </mat-tab>
   <mat-tab label="Identifiants">
-    <div class="card">
-      <h1 class="card-header">Mes identifiants</h1>
-      <div class="card-body">
-        <alert></alert>
-        <ul class="list-group">
-
-          <li class="list-group-item"><strong class="text-size">E-mail : </strong>
-            <label class="text-size">{{this.user.userValue.mail}}</label>
-          </li>
-
-          <li class="list-group-item">
-            <mat-icon (click)="showForm=!showForm">create</mat-icon>
-            <strong class="text-size">Mot de passe :</strong>
-
-
-            <form [formGroup]="formModel" *ngIf="showForm"  (ngSubmit)="confirmPasswordChange()" style="width: 400px;">
-
-<!--              Current password-->
-              <div class="form-group">
-              <input type="password" name="old_password"  id="defaultRegisterFormOldPassword" placeholder="Mot de passe actuel"
-                     formControlName="currentPassword" class="form-control" >
-              </div>
-
-<!--              New password-->
-              <div class="form-group">
-              <input type="password" name="new_password" [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }"
-                     id="defaultRegisterFormNewPassword" placeholder="Nouveau mot de passe"
-                     formControlName="newPassword" class="form-control">
-
-
-              <div *ngIf="f.newPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.newPassword.errors.required">Password is required</div>
-                <div *ngIf="f.newPassword.errors.pattern">Password must be at least 8 characters and maximum 15 with one digit,
-                  one
-                  upper case and one lower case
-                </div>
-              </div>
-              </div>
-
-<!--              Confirm password-->
-              <div class="form-group">
-              <input type="password" [ngClass]="{ 'is-invalid':submitted && f.confirmPassword.errors }"
-                     id="defaultRegisterFormConfirmNewPassword" placeholder="Confirmer mot de passe"
-                     formControlName="confirmPassword" class="form-control">
-
-
-              <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
-              </div>
-              </div>
-
-              <div class="form-group text-center">
-                <button type="submit" (submit)="showForm=!showForm" class="btn btn-default">Confirmer</button>
-              </div>
-
-
-            </form>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <app-identifiants></app-identifiants>
   </mat-tab>
-
   <mat-tab label="Demandes">
-
     <app-carpooling-request></app-carpooling-request>
-
   </mat-tab>
 
   <mat-tab label="Mon Covoiturage">
@@ -132,3 +16,4 @@
   </mat-tab>
 
 </mat-tab-group>
+
