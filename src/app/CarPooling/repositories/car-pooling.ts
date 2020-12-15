@@ -6,6 +6,6 @@ export interface CarPooling {
 
   postAddressAndCar(address: AddressCarDto) : Observable<AddressCarDto>;
 
-  requestCarpooling(requestCarpooling : CarPoolingRequestDto) : Observable<CarPoolingRequestDto>;
+  requestCarpooling(requestCarpooling : CarPoolingRequestDto) : Promise<CarPoolingRequestDto>;
 
 }

@@ -39,25 +39,24 @@ export class CarpoolingInfoComponent implements OnInit {
       this.idRequestReceiver = idRequestReceiver);
   }
 
-
-
   ngOnInit(): void {
 
   }
 
-  Demande(){
-      let connectedUserId = this.userSerivce.userValue.id;
+  async Demande() {
+    let connectedUserId = this.userSerivce.userValue.id;
+    let errorMessage;
 
-      this.carPoolingRequestDTO = new RequestcarpoolingPipe().transform(
-        connectedUserId,
-        this.idRequestReceiver,
-        0
-      );
+    this.carPoolingRequestDTO = new RequestcarpoolingPipe().transform(
+      connectedUserId,
+      this.idRequestReceiver,
+      0
+    );
 
-      this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO)
-        .subscribe(data=>this.alertService.success("Votre demande a bien été envoyé"),
-              error => this.alertService.error("Vous avez déjà fais une demande à cette personne !"));
-
+    //TODO gérer la récupération de l'erreur et l'afficher
+    errorMessage = await this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO);
+    this.alertService.error(errorMessage);
+    console.log(errorMessage);
 
   }
 

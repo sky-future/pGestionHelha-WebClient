@@ -52,8 +52,9 @@ export class CarPoolingService implements CarPooling{
   }
 
 
-  requestCarpooling(requestCarpooling: CarPoolingRequestDto): Observable<CarPoolingRequestDto> {
-   return this.http.post<CarPoolingRequestDto>(environment.serverAddress + this.url_Request_Carpooling, requestCarpooling);
+ public async requestCarpooling(requestCarpooling: CarPoolingRequestDto){
+   const response =  await (this.http.post<CarPoolingRequestDto>(environment.serverAddress + this.url_Request_Carpooling, requestCarpooling)).toPromise();
+   return response;
   }
 
 }
