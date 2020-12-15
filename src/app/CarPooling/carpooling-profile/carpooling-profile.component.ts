@@ -5,7 +5,6 @@ import {UserService} from '../../services/user.service';
 import {AlertService} from '../../services/alert.service';
 import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {AddressOutput} from '../types/address-output';
-import {CarDto} from '../types/car-dto';
 import {CarPoolingService} from '../repositories/car-pooling.service';
 import {CarOutput} from '../types/car-output';
 
@@ -82,7 +81,7 @@ export class CarpoolingProfileComponent implements OnInit {
     createCar(
       this.car.immatriculation,
       this.car.idUser,
-      this.car.placeNb
+      Number(this.car.placeNb),
     )
     console.log(this.car.placeNb);
     console.log(carMod.placeNb);
@@ -137,8 +136,8 @@ export class CarpoolingProfileComponent implements OnInit {
         break;
 
       case 3:
-        if (this.address.city != this.postalCode.nativeElement.value) {
-          this.address.city = this.postalCode.nativeElement.value;
+        if (this.address.city != this.city.nativeElement.value) {
+          this.address.city = this.city.nativeElement.value;
           this.i++;
         }
         break;
