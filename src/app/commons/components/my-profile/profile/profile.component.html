@@ -1,0 +1,53 @@
+<div class="card">
+  <h1 class="card-header">Mon profile</h1>
+  <div class="card-body">
+    <alert></alert>
+    <ul class="list-group">
+
+      <li class="list-group-item"><strong class="text-size">Nom : </strong>
+        <label class="text-size" [hidden]="isHidden[0]">{{this.profile.lastname}}</label>
+        <input class="text-size" [hidden]="!isHidden[0]" type="text" id="lastname" #lastname
+               [value]="this.profile.lastname">
+        <mat-icon [hidden]="isHidden[0]" (click)="changeHidden(0)">create</mat-icon>
+        <mat-icon class="close" [hidden]="!isHidden[0]" (click)="changeHidden(0)">close</mat-icon>
+        <mat-icon class="open" [hidden]="!isHidden[0]" (click)="confirmChange(0)">check</mat-icon>
+      </li>
+
+      <li class="list-group-item"><strong class="text-size">Prénom : </strong>
+        <label class="text-size" [hidden]="isHidden[1]">{{this.profile.firstname}}</label>
+        <input class="text-size" [hidden]="!isHidden[1]" type="text" id="firstname" #firstname
+               [value]="this.profile.firstname">
+        <mat-icon [hidden]="isHidden[1]" (click)="changeHidden(1)">create</mat-icon>
+        <mat-icon class="close" [hidden]="!isHidden[1]" (click)="changeHidden(1)">close</mat-icon>
+        <mat-icon class="open" [hidden]="!isHidden[1]" (click)="confirmChange(1)">check</mat-icon>
+      </li>
+
+
+      <li class="list-group-item"><strong class="text-size">Matricule : </strong>
+        <label class="text-size">{{this.profile.matricule}}</label>
+      </li>
+
+
+      <li class="list-group-item"><strong class="text-size">Téléphone : </strong>
+        <label class="text-size" [hidden]="isHidden[2]">{{this.profile.telephone}}</label>
+        <input class="text-size" [hidden]="!isHidden[2]" name="telephone" type="text" id="telephone"
+               [value]="this.profile.telephone" #telephone>
+        <mat-icon [hidden]="isHidden[2]" (click)="changeHidden(2)">create</mat-icon>
+        <mat-icon class="close" [hidden]="!isHidden[2]" (click)="changeHidden(2)">close</mat-icon>
+        <mat-icon class="open" [hidden]="!isHidden[2]" (click)="confirmChange(2)">check</mat-icon>
+      </li>
+
+
+      <li class="list-group-item"><strong class="text-size">Description : </strong>
+        <label class="text-size" [hidden]="isHidden[3]">{{this.profile.descript}}</label>
+        <input class="text-size" [hidden]="!isHidden[3]" type="text" id="descript" #descript
+               [value]="this.profile.descript">
+        <mat-icon [hidden]="isHidden[3]" (click)="changeHidden(3)">create</mat-icon>
+        <mat-icon class="close" [hidden]="!isHidden[3]" (click)="changeHidden(3)">close</mat-icon>
+        <mat-icon class="open" [hidden]="!isHidden[3]" (click)="confirmChange(3)">check</mat-icon>
+      </li>
+
+
+    </ul>
+  </div>
+</div>

@@ -21,9 +21,11 @@ import {AlertComponent} from '../alert/alert.component';
 import {SharedModule} from '../../../shared/shared.module';
 import {MatListModule} from '@angular/material/list';
 import {PasswordTransformPipe} from '../pipes/password-transform.pipe';
-import {CarpoolingRequestComponent} from '../../../CarPooling/carpooling-request/carpooling-request.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
+import {ProfileComponent} from '../my-profile/profile/profile.component';
+import {IdentifiantsComponent} from '../my-profile/identifiants/identifiants.component';
+
 
 
 
@@ -43,7 +45,8 @@ import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
     MyProfileComponent,
     AlertComponent,
     PasswordTransformPipe,
-
+    ProfileComponent,
+    IdentifiantsComponent
 
   ],
   imports: [
@@ -57,6 +60,7 @@ import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
     MatListModule,
     MatExpansionModule,
     CarpoolingModule
+
 
   ],
   exports: [
@@ -76,7 +80,9 @@ import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
     MatMenuModule,
     MatTabsModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    ProfileComponent,
+    IdentifiantsComponent
 
 
   ]
