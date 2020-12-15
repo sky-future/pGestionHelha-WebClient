@@ -14,6 +14,7 @@ import {PagesModule} from './Pages/types/pages.module';
 import { RequestPipe } from './CarPooling/pipes/request.pipe';
 import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
 import { AddresseOutputPipe } from './CarPooling/pipes/addresse-output.pipe';
+import { CarPipePipe } from './CarPooling/pipes/car-pipe.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AddresseOutputPipe } from './CarPooling/pipes/addresse-output.pipe';
     SidenavListComponent,
     RequestPipe,
     ConfirmationPipe,
-    AddresseOutputPipe
+    AddresseOutputPipe,
+    CarPipePipe
 
 
   ],

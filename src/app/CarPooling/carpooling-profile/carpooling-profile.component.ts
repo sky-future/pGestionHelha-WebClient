@@ -7,6 +7,7 @@ import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {AddressOutput} from '../types/address-output';
 import {CarDto} from '../types/car-dto';
 import {CarPoolingService} from '../repositories/car-pooling.service';
+import {CarOutput} from '../types/car-output';
 
 @Component({
   selector: 'app-carpooling-profile',
@@ -25,7 +26,7 @@ export class CarpoolingProfileComponent implements OnInit {
 
 
   address : AddresseGetDtoOutput;
-  car : CarDto;
+  car : CarOutput;
   isHidden : boolean[];
   changedContent: string[] = ['votre rue.', 'votre numéro.', 'votre code postal.', 'votre ville.', 'vottre pays.', 'votre immatriculation.', 'votre nombre de places.'];
   i: number;
@@ -36,6 +37,7 @@ export class CarpoolingProfileComponent implements OnInit {
   lat : number;
   long: number;
   confirm : boolean;
+  private placenb: number;
 
 
 
@@ -46,7 +48,7 @@ export class CarpoolingProfileComponent implements OnInit {
 
   async ngOnInit() {
     this.addresseService.getAddressByIdUser().subscribe(address => this.address = address);
-    this.car = await this.carpoolingService.getCarByIdUser(this.userService.userValue.id)
+    this.car = await this.carpoolingService.getCarByIdUser(this.userService.userValue.id);
     this.hideElements();
   }
 
@@ -76,12 +78,27 @@ export class CarpoolingProfileComponent implements OnInit {
         this.address.latitude
       );
 
+    let carMod = this.carpoolingService.
+    createCar(
+      this.car.immatriculation,
+      this.car.idUser,
+      this.car.placeNb
+    )
+    console.log(this.car.placeNb);
+    console.log(carMod.placeNb);
+    console.log(carMod);
+
     /*
     this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
       .subscribe(answer => {
         console.log(answer);
       });
     */
+
+    this.carpoolingService.updateCar(this.userService.userValue.id, carMod)
+      .subscribe(answer => {
+        console.log(answer);
+      });
     //Success alert
     this.alertService.success('Vous avez changé ' + this.changedContent[nb]);
 
@@ -89,7 +106,7 @@ export class CarpoolingProfileComponent implements OnInit {
     this.hideElements();
 
     //petit reload
-    location.reload();
+    //location.reload();
 
   }
 
