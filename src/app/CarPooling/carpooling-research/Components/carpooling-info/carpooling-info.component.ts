@@ -53,7 +53,7 @@ export class CarpoolingInfoComponent implements OnInit {
 
     //TODO gérer la récupération de l'erreur et l'afficher
     let errorMessage = await this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO);
-    debugger;
+
     //this.alertService.error(errorMessage);
     console.log(errorMessage);
     alert(errorMessage);
