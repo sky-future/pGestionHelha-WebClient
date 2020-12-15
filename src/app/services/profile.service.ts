@@ -29,9 +29,11 @@ export class ProfileService {
 
   }
 
-
-  public getProfile(): Observable<ProfileDtoOutput> {
-    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + this.userService.userValue.id + '/profile');
+  public getProfile(): Promise<ProfileDtoOutput> {
+    if (!this.userService.userValue) {
+      return;
+    }
+    return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + this.userService.userValue.id + '/profile').toPromise();
   }
 
   public updateProfile(profile: ProfileDtoOutput): Observable<any> {

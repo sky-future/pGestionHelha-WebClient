@@ -40,8 +40,8 @@ export class IdentifiantsComponent implements OnInit {
               private formBuilder: FormBuilder) {
   }
 
-  ngOnInit(): void {
-    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+  async ngOnInit() {
+    this.profile = await this.profileService.getProfile();
     console.log(JSON.parse(localStorage.getItem('user')));
     // this.hideElements();
   }

@@ -62,7 +62,7 @@
   </span>
 
     <span>
-<button *ngIf="checkUserHasProfile()" mat-button [matMenuTriggerFor]="testMenu">
+<button *ngIf="!!profile" mat-button [matMenuTriggerFor]="testMenu">
   <mat-icon>person</mat-icon>
   {{profile.firstname}}
   {{profile.lastname}}

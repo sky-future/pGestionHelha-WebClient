@@ -45,8 +45,6 @@ export class CarpoolingInfoComponent implements OnInit {
 
   async Demande() {
     let connectedUserId = this.userSerivce.userValue.id;
-    let errorMessage;
-
     this.carPoolingRequestDTO = new RequestcarpoolingPipe().transform(
       connectedUserId,
       this.idRequestReceiver,
@@ -54,10 +52,11 @@ export class CarpoolingInfoComponent implements OnInit {
     );
 
     //TODO gérer la récupération de l'erreur et l'afficher
-    errorMessage = await this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO);
-    this.alertService.error(errorMessage);
+    let errorMessage = await this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO);
+    debugger;
+    //this.alertService.error(errorMessage);
     console.log(errorMessage);
-
+    alert(errorMessage);
   }
 
 }

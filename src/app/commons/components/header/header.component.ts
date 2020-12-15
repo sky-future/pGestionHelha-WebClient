@@ -61,8 +61,8 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    this.profileService.getProfile().subscribe(profile => this.profile = profile);
+  async ngOnInit() {
+    this.profile = await this.profileService.getProfile();
   }
 
   onEmptyClick() {
