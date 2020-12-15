@@ -3,7 +3,6 @@ import { Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {AddressCarDto} from '../types/address-car-dto';
-import {CarPooling} from './car-pooling';
 import {UserService} from '../../services/user.service';
 import {OfferCarpoolingDto} from '../types/offer-carpooling-dto';
 import {CarDto} from "../types/car-dto";
@@ -14,7 +13,7 @@ import {CarPoolingRequestDto} from '../types/car-pooling-request-dto';
 @Injectable({
   providedIn: 'root'
 })
-export class CarPoolingService implements CarPooling{
+export class CarPoolingService {
 
 
   public address: Observable<AddressCarDto>;
@@ -49,6 +48,10 @@ export class CarPoolingService implements CarPooling{
 
   getListForCarpooling() : Promise<AddresseGetDtoOutput>{
     return this.http.get<AddresseGetDtoOutput>(environment.serverAddress + this.urlOfferCarpooling + '/list').toPromise();
+  }
+
+  updateCar(idUser, car) : Observable<CarDto>{
+    return this.http.put<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser, car);
   }
 
 

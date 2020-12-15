@@ -13,6 +13,7 @@ import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './Pages/types/pages.module';
 import { RequestPipe } from './CarPooling/pipes/request.pipe';
 import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
+import { AddresseOutputPipe } from './CarPooling/pipes/addresse-output.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
     AppComponent,
     SidenavListComponent,
     RequestPipe,
-    ConfirmationPipe
+    ConfirmationPipe,
+    AddresseOutputPipe
 
 
   ],
