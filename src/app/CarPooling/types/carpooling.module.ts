@@ -11,6 +11,10 @@ import {CarpoolingRequestComponent} from '../carpooling-request/carpooling-reque
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {RequestcarpoolingPipe} from '../pipes/requestcarpooling.pipe';
+import {CarpoolingProfileComponent} from '../carpooling-profile/carpooling-profile.component';
+import {CarPipePipe} from '../pipes/car-pipe.pipe';
+import {AddresseOutputPipe} from '../pipes/adresse-output.pipe';
+
 
 
 @NgModule({
@@ -21,7 +25,10 @@ import {RequestcarpoolingPipe} from '../pipes/requestcarpooling.pipe';
     CarpoolingInfoComponent,
     CarpoolingInfoModalComponent,
     CarpoolingRequestComponent,
-    RequestcarpoolingPipe
+    RequestcarpoolingPipe,
+    CarpoolingProfileComponent,
+    CarPipePipe,
+    AddresseOutputPipe
 
   ],
   imports: [
@@ -32,7 +39,12 @@ import {RequestcarpoolingPipe} from '../pipes/requestcarpooling.pipe';
     MatExpansionModule,
   ],
   exports: [
-    CarpoolingRequestComponent
+    CarpoolingRequestComponent,
+    CarpoolingProfileComponent,
+    CarPipePipe,
+    AddresseOutputPipe
+
+
   ]
 })
 export class CarpoolingModule { }

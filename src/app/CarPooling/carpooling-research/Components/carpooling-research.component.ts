@@ -93,6 +93,8 @@ export class CarpoolingResearchComponent implements OnInit {
     this.infoContent = content;
     this.idAdress = id;
 
+    //TODO utiliser la méthode globale de info modal
+
     this.idUserss = await this.addressService.getUserByIdAddress(this.idAdress);
     this.idUser = this.idUserss.idUser;
 

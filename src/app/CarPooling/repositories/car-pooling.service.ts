@@ -9,6 +9,8 @@ import {OfferCarpoolingDto} from '../types/offer-carpooling-dto';
 import {CarDto} from "../types/car-dto";
 import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {CarPoolingRequestDto} from '../types/car-pooling-request-dto';
+import {CarOutput} from '../types/car-output';
+import {CarPipePipe} from '../pipes/car-pipe.pipe';
 
 
 @Injectable({
@@ -49,6 +51,14 @@ export class CarPoolingService implements CarPooling{
 
   getListForCarpooling() : Promise<AddresseGetDtoOutput>{
     return this.http.get<AddresseGetDtoOutput>(environment.serverAddress + this.urlOfferCarpooling + '/list').toPromise();
+  }
+
+  updateCar(idUser, car) : Observable<CarDto>{
+    return this.http.put<CarDto>(environment.serverAddress + this.urlCar + '/' + idUser, car);
+  }
+
+  createCar(immatriculation : string, idUser : number, placeNb : number):CarOutput{
+    return new CarPipePipe().transform(immatriculation,idUser,placeNb);
   }
 
 

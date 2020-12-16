@@ -5,9 +5,19 @@
   <mat-tab label="Identifiants">
     <app-identifiants></app-identifiants>
   </mat-tab>
+
+
   <mat-tab label="Demandes">
     <app-carpooling-request></app-carpooling-request>
   </mat-tab>
+
+  <div *ngIf="haveAddress === true">
+  <mat-tab label="Mon covoiturage">
+    <app-carpooling-profile></app-carpooling-profile>
+  </mat-tab>
+  </div>
+
+
 
 </mat-tab-group>
 
