@@ -39,6 +39,7 @@ export class CarpoolingResearchComponent implements OnInit {
   infoProfile : any = '';
   infoCar: any = '';
   longueur : number;
+  i : number = 0;
   profile: ProfileDtoOutput;
   car : CarDto;
   idUser : number;
@@ -72,15 +73,15 @@ export class CarpoolingResearchComponent implements OnInit {
   }
 
   addMarker() {
-    for (let i = 0; i < (this.longueur - 1); i++) {
+    for (this.i ; this.longueur ; this.i++) {
       this.markers.push({
         position: {
-          lat: parseFloat(this.addressList[i].latitude),
-          lng: parseFloat(this.addressList[i].longitude),
+          lat: parseFloat(this.addressList[this.i].latitude),
+          lng: parseFloat(this.addressList[this.i].longitude),
         },
-        title: '' + (this.addressList[i].street + ' n°' + this.addressList[i].number + ', ' + this.addressList[i].city),
-        info:'' + (this.addressList[i].street + ' n°' + this.addressList[i].number + ', ' + this.addressList[i].city),
-        id : this.addressList[i].id,
+        title: '' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        info:'' + (this.addressList[this.i].street + ' n°' + this.addressList[this.i].number + ', ' + this.addressList[this.i].city),
+        id : this.addressList[this.i].id,
         options: {
           animation: google.maps.Animation.DROP,
         },

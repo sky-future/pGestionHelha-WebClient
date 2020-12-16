@@ -61,8 +61,8 @@ export class SidenavListComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
-    this.profile = await this.profileService.getProfile();
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
   }
 
   onEmptyClick() {

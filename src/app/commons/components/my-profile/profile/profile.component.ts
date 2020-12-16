@@ -37,8 +37,8 @@ export class ProfileComponent implements OnInit {
               private alertService: AlertService) {
   }
 
-  async ngOnInit() {
-    this.profile = await this.profileService.getProfile();
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe(profile => this.profile = profile);
     console.log(JSON.parse(localStorage.getItem('user')));
     this.hideElements();
   }
