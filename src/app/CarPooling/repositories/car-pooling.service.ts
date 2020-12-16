@@ -62,9 +62,9 @@ export class CarPoolingService {
 
 
  public async requestCarpooling(requestCarpooling: CarPoolingRequestDto){
-
+    debugger;
    let response =  await (this.http.post<CarPoolingRequestDto>(environment.serverAddress + this.url_Request_Carpooling, requestCarpooling)).toPromise();
-    // soit response n'est pas un string => besoin d'en extraire la propriété  OU ALORS HttpErrorHandler intercepte l'erreur et te laisse pas le retour
+   debugger; // soit response n'est pas un string => besoin d'en extraire la propriété  OU ALORS HttpErrorHandler intercepte l'erreur et te laisse pas le retour
    return response;
   }
 
