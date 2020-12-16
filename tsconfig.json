@@ -16,7 +16,6 @@
       "es2018",
       "dom"
     ],
-    "types": ["googlemaps", "jasmine"]
-
+    "types": ["googlemaps"]
   }
 }
