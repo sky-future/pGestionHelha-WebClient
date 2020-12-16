@@ -5,7 +5,7 @@
 
       <li class="list-group-item"><strong class="text-size">Rue : </strong>
         <label class="text-size" [hidden]="isHidden[0]">{{this.address.street}}</label>
-        <input class="text-size" [hidden]="!isHidden[0]" type="text" id="street" #street
+        <input class="text-size" [hidden]="!isHidden[0]" type="text" id="street" #lastname
                [value]="this.address.street">
         <mat-icon [hidden]="isHidden[0]" (click)="changeHidden(0)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[0]" (click)="changeHidden(0)">close</mat-icon>
@@ -14,7 +14,7 @@
 
       <li class="list-group-item"><strong class="text-size">Numéro : </strong>
         <label class="text-size" [hidden]="isHidden[1]">{{this.address.number}}</label>
-        <input class="text-size" [hidden]="!isHidden[1]" type="text" id="number" #number
+        <input class="text-size" [hidden]="!isHidden[1]" type="text" id="number" #firstname
                [value]="this.address.number">
         <mat-icon [hidden]="isHidden[1]" (click)="changeHidden(1)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[1]" (click)="changeHidden(1)">close</mat-icon>
@@ -25,7 +25,7 @@
       <li class="list-group-item"><strong class="text-size">Code postal : </strong>
         <label class="text-size" [hidden]="isHidden[2]">{{this.address.postalCode}}</label>
         <input class="text-size" [hidden]="!isHidden[2]"  type="text" id="postalCode"
-               [value]="this.address.postalCode" #postalCode>
+               [value]="this.address.postalCode" #telephone>
         <mat-icon [hidden]="isHidden[2]" (click)="changeHidden(2)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[2]" (click)="changeHidden(2)">close</mat-icon>
         <mat-icon class="open" [hidden]="!isHidden[2]" (click)="confirmChange(2)">check</mat-icon>
@@ -35,7 +35,7 @@
       <li class="list-group-item"><strong class="text-size">Ville : </strong>
         <label class="text-size" [hidden]="isHidden[3]">{{this.address.city}}</label>
         <input class="text-size" [hidden]="!isHidden[3]" type="text" id="city"
-               [value]="this.address.city" #city>
+               [value]="this.address.city" #telephone>
         <mat-icon [hidden]="isHidden[3]" (click)="changeHidden(3)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[3]" (click)="changeHidden(3)">close</mat-icon>
         <mat-icon class="open" [hidden]="!isHidden[3]" (click)="confirmChange(3)">check</mat-icon>
@@ -44,7 +44,7 @@
 
       <li class="list-group-item"><strong class="text-size">Pays : </strong>
         <label class="text-size" [hidden]="isHidden[4]">{{this.address.country}}</label>
-        <input class="text-size" [hidden]="!isHidden[4]" type="text" id="country" #country
+        <input class="text-size" [hidden]="!isHidden[4]" type="text" id="country" #descript
                [value]="this.address.country">
         <mat-icon [hidden]="isHidden[4]" (click)="changeHidden(4)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[4]" (click)="changeHidden(4)">close</mat-icon>
@@ -63,7 +63,7 @@
 
       <li class="list-group-item"><strong class="text-size">Plaque d'immatriculation : </strong>
         <label class="text-size" [hidden]="isHidden[5]">{{this.car.immatriculation}}</label>
-        <input class="text-size" [hidden]="!isHidden[5]" type="text" id="immatriculation" #immatriculation
+        <input class="text-size" [hidden]="!isHidden[5]" type="text" id="immatriculation" #lastname
                [value]="this.car.immatriculation">
         <mat-icon [hidden]="isHidden[5]" (click)="changeHidden(5)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[5]" (click)="changeHidden(5)">close</mat-icon>
@@ -72,7 +72,7 @@
 
       <li class="list-group-item"><strong class="text-size">Places disponibles : </strong>
         <label class="text-size" [hidden]="isHidden[6]">{{this.car.placeNb}}</label>
-        <input class="text-size" [hidden]="!isHidden[6]" type="number" id="placeNb" #placeNb
+        <input class="text-size" [hidden]="!isHidden[6]" type="text" id="placeNb" #firstname
                [value]="this.car.placeNb">
         <mat-icon [hidden]="isHidden[6]" (click)="changeHidden(6)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[6]" (click)="changeHidden(6)">close</mat-icon>
