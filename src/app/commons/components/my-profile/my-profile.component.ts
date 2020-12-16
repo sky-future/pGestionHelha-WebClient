@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTabChangeEvent} from '@angular/material/tabs';
+import {AddresseGetDtoOutput} from '../../../CarPooling/types/address-get-dto-output';
+import {AddressService} from '../../../CarPooling/repositories/address-service.service';
+import {UserService} from '../../../services/user.service';
 
 
 @Component({
@@ -8,11 +11,14 @@ import {MatTabChangeEvent} from '@angular/material/tabs';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
+  haveAddress: Boolean;
+  address : AddresseGetDtoOutput;
 
-  constructor() {
+  constructor(private addressService : AddressService){
   }
 
-  ngOnInit(): void {
+  async ngOnInit(){
+    this.haveAddress = await this.addressService.haveAddress();
   }
 
   onTabChanged(event: MatTabChangeEvent) : void{

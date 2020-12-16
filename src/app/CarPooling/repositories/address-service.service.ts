@@ -6,6 +6,9 @@ import {AddresseGetDtoOutput} from '../types/address-get-dto-output';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CarpoolingInfoModalComponent} from '../carpooling-research/Components/carpooling-info/carpooling-info-modal/carpooling-info-modal.component';
 import {IdUserByIdAddress} from "../types/id-user-by-id-address";
+import {UserService} from '../../services/user.service';
+import {AddresseOutputPipe} from '../pipes/adresse-output.pipe';
+import {AddressOutput} from '../types/address-output';
 
 
 @Injectable({
@@ -27,7 +30,7 @@ export class AddressService {
 
   public URL: string = environment.serverAddress + 'api/address';
 
-  constructor(public http: HttpClient,private dialog: MatDialog) {
+  constructor(public http: HttpClient,private dialog: MatDialog, private userService : UserService) {
     this.AdresseSubject = new BehaviorSubject<AddresseGetDtoOutput>(JSON.parse(localStorage.getItem('address')));
     this.addresseVoit = this.AdresseSubject.asObservable();
     this.info = new BehaviorSubject(this.infos);
@@ -58,6 +61,22 @@ export class AddressService {
 
   public getUserByIdAddress(idAddress) : Promise<IdUserByIdAddress>{
     return this.http.get<IdUserByIdAddress>(this.URL + '/' + idAddress + '/users').toPromise();
+  }
+
+  public getAddressByIdUser() : Promise<AddresseGetDtoOutput>{
+    return this.http.get<AddresseGetDtoOutput>(this.URL + '/' + this.userService.userValue.id + '/address').toPromise();
+  }
+
+  public createAddressOutput(street : string, number : number, postaCode : number, city : string, country : string, longitude : string, latitude : string){
+    return new AddresseOutputPipe().transform(street, number, postaCode, city, country, longitude, latitude);
+  }
+
+  public updateAddress(idUser : number, inputDtoAddress : AddressOutput){
+    return this.http.put(this.URL + '/' + idUser, inputDtoAddress);
+  }
+
+  public haveAddress() : Promise<any>{
+    return this.http.get<any>(this.URL + '/' + this.userService.userValue.id + '/exist').toPromise();
   }
 
   //Research modal

@@ -17,12 +17,14 @@ import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SidenavListComponent,
     RequestPipe,
-    ConfirmationPipe
+    ConfirmationPipe,
+
 
 
   ],
