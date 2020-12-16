@@ -15,6 +15,8 @@ import { RequestPipe } from './CarPooling/pipes/request.pipe';
 import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,6 @@ import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
 
   schemas: [NO_ERRORS_SCHEMA],
   exports: [
-
   ],
   bootstrap: [AppComponent]
 
