@@ -60,6 +60,7 @@ export class CarpoolingInfoComponent implements OnInit {
     errorMessage = await this.carPoolingService.requestCarpooling(this.carPoolingRequestDTO);
     this.alertService.error(errorMessage);
     console.log(errorMessage);
+    this.addressService.closeResearchModal();
 
   }
 

@@ -70,5 +70,9 @@ export class AddressService {
 
   }
 
+  closeResearchModal() : void{
+    this.ResearchModalRef.close();
+  }
+
 
 }

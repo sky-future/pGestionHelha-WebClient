@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {HomeItem} from '../../commons/components/types/home-item';
 import {AuthenticationService} from '../../services/authentication.service';
 import {SplashItems} from '../../commons/components/types/splash-items';
 
