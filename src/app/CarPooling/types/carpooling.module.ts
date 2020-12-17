@@ -14,6 +14,7 @@ import {RequestcarpoolingPipe} from '../pipes/requestcarpooling.pipe';
 import {CarpoolingProfileComponent} from '../carpooling-profile/carpooling-profile.component';
 import {CarPipePipe} from '../pipes/car-pipe.pipe';
 import {AddresseOutputPipe} from '../pipes/adresse-output.pipe';
+import {CarpoolingSenderComponent} from '../carpooling-sender/carpooling-sender.component';
 
 
 
@@ -28,7 +29,8 @@ import {AddresseOutputPipe} from '../pipes/adresse-output.pipe';
     RequestcarpoolingPipe,
     CarpoolingProfileComponent,
     CarPipePipe,
-    AddresseOutputPipe
+    AddresseOutputPipe,
+    CarpoolingSenderComponent
 
   ],
   imports: [
@@ -42,7 +44,8 @@ import {AddresseOutputPipe} from '../pipes/adresse-output.pipe';
     CarpoolingRequestComponent,
     CarpoolingProfileComponent,
     CarPipePipe,
-    AddresseOutputPipe
+    AddresseOutputPipe,
+    CarpoolingSenderComponent
 
 
   ]

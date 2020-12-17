@@ -8,6 +8,7 @@ import {RequestPipe} from '../pipes/request.pipe';
 import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
 import {Confirmation} from '../types/confirmation';
 import {ConfirmationPipe} from '../pipes/confirmation.pipe';
+import {UserService} from '../../services/user.service';
 
 
 
@@ -22,7 +23,7 @@ export class CarpoolingRequestService {
 
   public URl: string = environment.serverAddress + 'api/requestCarpooling';
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private userService : UserService) {
     this.RequestSubject = new BehaviorSubject<CarpoolingRequestDto>(JSON.parse(localStorage.getItem('request')));
     this.request = this.RequestSubject.asObservable();
   }

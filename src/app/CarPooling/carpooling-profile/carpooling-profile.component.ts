@@ -23,7 +23,7 @@ export class CarpoolingProfileComponent implements OnInit {
   @ViewChild('placeNb') placeNb: ElementRef;
 
   //TODO Gérer les changements dans l'addresse avec le geocode
-  //TODO status pouvoir revenir dans le carpooling
+  //TODO status pouvoir revenir dans le carpooling doing !!!
 
 
   address : AddresseGetDtoOutput;
@@ -57,6 +57,15 @@ export class CarpoolingProfileComponent implements OnInit {
     this.isHidden = [false, false, false, false, false, false, false];
   }
 
+  Rajouter(){
+    this.carpoolingService.addOfferCarpooling();
+    window.location.reload();
+  }
+
+  Retirer(){
+    this.carpoolingService.deleteOfferCarpooling();
+    window.location.reload();
+  }
   confirmChange(nb: number) {
     //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
 
