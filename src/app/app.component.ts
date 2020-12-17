@@ -13,7 +13,8 @@ export class AppComponent {
   constructor(private userService: UserService) {
   }
   @HostListener('window:unload', [ '$event' ])
-  unloadHandler(event) {
+  onWindowClose(event ) {
+      // event.this.userService.logout();
 
   }
 
