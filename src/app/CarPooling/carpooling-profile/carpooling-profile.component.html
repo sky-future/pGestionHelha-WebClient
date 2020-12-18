@@ -14,7 +14,7 @@
 
       <li class="list-group-item"><strong class="text-size">Numéro : </strong>
         <label class="text-size" [hidden]="isHidden[1]">{{this.address.number}}</label>
-        <input class="text-size" [hidden]="!isHidden[1]" type="text" id="number" #number
+        <input class="text-size" [hidden]="!isHidden[1]" type="number" id="number" #number
                [value]="this.address.number">
         <mat-icon [hidden]="isHidden[1]" (click)="changeHidden(1)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[1]" (click)="changeHidden(1)">close</mat-icon>
@@ -24,7 +24,7 @@
 
       <li class="list-group-item"><strong class="text-size">Code postal : </strong>
         <label class="text-size" [hidden]="isHidden[2]">{{this.address.postalCode}}</label>
-        <input class="text-size" [hidden]="!isHidden[2]"  type="text" id="postalCode"
+        <input class="text-size" [hidden]="!isHidden[2]"  type="number" id="postalCode"
                [value]="this.address.postalCode" #postalCode>
         <mat-icon [hidden]="isHidden[2]" (click)="changeHidden(2)">create</mat-icon>
         <mat-icon class="close" [hidden]="!isHidden[2]" (click)="changeHidden(2)">close</mat-icon>
