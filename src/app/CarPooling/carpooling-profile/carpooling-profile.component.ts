@@ -31,12 +31,12 @@ export class CarpoolingProfileComponent implements OnInit {
   isHidden : boolean[];
   changedContent: string[] = ['votre rue.', 'votre numéro.', 'votre code postal.', 'votre ville.', 'vottre pays.', 'votre immatriculation.', 'votre nombre de places.'];
   i: number;
+  x: number;
+  addressGeocode:string;
   showForm: boolean = false;
   submitted = false;
 
   geocoder: any;
-  lat : number;
-  long: number;
   confirm : boolean;
   private placenb: number;
 
@@ -66,7 +66,9 @@ export class CarpoolingProfileComponent implements OnInit {
     this.carpoolingService.deleteOfferCarpooling();
     window.location.reload();
   }
-  confirmChange(nb: number) {
+
+
+  async confirmChange(nb: number) {
     //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
 
     //Vérifie si modif
@@ -74,7 +76,12 @@ export class CarpoolingProfileComponent implements OnInit {
     if (this.i == 0) {
       this.alertService.warn('Aucune modification introduite.');
       return;
-    }
+    };
+
+    if (this.x == 1){
+      let addressGeocode = this.address.street + "," + this.address.number + "," + this.address.postalCode + "," + this.address.city;
+      await this.findLocation(addressGeocode);
+    };
 
 
     let addressMod = this.addresseService.
@@ -87,23 +94,22 @@ export class CarpoolingProfileComponent implements OnInit {
       this.address.longitude,
       this.address.latitude
     );
+    console.log(this.address);
 
     let carMod = this.carpoolingService.
     createCar(
       this.car.immatriculation,
       this.car.idUser,
       this.car.placeNb,
-    )
-    console.log(this.car.placeNb);
-    console.log(carMod.placeNb);
-    console.log(carMod);
+    );
 
-    /*
+    //debugger;
+
     this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
       .subscribe(answer => {
         console.log(answer);
       });
-    */
+
 
     this.carpoolingService.updateCar(this.userService.userValue.id, carMod)
       .subscribe(answer => {
@@ -116,7 +122,7 @@ export class CarpoolingProfileComponent implements OnInit {
     this.hideElements();
 
     //petit reload
-    location.reload();
+   // window.location.reload();
 
   }
 
@@ -128,20 +134,23 @@ export class CarpoolingProfileComponent implements OnInit {
       case 0 :
         if (this.address.street != this.street.nativeElement.value) {
           this.address.street = this.street.nativeElement.value;
+          this.x++;
           this.i++;
         }
         break;
 
       case 1:
         if (this.address.number != this.number.nativeElement.value) {
-          this.address.number = this.number.nativeElement.value;
+          this.address.number = Number(this.number.nativeElement.value);
+          this.x++;
           this.i++;
         }
         break;
 
       case 2:
         if (this.address.postalCode != this.postalCode.nativeElement.value) {
-          this.address.postalCode = this.postalCode.nativeElement.value;
+          this.address.postalCode = Number(this.postalCode.nativeElement.value);
+          this.x++;
           this.i++;
         }
         break;
@@ -149,6 +158,7 @@ export class CarpoolingProfileComponent implements OnInit {
       case 3:
         if (this.address.city != this.city.nativeElement.value) {
           this.address.city = this.city.nativeElement.value;
+          this.x++;
           this.i++;
         }
         break;
@@ -156,6 +166,7 @@ export class CarpoolingProfileComponent implements OnInit {
       case 4:
         if (this.address.country != this.country.nativeElement.value) {
           this.address.country = this.country.nativeElement.value;
+          this.x++;
           this.i++;
         }
         break;
@@ -190,7 +201,7 @@ export class CarpoolingProfileComponent implements OnInit {
   }
 
 
-  findLocation(address) {
+  async findLocation(address) {
     this.geocoder = new google.maps.Geocoder()
     this.geocoder.geocode({
       'address': address
@@ -200,9 +211,12 @@ export class CarpoolingProfileComponent implements OnInit {
         // decompose the result
 
         console.log("ça marche !");
-        this.lat = results[0].geometry.location.lat();
-        this.long = results[0].geometry.location.lng();
-        console.log("Lat" + this.lat + "lng" + this.long);
+        let lat = results[0].geometry.location.lat();
+        let lng = results[0].geometry.location.lng();
+        this.address.latitude = lat.toString();
+        this.address.longitude = lng.toString();
+
+        console.log("Lat" + this.address.latitude + "lng" + this.address.longitude);
         this.confirm = true;
 
       } else {
