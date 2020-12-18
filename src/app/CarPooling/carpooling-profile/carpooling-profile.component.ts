@@ -100,8 +100,6 @@ export class CarpoolingProfileComponent implements OnInit {
     //resets every icons and labels/input
     this.hideElements();
 
-    //petit reload
-    window.location.reload();
 
   }
 
