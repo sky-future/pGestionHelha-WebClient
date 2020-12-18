@@ -27,19 +27,19 @@ export class HomeComponent implements OnInit {
       content: "",
     },
     {
-      button_path: "",
+      button_path: "/home",
       title: "S'incrire en tant que tuteur",
       image_path: "./../assets/images/livre.jpg",
       content: "",
     },
     {
-      button_path: "",
+      button_path: "/home",
       title: "Rechercher un tuteur",
       image_path: "./../assets/images/livre.jpg",
       content: "",
     },
     {
-      button_path: "",
+      button_path: "/home",
       title: "Commander à la cafétaria",
       image_path: "./../assets/images/restauration.jpg",
       content: "",
