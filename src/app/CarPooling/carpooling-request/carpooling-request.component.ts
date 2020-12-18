@@ -39,6 +39,7 @@ export class CarpoolingRequestComponent implements OnInit {
     if(this.longeur > 1){
       this.longeur--;
     }
+    console.log(this.requestList);
 
     this.createList();
   }
