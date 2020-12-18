@@ -11,7 +11,6 @@ import {map} from 'rxjs/operators';
 import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';
 import {PasswordDto} from '../commons/components/types/password-dto';
-import {LastConnexionDto} from '../AdminPanel/types/last-connexion-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,7 @@ export class UserService {
   private URLPASSWORDCHANGE = 'api/users/pwd';
   private URL_ADD_ADMIN_USER = 'api/users/admin';
   private URL_DELETE_USER_BY_ID = 'api/users';
-  private URLLASTCONNEXION_CHANGE = 'api/users/lastconexion';
+  private URLLASTCONNEXION_CHANGE = 'api/users/lastconnexion';
 
   constructor(private http: HttpClient, private router: Router) {
     this.userSubject = new BehaviorSubject<UserAuthenticateDtoOutput>(JSON.parse(localStorage.getItem('user')));
@@ -64,11 +63,11 @@ export class UserService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['']);
+    //this.router.navigate(['']);
   }
 
-  public updateLastconnexion(data) : Observable<LastConnexionDto>{
-    return this.http.patch<LastConnexionDto>(environment.serverAddress + this.URLLASTCONNEXION_CHANGE , data);
+  public updateLastconnexion(id : number){
+    return this.http.patch(environment.serverAddress + this.URLLASTCONNEXION_CHANGE + "/" + id, null);
   }
 
   updatePassword(data): Observable<PasswordDto>{

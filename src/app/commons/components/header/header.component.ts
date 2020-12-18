@@ -6,7 +6,7 @@ import {ProfileService} from '../../../services/profile.service';
 import {ProfileDto} from '../../../DTOs/profile-dto';
 import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
 import {LastConnexionDto} from '../../../AdminPanel/types/last-connexion-dto';
-import {UpdateLastConnexionPipe} from '../pipes/update-last-connexion.pipe';
+
 
 @Component({
   selector: 'app-header',
@@ -93,15 +93,10 @@ export class HeaderComponent implements OnInit {
   onLogoutClick() {
 
     let connectedUserId = this.userService.userValue.id;
-    let date = new Date().toLocaleString();
-debugger;
-    this._lastConnexionDto = new UpdateLastConnexionPipe().transform(
-      connectedUserId,
-      date
-    );
 
-    this.userService.updateLastconnexion(this._lastConnexionDto)
+    this.userService.updateLastconnexion(connectedUserId)
       .subscribe();
+
     this.userService.logout();
     window.location.reload();
   }
