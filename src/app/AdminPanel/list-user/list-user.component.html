@@ -1,0 +1,26 @@
+<div class="container" fxLayout="column">
+  <h2 style="margin: auto"> User Details</h2>
+  <button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Admin</th>
+      <th>Mail</th>
+      <th>Password</th>
+      <th>LastConnexion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userList">
+      <td class="hidden">{{user.id}}</td>
+      <td>{{user.admin}}</td>
+      <td>{{user.mail}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.lastConnexion}}</td>
+      <td><button class="btn btn-success" (click)="deleteUser(user)"> Delete</button>
+        <button class="btn btn-success" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

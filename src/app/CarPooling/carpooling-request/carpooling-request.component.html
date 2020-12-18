@@ -1,6 +1,6 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let item of requestItems">
-    <mat-expansion-panel-header>
+<mat-accordion  class="accordion" >
+  <mat-expansion-panel *ngFor="let item of requestItems" >
+    <mat-expansion-panel-header class="header" collapsedHeight="80px">
       <mat-panel-title>
         <div class="text-size">
           <div style="width:20px;height:20px;background-color:orange;"
@@ -9,12 +9,12 @@
                *ngIf="item.confirmation === 1"></div>
         </div>
       </mat-panel-title>
-      <mat-panel-description>
+      <mat-panel-description fxLayout.gt-sm="column">
         <div class="text-size">
           <b>NOM : </b> {{item.lastname}} {{item.firstname}}
         </div>
       </mat-panel-description>
-      <mat-panel-description>
+      <mat-panel-description fxLayout.gt-sm="column">
         <div class="text-size">
           <b>Téléphone :</b>
           {{item.telephone}}
@@ -23,6 +23,7 @@
     </mat-expansion-panel-header>
     <div class="text-size">
       <div *ngIf ="item.confirmation === 0">
+        <br>
         <b>Il est conseillé de prendre contact avec la personne avant d'accepter une demande de covoiturage</b>
         <p></p>
         <div><button class="btn btn-info my-4 btn-block"(click)="Accepter(item.idRequest)" >Accepter</button></div>

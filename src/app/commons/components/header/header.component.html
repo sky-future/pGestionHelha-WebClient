@@ -39,6 +39,14 @@
         {{menuItems[2].label}}
       </button>
 
+      <!--    Admin-->
+      <button mat-button *ngIf="checkUserIsAdmin()"
+              [routerLink]="menuItems[3].path"
+              (click)="menuItems[3].click()" >
+        <mat-icon class="mr">{{menuItems[3].icon}}</mat-icon>
+        {{menuItems[3].label}}
+      </button>
+
       <!--    Covoiturage-->
       <button *ngIf="checkUserHasProfile()" mat-button [matMenuTriggerFor]="carpoolingMenu" ><mat-icon>directions_car</mat-icon>
         Covoiturage

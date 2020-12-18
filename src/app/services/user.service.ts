@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {UserAuthenticateDto} from '../DTOs/user-authenticate-dto';
 import {CreateUserPipe} from '../pipes/create-user.pipe';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {UserDto} from '../DTOs/user-dto';
+import {UserDto, UserList} from '../DTOs/user-dto';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {UserPost} from '../DTOs/user-post';
@@ -22,6 +22,8 @@ export class UserService {
   private URL: string = 'api/users';
   private URLLogin: string = 'api/users/authenticate';
   private URLPASSWORDCHANGE = 'api/users/pwd';
+  private URL_ADD_ADMIN_USER = 'api/users/admin';
+  private URL_DELETE_USER_BY_ID = 'api/users';
 
   constructor(private http: HttpClient, private router: Router) {
     this.userSubject = new BehaviorSubject<UserAuthenticateDtoOutput>(JSON.parse(localStorage.getItem('user')));
@@ -65,5 +67,17 @@ export class UserService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['']);
+  }
+
+  public getUsers(): Promise<UserList>{
+    return this.http.get<UserList>(environment.serverAddress + this.URL).toPromise();
+  }
+
+  public createAdminUser(user : UserDto): Observable<UserDto>{
+    return this.http.post<UserDto>(environment.serverAddress + this.URL_ADD_ADMIN_USER, user);
+  }
+
+  public deleteUserById (idUsertoDelete : number){
+    return this.http.delete(environment.serverAddress + this.URL_DELETE_USER_BY_ID + "/" + idUsertoDelete );
   }
 }

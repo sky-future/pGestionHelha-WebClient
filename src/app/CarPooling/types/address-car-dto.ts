@@ -1,5 +1,5 @@
 export interface AddressCarDto {
-  id?: number;
+  idUser?: number;
   street : string;
   number : number;
   postalCode: number;
@@ -8,7 +8,6 @@ export interface AddressCarDto {
   longitude: string;
   latitude: string;
   immatriculation : string;
-  idUser : number;
   placeNb : number;
 
 }

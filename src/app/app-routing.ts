@@ -8,8 +8,10 @@ import {MyProfileComponent} from './commons/components/my-profile/my-profile.com
 import {RegisterFormAddressComponent} from './CarPooling/carpooling-register/Components/Register-Stepper-Form/Register-Form-Address/register-form-address.component';
 import {CarpoolingResearchComponent} from './CarPooling/carpooling-research/Components/carpooling-research.component';
 import {SplashscreenComponent} from './Pages/splashscreen/splashscreen.component';
-import {ProfileComponent} from './commons/components/my-profile/profile/profile.component';
-import {IdentifiantsComponent} from './commons/components/my-profile/identifiants/identifiants.component';
+import {ListUserComponent} from './AdminPanel/list-user/list-user.component';
+import {AddUserComponent} from './AdminPanel/add-user/add-user.component';
+import {EditUserComponent} from './AdminPanel/edit-user/edit-user.component';
+
 
 const routes: Routes = [
   //{path: 'register', component : RegistrationComponent },
@@ -22,7 +24,10 @@ const routes: Routes = [
   {path: 'login', component : LoginComponent},
   {path: 'create-profile', component : CreateProfileComponent},
   {path: 'my-profile', component : MyProfileComponent, canActivate : [AuthGuard]},
-  {path: 'carpooling-research', component : CarpoolingResearchComponent, canActivate : [AuthGuard]}
+  {path: 'carpooling-research', component : CarpoolingResearchComponent, canActivate : [AuthGuard]},
+  {path: 'list-users', component : ListUserComponent, canActivate : [AuthGuard]},
+  {path: 'add-user', component : AddUserComponent, canActivate : [AuthGuard]},
+  {path: 'edit-user', component : EditUserComponent, canActivate : [AuthGuard]}
 
 ];
 

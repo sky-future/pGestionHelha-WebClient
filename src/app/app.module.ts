@@ -13,9 +13,8 @@ import {SharedModule} from './shared/shared.module';
 import {PagesModule} from './Pages/types/pages.module';
 import { RequestPipe } from './CarPooling/pipes/request.pipe';
 import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
-
-
-
+import {AdminPanelModule} from './AdminPanel/types/admin-panel.module';
+import { AdminPanelPipe } from './AdminPanel/pipes/admin-panel.pipe';
 
 
 @NgModule({
@@ -24,8 +23,7 @@ import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
     SidenavListComponent,
     RequestPipe,
     ConfirmationPipe,
-
-
+    AdminPanelPipe
 
   ],
   imports: [
@@ -38,7 +36,8 @@ import { ConfirmationPipe } from './CarPooling/pipes/confirmation.pipe';
     SharedModule,
     CommonsModule,
     CarpoolingModule,
-    PagesModule
+    PagesModule,
+    AdminPanelModule
 
   ],
 

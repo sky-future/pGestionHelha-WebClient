@@ -23,6 +23,7 @@ export class CarPoolingService implements CarPooling{
   private urlAddress: string = 'api/address';
   private urlOfferCarpooling: string = 'api/offerCarpooling';
   private urlCar: string = 'api/cars';
+  private URL_ADD_CAR_ADDRESS: string = 'api/address/addressCar'
   private url_Request_Carpooling : string = 'api/requestcarpooling';
 
 
@@ -33,8 +34,8 @@ export class CarPoolingService implements CarPooling{
 
 
   postAddressAndCar(addresscarDTO: AddressCarDto): Observable<AddressCarDto>{
-    let connectedUserID = this.userService.userValue.id;
-    return this.http.post<AddressCarDto>(environment.serverAddress + this.urlAddress + "/"+ connectedUserID, addresscarDTO );
+
+    return this.http.post<AddressCarDto>(environment.serverAddress + this.URL_ADD_CAR_ADDRESS , addresscarDTO );
   }
 
   queryOfferCarpooling(): Observable<OfferCarpoolingDto>{

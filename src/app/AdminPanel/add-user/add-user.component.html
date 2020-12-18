@@ -1,0 +1,24 @@
+<button class="btn btn-success" [routerLink]="'/list-users'">Back</button>
+<div class="col-md-5 user-container center" >
+  <h2 class="text-center">Ajouter un Utilisateur / Administrateur</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="mail">Email :</label>
+      <input type="text" formControlName="email" placeholder="email" name="email" class="form-control" id="mail">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" placeholder="password" name="password" class="form-control" id="password">
+    </div>
+
+    <div class="form-group">
+      <label for="admin">Admin : </label>
+      <select name="admin" formControlName="admin" id="admin">
+        <option>0</option>
+        <option>1</option>
+      </select>
+    </div>
+    <button class="btn btn-success" [disabled]="addForm.invalid">Ajouter</button>
+  </form>
+</div>

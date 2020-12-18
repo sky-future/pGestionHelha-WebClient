@@ -48,6 +48,15 @@ export class HeaderComponent implements OnInit {
       showOnTablet: true,
       showOnDesktop: true
     },
+    {
+      label: 'Admin',
+      icon: 'person_add',
+      path: '/list-users',
+      click: this.onEmptyClick,
+      showOnMobile: true,
+      showOnTablet: true,
+      showOnDesktop: true
+    },
 
   ];
 
@@ -85,7 +94,12 @@ export class HeaderComponent implements OnInit {
     if(this.userService.userValue==null) return false;
     if(this.userService.userValue.profile ==0) return false;
    return true;
+  }
 
+  checkUserIsAdmin() : boolean{
+    if(this.userService.userValue==null) return false;
+    if(this.userService.userValue.admin) return true;
+    return false;
   }
 
   onToggleSidenav() {

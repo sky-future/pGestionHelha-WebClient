@@ -54,4 +54,5 @@ export class ProfileService {
     return this.http.get<ProfileDtoOutput>(environment.serverAddress + this.URL + '/' + idUser + '/profile').toPromise();
   }
 
+
 }
