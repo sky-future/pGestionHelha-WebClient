@@ -13,8 +13,6 @@ import {Confirmation} from '../types/confirmation';
 })
 export class CarpoolingRequestComponent implements OnInit {
 
-  //TODO rajouter vous n'avez pas de demande dans le carpooling request
-  //TODO Gérer les demandes envoyées
 
   requestItems: RequestItem[] = [];
   requestItem : RequestItem;

@@ -22,8 +22,6 @@ export class CarpoolingProfileComponent implements OnInit {
   @ViewChild('immatriculation') immatriculation: ElementRef;
   @ViewChild('placeNb') placeNb: ElementRef;
 
-  //TODO Gérer les changements dans l'addresse avec le geocode
-  //TODO status pouvoir revenir dans le carpooling doing !!!
 
 
   address : AddresseGetDtoOutput;
@@ -69,7 +67,6 @@ export class CarpoolingProfileComponent implements OnInit {
 
 
   async confirmChange(nb: number) {
-    //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
 
     //Vérifie si modif
     this.findDifference(nb);
@@ -84,18 +81,6 @@ export class CarpoolingProfileComponent implements OnInit {
     };
 
 
-    // let addressMod = this.addresseService.
-    // createAddressOutput(
-    //   this.address.street,
-    //   this.address.number,
-    //   this.address.postalCode,
-    //   this.address.city,
-    //   this.address.country,
-    //   this.address.longitude,
-    //   this.address.latitude
-    // );
-    // console.log(this.address);
-
     let carMod = this.carpoolingService.
     createCar(
       this.car.immatriculation,
@@ -103,18 +88,12 @@ export class CarpoolingProfileComponent implements OnInit {
       this.car.placeNb,
     );
 
-    //debugger;
-
-    // this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
-    //   .subscribe(answer => {
-    //     console.log(answer);
-    //   });
-
 
     this.carpoolingService.updateCar(this.userService.userValue.id, carMod)
       .subscribe(answer => {
         console.log(answer);
       });
+
     //Success alert
     this.alertService.success('Vous avez changé ' + this.changedContent[nb]);
 
@@ -122,7 +101,7 @@ export class CarpoolingProfileComponent implements OnInit {
     this.hideElements();
 
     //petit reload
-   // window.location.reload();
+    window.location.reload();
 
   }
 
