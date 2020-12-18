@@ -27,7 +27,6 @@
                    id="defaultRegisterFormNewPassword" placeholder="Nouveau mot de passe"
                    formControlName="newPassword" class="form-control">
 
-
             <div *ngIf="f.newPassword.errors" class="invalid-feedback">
               <div *ngIf="f.newPassword.errors.required">Password is required</div>
               <div *ngIf="f.newPassword.errors.pattern">Password must be at least 8 characters and maximum 15 with one digit,
@@ -43,7 +42,6 @@
                    id="defaultRegisterFormConfirmNewPassword" placeholder="Confirmer mot de passe"
                    formControlName="confirmPassword" class="form-control">
 
-
             <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
@@ -53,7 +51,6 @@
           <div class="form-group text-center">
             <button type="submit" (submit)="showForm=!showForm" class="btn btn-default">Confirmer</button>
           </div>
-
 
         </form>
       </li>

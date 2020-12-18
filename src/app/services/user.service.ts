@@ -4,7 +4,6 @@ import {CreateUserPipe} from '../pipes/create-user.pipe';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserDto, UserList} from '../DTOs/user-dto';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
 import {UserPost} from '../DTOs/user-post';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -26,7 +25,7 @@ export class UserService {
   private URL_DELETE_USER_BY_ID = 'api/users';
   private URLLASTCONNEXION_CHANGE = 'api/users/lastconnexion';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     this.userSubject = new BehaviorSubject<UserAuthenticateDtoOutput>(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
   }

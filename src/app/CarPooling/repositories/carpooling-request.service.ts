@@ -5,12 +5,9 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {RequestItem} from '../../commons/components/types/request-item';
 import {RequestPipe} from '../pipes/request.pipe';
-import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
 import {Confirmation} from '../types/confirmation';
 import {ConfirmationPipe} from '../pipes/confirmation.pipe';
 import {UserService} from '../../services/user.service';
-
-
 
 
 @Injectable({

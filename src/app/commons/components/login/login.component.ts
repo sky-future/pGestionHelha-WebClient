@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,) {
 
-
   }
 
   formModel = this.fb.group({

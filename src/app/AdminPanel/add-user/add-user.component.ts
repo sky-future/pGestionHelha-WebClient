@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserDto} from '../../DTOs/user-dto';
 import {AdminPanelPipe} from '../pipes/admin-panel.pipe';
-import {AlertService} from '../../services/alert.service';
 import {sha256} from 'js-sha256';
 
 @Component({
@@ -16,13 +15,10 @@ export class AddUserComponent implements OnInit {
 
   addForm: FormGroup;
   private _userDto: UserDto;
-  private connectedUser;
-
 
   constructor(private formBuilder : FormBuilder,
               private router : Router,
-              private userService : UserService,
-              private alertService : AlertService) { }
+              private userService : UserService) { }
 
   ngOnInit(): void {
 
@@ -65,8 +61,6 @@ export class AddUserComponent implements OnInit {
       //     this.alertService.error(error);
       //   }
       // );
-
-
 
     this.router.navigate(['list-users'])
   }

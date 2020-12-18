@@ -5,7 +5,6 @@ import {UserService} from '../../../services/user.service';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDto} from '../../../DTOs/profile-dto';
 import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
-import {LastConnexionDto} from '../../../AdminPanel/types/last-connexion-dto';
 
 
 @Component({
@@ -14,8 +13,6 @@ import {LastConnexionDto} from '../../../AdminPanel/types/last-connexion-dto';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  private _lastConnexionDto : LastConnexionDto;
 
   @Output() public sidenavToggle = new EventEmitter();
 

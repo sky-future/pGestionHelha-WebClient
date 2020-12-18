@@ -6,7 +6,6 @@ import {UserService} from '../../../../services/user.service';
 import {AlertService} from '../../../../services/alert.service';
 
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -42,7 +41,6 @@ export class ProfileComponent implements OnInit {
     console.log(JSON.parse(localStorage.getItem('user')));
     this.hideElements();
   }
-
 
 
   hideElements() {

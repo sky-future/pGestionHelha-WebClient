@@ -31,8 +31,8 @@ export class CarpoolingSenderComponent implements OnInit {
   }
 
   async ngOnInit() {
+
     this.requestList = await this.carpoolingRequestService.querySenderByIdUser();
-    // this.requestList = await this.carpoolingRequestService.queryRequestByIdUser(this.userService.userValue.id);
     this.longeur = Object.keys(this.requestList).length;
     if(this.longeur > 1){
       this.longeur--;
@@ -53,6 +53,7 @@ export class CarpoolingSenderComponent implements OnInit {
   }
 
   Retirer(id : number){
+
     this.carpoolingRequestService.delete(this.userService.userValue.id, id);
     window.location.reload();
   }
