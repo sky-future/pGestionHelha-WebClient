@@ -1,6 +1,6 @@
-<mat-accordion  class="accordion" >
-  <mat-expansion-panel *ngFor="let item of requestItems" >
-    <mat-expansion-panel-header class="header" collapsedHeight="80px">
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of requestItems">
+    <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="text-size">
           <div style="width:20px;height:20px;background-color:orange;"
@@ -9,12 +9,12 @@
                *ngIf="item.confirmation === 1"></div>
         </div>
       </mat-panel-title>
-      <mat-panel-description fxLayout.gt-sm="column">
+      <mat-panel-description>
         <div class="text-size">
           <b>NOM : </b> {{item.lastname}} {{item.firstname}}
         </div>
       </mat-panel-description>
-      <mat-panel-description fxLayout.gt-sm="column">
+      <mat-panel-description>
         <div class="text-size">
           <b>Téléphone :</b>
           {{item.telephone}}
@@ -23,12 +23,9 @@
     </mat-expansion-panel-header>
     <div class="text-size">
       <div *ngIf ="item.confirmation === 0">
-        <br>
-        <b>Il est conseillé de prendre contact avec la personne avant d'accepter une demande de covoiturage</b>
+        <b>Il est conseillé de prendre contact avec la personne si vous voulez accélérer votre requète</b>
         <p></p>
-        <div><button class="btn btn-info my-4 btn-block"(click)="Accepter(item.idRequest)" >Accepter</button></div>
-        <p></p>
-        <div><button class="btn btn-info my-4 btn-block"(click)="Retirer(item.idRequest)" >Refuser</button></div>
+        <div><button class="btn btn-info my-4 btn-block"(click)="Retirer(item.idRequest)" >Retirer la demande de covoiturage</button></div>
       </div>
       <div *ngIf ="item.confirmation === 1">
         <div><button  class="btn btn-info my-4 btn-block" (click)="Retirer(item.idRequest)" >Arreter le covoiturage avec {{item.firstname}}</button></div>

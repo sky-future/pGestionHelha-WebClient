@@ -1,20 +1,17 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {CarpoolingRequestDto} from '../types/carpooling-request-dto';
-import {CarpoolingRequestService} from '../repositories/carpooling-request.service';
-import {ProfileService} from '../../services/profile.service';
-import {UserService} from '../../services/user.service';
 import {RequestItem} from '../../commons/components/types/request-item';
 import {Confirmation} from '../types/confirmation';
+import {CarpoolingRequestService} from '../repositories/carpooling-request.service';
+import {CarpoolingRequestDto} from '../types/carpooling-request-dto';
+import {ProfileService} from '../../services/profile.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-carpooling-request',
-  templateUrl: './carpooling-request.component.html',
-  styleUrls: ['./carpooling-request.component.css']
+  selector: 'app-carpooling-sender',
+  templateUrl: './carpooling-sender.component.html',
+  styleUrls: ['./carpooling-sender.component.css']
 })
-export class CarpoolingRequestComponent implements OnInit {
-
-  //TODO rajouter vous n'avez pas de demande dans le carpooling request
-  //TODO Gérer les demandes envoyées
+export class CarpoolingSenderComponent implements OnInit {
 
   requestItems: RequestItem[] = [];
   requestItem : RequestItem;
@@ -34,12 +31,12 @@ export class CarpoolingRequestComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.requestList = await this.carpoolingRequestService.queryRequestByIdUser(this.userService.userValue.id);
+    this.requestList = await this.carpoolingRequestService.querySenderByIdUser();
+    // this.requestList = await this.carpoolingRequestService.queryRequestByIdUser(this.userService.userValue.id);
     this.longeur = Object.keys(this.requestList).length;
     if(this.longeur > 1){
       this.longeur--;
     }
-    console.log(this.requestList);
 
     this.createList();
   }
@@ -55,14 +52,8 @@ export class CarpoolingRequestComponent implements OnInit {
     }
   }
 
-  Accepter(id){
-    this.confirmation = this.carpoolingRequestService.createConfirmation(id, this.userService.userValue.id , 1)
-    this.carpoolingRequestService.uptadeRequest(this.confirmation);
-    window.location.reload();
-  }
-
   Retirer(id : number){
-    this.carpoolingRequestService.delete(id , this.userService.userValue.id);
+    this.carpoolingRequestService.delete(this.userService.userValue.id, id);
     window.location.reload();
   }
 }

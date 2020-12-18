@@ -68,4 +68,12 @@ export class CarPoolingService implements CarPooling{
    return response;
   }
 
+  public addOfferCarpooling(){
+    return this.http.post(environment.serverAddress + this.urlOfferCarpooling + '/' +  this.userService.userValue.id, null).subscribe((ok)=>{console.log(ok)});
+  }
+
+  public deleteOfferCarpooling(){
+    return this.http.delete(environment.serverAddress + this.urlOfferCarpooling + '/' + this.userService.userValue.id).subscribe((ok)=>{console.log(ok)});
+  }
+
 }
