@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          this.alertService.error('Utilisateur ou le mot de passe ne sont pas correct', {keepAfterRouteChange: true});
+          alert(error.error.message);
           this.loading = false;
         });
   }
