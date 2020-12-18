@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MatTabChangeEvent} from '@angular/material/tabs';
 import {AddresseGetDtoOutput} from '../../../CarPooling/types/address-get-dto-output';
 import {AddressService} from '../../../CarPooling/repositories/address-service.service';
-import {UserService} from '../../../services/user.service';
 
 
 @Component({

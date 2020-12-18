@@ -32,7 +32,10 @@ export class ListUserComponent implements OnInit {
         })
   }
 
-  editUser(user) {
+  editUser(user : UserDto) {
+    window.localStorage.removeItem("editUserId");
+    window.localStorage.setItem("editUserId", user.id.toString());
+    this.router.navigate(['edit-user']);
 
   }
 }

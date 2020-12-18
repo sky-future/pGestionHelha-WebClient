@@ -25,6 +25,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {CarpoolingModule} from '../../../CarPooling/types/carpooling.module';
 import {ProfileComponent} from '../my-profile/profile/profile.component';
 import {IdentifiantsComponent} from '../my-profile/identifiants/identifiants.component';
+import {UpdateLastConnexionPipe} from '../pipes/update-last-connexion.pipe';
 
 
 
@@ -46,7 +47,8 @@ import {IdentifiantsComponent} from '../my-profile/identifiants/identifiants.com
     AlertComponent,
     PasswordTransformPipe,
     ProfileComponent,
-    IdentifiantsComponent
+    IdentifiantsComponent,
+    UpdateLastConnexionPipe
 
   ],
   imports: [

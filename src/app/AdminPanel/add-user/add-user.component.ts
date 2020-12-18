@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {UserDto} from '../../DTOs/user-dto';
 import {AdminPanelPipe} from '../pipes/admin-panel.pipe';
+import {AlertService} from '../../services/alert.service';
+import {sha256} from 'js-sha256';
 
 @Component({
   selector: 'app-add-user',
@@ -19,7 +21,8 @@ export class AddUserComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder,
               private router : Router,
-              private userService : UserService) { }
+              private userService : UserService,
+              private alertService : AlertService) { }
 
   ngOnInit(): void {
 
@@ -37,22 +40,33 @@ export class AddUserComponent implements OnInit {
     return false;
   }
 
- onSubmit() {
+ async onSubmit() {
 
     let userAdmin = this.userAdmin();
 
   let connectedUser = this.userService.userValue.id;
+  let password = this.addForm.value.password;
+  password = sha256(password);
 
     this._userDto = new AdminPanelPipe().transform(
       connectedUser,
       this.addForm.value.email,
-      this.addForm.value.password,
+      password,
       "today",
       userAdmin
     )
 
-    this.userService.createAdminUser(this._userDto)
-      .subscribe();
+   let errorMessage = this.userService.createAdminUser(this._userDto);
+      //alert(errorMessage.catch());
+      //   (response) =>{
+      //     console.log(response)
+      //   },
+      //   error => {
+      //     this.alertService.error(error);
+      //   }
+      // );
+
+
 
     this.router.navigate(['list-users'])
   }

@@ -28,6 +28,7 @@
     "@aspnet/signalr": "^1.1.4",
     "@auth0/angular-jwt": "^5.0.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@types/jest": "^26.0.19",
     "@types/jquery": "^3.5.4",
     "angular-bootstrap-md": "^10.0.0",
     "bootstrap": "^4.5.0",

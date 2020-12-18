@@ -1,1 +1,33 @@
-<p>edit-user works!</p>
+<button class="btn btn-success" [routerLink]="'/list-users'">Back</button>
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Edit User</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="hidden">
+      <input type="number" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
+    </div>
+    <div class="form-group">
+      <label for="mail"> Email :</label>
+      <input type="text" formControlName="mail" placeholder="mail" name="mail" class="form-control" id="mail" readonly="true">
+    </div>
+
+    <div class="form-group">
+      <label for="password"> Mot de passe :</label>
+      <input formControlName="password" placeholder="Mot de passe" name="password" class="form-control" id="password">
+    </div>
+
+    <div class="form-group">
+      <label for="lastConnexion">Dernière connexion:</label>
+      <input formControlName="lastConnexion" placeholder="Last Connexion" name="lastConnexion" class="form-control" id="lastConnexion">
+    </div>
+
+    <div class="form-group">
+      <label for="admin">Admin : </label>
+      <select name="admin" formControlName="admin" id="admin">
+        <option>0</option>
+        <option>1</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" [disabled]="editForm.invalid">Update</button>
+  </form>
+</div>

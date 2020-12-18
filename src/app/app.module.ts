@@ -17,6 +17,7 @@ import {AdminPanelModule} from './AdminPanel/types/admin-panel.module';
 import { AdminPanelPipe } from './AdminPanel/pipes/admin-panel.pipe';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

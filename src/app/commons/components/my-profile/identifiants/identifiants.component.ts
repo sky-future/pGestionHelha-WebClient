@@ -16,10 +16,6 @@ import {PasswordTransformPipe} from '../../pipes/password-transform.pipe';
 })
 export class IdentifiantsComponent implements OnInit {
 
-  // @ViewChild('lastname') lastname: ElementRef;
-  // @ViewChild('firstname') firstname: ElementRef;
-  // @ViewChild('telephone') telephone: ElementRef;
-  // @ViewChild('descript') descript: ElementRef;
   @ViewChild('currentPassword') currentPassword: ElementRef;
 
   private userLogin: UserAuthenticateDto;
@@ -52,10 +48,6 @@ export class IdentifiantsComponent implements OnInit {
     confirmPassword: ['', [Validators.required]]
   });
 
-  // hideElements() {
-  //   this.isHidden = [false, false, false, false];
-  // }
-
   // Convenience getter for easy access to form fields
   get f() {
     return this.formModel.controls;
@@ -85,98 +77,6 @@ export class IdentifiantsComponent implements OnInit {
     );
 
   }
-
-  // confirmChange(nb: number) {
-  //   //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
-  //
-  //   //Vérifie si modif
-  //   this.findDifference(nb);
-  //   if (this.i == 0) {
-  //     this.alertService.warn('Aucune modification introduite.');
-  //     return;
-  //   }
-  //
-  //   this.profile.idUser = this.userService.userValue.id;
-  //
-  //   let profileMod = this.profileService
-  //     .createProfileOutput(
-  //       this.profile.id,
-  //       this.profile.lastname,
-  //       this.profile.firstname,
-  //       this.profile.matricule,
-  //       this.profile.telephone,
-  //       this.profile.descript,
-  //       this.profile.idUser
-  //     );
-  //
-  //   this.profileService.updateProfile(profileMod)
-  //     .subscribe(answer => {
-  //       console.log(answer);
-  //     });
-  //
-  //   //Success alert
-  //   this.alertService.success('Vous avez changé ' + this.changedContent[nb]);
-  //
-  //   //resets every icons and labels/input
-  //   this.hideElements();
-  //
-  //   //petit reload bitch
-  //   location.reload();
-  //
-  // }
-
-  // findDifference(nb: number) {
-  //
-  //   this.i = 0;
-  //
-  //   switch (nb) {
-  //     case 0 :
-  //       if (this.profile.lastname != this.lastname.nativeElement.value) {
-  //         this.profile.lastname = this.lastname.nativeElement.value;
-  //         this.i++;
-  //       }
-  //       break;
-  //
-  //     case 1:
-  //       if (this.profile.firstname != this.firstname.nativeElement.value) {
-  //         this.profile.firstname = this.firstname.nativeElement.value;
-  //         this.i++;
-  //       }
-  //       break;
-  //
-  //     case 2:
-  //       if (this.profile.telephone != this.telephone.nativeElement.value) {
-  //         this.profile.telephone = this.telephone.nativeElement.value;
-  //         this.i++;
-  //       }
-  //       break;
-  //
-  //     case 3:
-  //       if (this.profile.descript != this.descript.nativeElement.value) {
-  //         this.profile.descript = this.descript.nativeElement.value;
-  //         this.i++;
-  //       }
-  //       break;
-  //   }
-  //
-  // }
-
-
-//   changeHidden(nb: number) {
-//
-//     for (let i = 0; i < this.isHidden.length; i++) {
-//       if (i == nb) {
-//         this.isHidden[nb] = !this.isHidden[nb];
-//       } else {
-//         this.isHidden[i] = false;
-//       }
-//     }
-//
-//   }
-//
-//
-// }
-
 
 // Custom validator to check that two fields match
   MustMatch(controlName: string, matchingControlName: string) {

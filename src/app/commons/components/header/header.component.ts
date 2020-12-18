@@ -5,6 +5,8 @@ import {UserService} from '../../../services/user.service';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDto} from '../../../DTOs/profile-dto';
 import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-output';
+import {LastConnexionDto} from '../../../AdminPanel/types/last-connexion-dto';
+import {UpdateLastConnexionPipe} from '../pipes/update-last-connexion.pipe';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,8 @@ import {UserAuthenticateDtoOutput} from '../../../DTOs/user-authenticate-dto-out
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  private _lastConnexionDto : LastConnexionDto;
 
   @Output() public sidenavToggle = new EventEmitter();
 
@@ -85,7 +89,19 @@ export class HeaderComponent implements OnInit {
     this.authService.openLoginModal();
   }
 
+  //TODO terminer le logoutClick
   onLogoutClick() {
+
+    let connectedUserId = this.userService.userValue.id;
+    let date = new Date().toLocaleString();
+debugger;
+    this._lastConnexionDto = new UpdateLastConnexionPipe().transform(
+      connectedUserId,
+      date
+    );
+
+    this.userService.updateLastconnexion(this._lastConnexionDto)
+      .subscribe();
     this.userService.logout();
     window.location.reload();
   }

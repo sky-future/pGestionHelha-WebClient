@@ -11,6 +11,7 @@ import {map} from 'rxjs/operators';
 import {UserAuthenticateDtoOutput} from '../DTOs/user-authenticate-dto-output';
 import {CreateUserLoginPipe} from '../pipes/create-user-login.pipe';
 import {PasswordDto} from '../commons/components/types/password-dto';
+import {LastConnexionDto} from '../AdminPanel/types/last-connexion-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class UserService {
   private URLPASSWORDCHANGE = 'api/users/pwd';
   private URL_ADD_ADMIN_USER = 'api/users/admin';
   private URL_DELETE_USER_BY_ID = 'api/users';
+  private URLLASTCONNEXION_CHANGE = 'api/users/lastconexion';
 
   constructor(private http: HttpClient, private router: Router) {
     this.userSubject = new BehaviorSubject<UserAuthenticateDtoOutput>(JSON.parse(localStorage.getItem('user')));
@@ -42,10 +44,6 @@ export class UserService {
   public createUserLogin(email:string, password:string) : UserAuthenticateDto
   {
     return new CreateUserLoginPipe().transform(email,password,0);
-  }
-
-  updatePassword(data): Observable<PasswordDto>{
-    return this.http.patch<PasswordDto>(environment.serverAddress + this.URLPASSWORDCHANGE, data);
   }
 
   register(user:UserPost): Observable<UserDto> {
@@ -69,15 +67,31 @@ export class UserService {
     this.router.navigate(['']);
   }
 
+  public updateLastconnexion(data) : Observable<LastConnexionDto>{
+    return this.http.patch<LastConnexionDto>(environment.serverAddress + this.URLLASTCONNEXION_CHANGE , data);
+  }
+
+  updatePassword(data): Observable<PasswordDto>{
+    return this.http.patch<PasswordDto>(environment.serverAddress + this.URLPASSWORDCHANGE, data);
+  }
+
   public getUsers(): Promise<UserList>{
     return this.http.get<UserList>(environment.serverAddress + this.URL).toPromise();
   }
 
-  public createAdminUser(user : UserDto): Observable<UserDto>{
-    return this.http.post<UserDto>(environment.serverAddress + this.URL_ADD_ADMIN_USER, user);
+  public createAdminUser(user : UserDto): Promise<UserDto>{
+    return this.http.post<UserDto>(environment.serverAddress + this.URL_ADD_ADMIN_USER, user).toPromise();
   }
 
   public deleteUserById (idUsertoDelete : number){
     return this.http.delete(environment.serverAddress + this.URL_DELETE_USER_BY_ID + "/" + idUsertoDelete );
+  }
+
+  public getUserById(idUsertoGet : number) : Observable<UserDto>{
+    return this.http.get<UserDto>(environment.serverAddress + this.URL + "/" + idUsertoGet);
+  }
+
+  public updateUserById(idUsertoUpdate, user) : Observable<UserDto>{
+    return this.http.put<UserDto>(environment.serverAddress + this.URL + "/" + idUsertoUpdate, user);
   }
 }
