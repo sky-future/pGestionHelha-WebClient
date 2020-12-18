@@ -78,23 +78,23 @@ export class CarpoolingProfileComponent implements OnInit {
       return;
     };
 
-    if (this.x == 1){
+    if (this.x >= 1){
       let addressGeocode = this.address.street + "," + this.address.number + "," + this.address.postalCode + "," + this.address.city;
-      await this.findLocation(addressGeocode);
+      this.findLocation(addressGeocode);
     };
 
 
-    let addressMod = this.addresseService.
-    createAddressOutput(
-      this.address.street,
-      this.address.number,
-      this.address.postalCode,
-      this.address.city,
-      this.address.country,
-      this.address.longitude,
-      this.address.latitude
-    );
-    console.log(this.address);
+    // let addressMod = this.addresseService.
+    // createAddressOutput(
+    //   this.address.street,
+    //   this.address.number,
+    //   this.address.postalCode,
+    //   this.address.city,
+    //   this.address.country,
+    //   this.address.longitude,
+    //   this.address.latitude
+    // );
+    // console.log(this.address);
 
     let carMod = this.carpoolingService.
     createCar(
@@ -105,10 +105,10 @@ export class CarpoolingProfileComponent implements OnInit {
 
     //debugger;
 
-    this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
-      .subscribe(answer => {
-        console.log(answer);
-      });
+    // this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
+    //   .subscribe(answer => {
+    //     console.log(answer);
+    //   });
 
 
     this.carpoolingService.updateCar(this.userService.userValue.id, carMod)
@@ -126,9 +126,29 @@ export class CarpoolingProfileComponent implements OnInit {
 
   }
 
+  restMethode(){
+    let addressMod = this.addresseService.
+     createAddressOutput(
+       this.address.street,
+       this.address.number,
+       this.address.postalCode,
+       this.address.city,
+       this.address.country,
+       this.address.longitude,
+       this.address.latitude
+     );
+     console.log(this.address);
+
+    this.addresseService.updateAddress(this.userService.userValue.id, addressMod)
+      .subscribe(answer => {
+        console.log(answer);
+      });
+  }
+
   findDifference(nb: number) {
 
     this.i = 0;
+    this.x = 0;
 
     switch (nb) {
       case 0 :
@@ -201,7 +221,7 @@ export class CarpoolingProfileComponent implements OnInit {
   }
 
 
-  async findLocation(address) {
+  findLocation(address) {
     this.geocoder = new google.maps.Geocoder()
     this.geocoder.geocode({
       'address': address
@@ -209,13 +229,12 @@ export class CarpoolingProfileComponent implements OnInit {
       console.log(results);
       if (status == google.maps.GeocoderStatus.OK) {
         // decompose the result
-
         console.log("ça marche !");
         let lat = results[0].geometry.location.lat();
         let lng = results[0].geometry.location.lng();
         this.address.latitude = lat.toString();
         this.address.longitude = lng.toString();
-
+        this.restMethode();
         console.log("Lat" + this.address.latitude + "lng" + this.address.longitude);
         this.confirm = true;
 
