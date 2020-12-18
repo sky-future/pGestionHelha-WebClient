@@ -64,7 +64,9 @@ export class CarpoolingResearchComponent implements OnInit {
     });
     this.addressList = await this.carpoolingService.getListForCarpooling();
     this.longueur = Object.keys(this.addressList).length;
-    this.longueur--;
+    if(this.longueur > 1){
+      this.longueur--;
+    }
     this.addMarker();
   }
 
