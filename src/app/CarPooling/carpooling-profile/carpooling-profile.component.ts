@@ -176,7 +176,7 @@ export class CarpoolingProfileComponent implements OnInit {
         break;
 
       case 6:
-        if (this.car.placeNb != this.placeNb.nativeElement.value) {
+        if (this.car.placeNb != this.placeNb.nativeElement.value && this.placeNb.nativeElement.value >= 0) {
           this.car.placeNb = Number(this.placeNb.nativeElement.value);
           this.i++;
         }
