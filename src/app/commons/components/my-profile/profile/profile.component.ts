@@ -47,16 +47,6 @@ export class ProfileComponent implements OnInit {
     this.isHidden = [false, false, false, false];
   }
 
-  //Méthode pour changer le mot de passe
-  confirmPasswordChange(){
-
-    // this.submitted = true;
-    //
-     var connectedUser = this.userService.userValue.id;
-
-
-  }
-
   confirmChange(nb: number) {
 
     //Vérifie si modif

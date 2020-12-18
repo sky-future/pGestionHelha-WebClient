@@ -70,8 +70,7 @@ export class IdentifiantsComponent implements OnInit {
       passwordOld
     )
 
-    this.userService
-      .updatePassword(this.passwordDTO).subscribe(data => this.alertService.success("Le mot de passe a bien été changé"),
+    this.userService.updatePassword(this.passwordDTO).subscribe(data => this.alertService.success("Le mot de passe a bien été changé"),
 
       error => this.alertService.error("Le mot de passe actuel n'a pas été changé !")
     );
