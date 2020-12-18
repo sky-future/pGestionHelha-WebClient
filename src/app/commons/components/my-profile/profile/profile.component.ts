@@ -60,7 +60,6 @@ export class ProfileComponent implements OnInit {
   }
 
   confirmChange(nb: number) {
-    //Todo faire des vérifs sur les valeurs genre téléphone en suivant le pattern etc.. Qu'il y a eu des changements
 
     //Vérifie si modif
     this.findDifference(nb);

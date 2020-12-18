@@ -8,7 +8,7 @@ export class RequestcarpoolingPipe implements PipeTransform {
 
   private _carPoolingRequestDto : CarPoolingRequestDto;
 
-  //TODO change confirmation value
+
   transform(idRequestSender : number,
             idRequestReceiver : number,
             confirmation : number): CarPoolingRequestDto {
