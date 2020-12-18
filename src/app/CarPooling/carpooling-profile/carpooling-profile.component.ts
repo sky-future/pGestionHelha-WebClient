@@ -137,7 +137,7 @@ export class CarpoolingProfileComponent implements OnInit {
         break;
 
       case 1:
-        if (this.address.number != this.number.nativeElement.value) {
+        if (this.address.number != this.number.nativeElement.value && this.number.nativeElement.value >= 1) {
           this.address.number = Number(this.number.nativeElement.value);
           this.x++;
           this.i++;
@@ -145,7 +145,7 @@ export class CarpoolingProfileComponent implements OnInit {
         break;
 
       case 2:
-        if (this.address.postalCode != this.postalCode.nativeElement.value) {
+        if (this.address.postalCode != this.postalCode.nativeElement.value && this.postalCode.nativeElement.value >= 1) {
           this.address.postalCode = Number(this.postalCode.nativeElement.value);
           this.x++;
           this.i++;
