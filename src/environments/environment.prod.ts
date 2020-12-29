@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverAddress: 'https://pgestionhelhaapi.azurewebsites.net/'
+  serverAddress: 'https://pgestionhelhaprojet.azurewebsites.net/'
 };
