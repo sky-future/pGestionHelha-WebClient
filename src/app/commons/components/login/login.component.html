@@ -1,5 +1,5 @@
 <div class="card" fxLayout="column" fxFlex="calc(33%-25px)" fxFlex.sm="calc(50%-25px)">
-  <h2 class="card-header">Sign in</h2>
+  <h2 class="card-header">Connexion</h2>
   <div class="card-body">
     <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
 
@@ -11,19 +11,19 @@
       <!-- Password -->
       <div class="form-group">
         <!-- Nombre de places -->
-        <input type="password" id="defaultPassword" formControlName="password" class="form-control" placeholder="Password">
+        <input type="password" id="defaultPassword" formControlName="password" class="form-control" placeholder="Mot de passe">
       </div>
 
       <!-- Log in button -->
       <div class="form-group">
-        <button id="btn1" class="btn btn-info my-4 btn-block" type="submit">Log in</button>
+        <button id="btn1" class="btn btn-info my-4 btn-block" type="submit">Se connecter</button>
       </div>
 
     </form>
 
     <!-- Register -->
-    <p>Not a member?
-      <a href="javascript:void(0)" (click)="dialog()">Register</a>
+    <p>Pas encore Membre?
+      <a href="javascript:void(0)" (click)="dialog()">S'enregistrer</a>
     </p>
 
   </div>

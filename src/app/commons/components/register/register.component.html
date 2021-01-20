@@ -1,6 +1,6 @@
 <!-- Default form register -->
 <div class="card" fxLayout="column"  fxFlex.sm="calc(50%-25px)" fxFlex="calc(33%-25px)">
-  <h2 class="card-header">Registration</h2>
+  <h2 class="card-header">Identifiez-vous</h2>
   <div class="card-body">
     <alert></alert>
     <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
@@ -17,13 +17,13 @@
 
       <!-- Password -->
       <div class="form-group">
-        <input type="password" id="defaultRegisterFormPassword" placeholder="Password"
+        <input type="password" id="defaultRegisterFormPassword" placeholder="Mot de passe"
                formControlName="password" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.required">Le mot de passe est requis</div>
           <div *ngIf="f.password.errors.pattern">Password must be at least 8 characters and maximum 15 with one digit,
             one
             upper case and one lower case
@@ -33,15 +33,15 @@
 
       <!-- Confirm Password -->
       <div class="form-group">
-        <input type="password" id="defaultRegisterFormConfirmPassword" placeholder="Confirm password"
+        <input type="password" id="defaultRegisterFormConfirmPassword" placeholder="Confirmez mot de passe"
                formControlName="confirmPassword" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
                aria-describedby="defaultRegisterFormConfirmPasswordHelpBlock">
 
 
         <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-          <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
-          <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+          <div *ngIf="f.confirmPassword.errors.required">Confirmez mot de passe est requis</div>
+          <div *ngIf="f.confirmPassword.errors.mustMatch">Les mots de passent doivent correspondrent</div>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
       <div class="form-group">
         <button [disabled]="loading" id="btn1" class="btn btn-info my-4 btn-block" type="submit">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Register
+          S'enregistrer
         </button>
       </div>
     </form>

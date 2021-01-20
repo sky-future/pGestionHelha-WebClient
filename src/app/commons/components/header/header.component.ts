@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     },
     {
 
-      label: 'Register',
+      label: 'Identifiez-vous',
       icon: 'login',
       path: '',
       click: this.onRegisterClick.bind(this),
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     },
     {
 
-      label: 'Login',
+      label: 'Se connecter',
       icon: 'person_add',
       path: '',
       click: this.onLoginClick.bind(this),
